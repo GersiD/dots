@@ -126,12 +126,32 @@ cd_with_fzf() {
     cd "$(fd -H -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
 }
 
+tmux_fzf() {
+    if [ -z "$TMUX" ]; then
+        # Check if main session is running
+        if [ -z "$(tmux ls | grep main)" ]; then
+            tmux new-session -s main
+        else
+            tmux attach-session -t main
+        fi
+    else
+        tmux ls | fzf | cut -d: -f1 | xargs -I {} tmux switch-client -t {}
+    fi
+}
+
+tmux_del_fzf() {
+    tmux ls | fzf | cut -d: -f1 | xargs -I {} tmux kill-session -t {}
+}
+
 zle -N fzf_find_files
 zle -N cd_with_fzf
+zle -N tmux_fzf
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # bindkey '\C-f' fzf_find_files
 bindkey '\C-k' cd_with_fzf
+alias ftmux="tmux_fzf"
+alias ktmux="tmux_del_fzf"
 alias v="nvim"
 alias fd="fdfind"
 alias resetZsh="source ~/.zshrc"
@@ -158,6 +178,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=info:#cba6f7,prompt:#cba6f7,hl+:#f38ba8,pointer:#f5e0dc \
+--cycle"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
