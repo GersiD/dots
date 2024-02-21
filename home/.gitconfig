@@ -1,0 +1,7 @@
+[user]
+	email = Gersi.doko@unh.edu
+	name = Gersi.doko
+[core]
+	filemode = false
+[pull]
+	rebase = false
