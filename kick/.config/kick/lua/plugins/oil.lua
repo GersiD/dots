@@ -12,6 +12,9 @@ return {
       'size',
       -- "mtime",
     },
+    view_options = {
+      show_hidden = true,
+    },
     -- Set to `false` to remove a keymap
     -- See :help oil-actions for a list of all available actions
     keymaps = {
