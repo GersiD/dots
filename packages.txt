@@ -1,0 +1,15 @@
+stow
+python3
+python3-pip
+zoxide
+zsh
+oh-my-zsh
+btop
+tmux
+openjdk-17-jre
+openjdk-17-jdk
+rust-all
+cargo
+code
+neofetch
+texlive-full
