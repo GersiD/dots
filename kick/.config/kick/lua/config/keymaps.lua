@@ -125,7 +125,12 @@ vim.keymap.set('n', 'gr', function()
   )
 end, { desc = 'Goto References' })
 vim.keymap.set('n', 'gD', function()
-  vim.lsp.buf.declaration()
+  -- if lsp supports declaration, go to declaration
+  if vim.lsp.get_clients({ method = 'textDocument/declaration' })[1] then
+    vim.lsp.buf.declaration()
+  else
+    vim.lsp.buf.definition()
+  end
 end, { desc = 'Goto Declaration' })
 
 -- DAP Keymaps
