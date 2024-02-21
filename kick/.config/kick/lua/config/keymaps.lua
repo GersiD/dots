@@ -119,6 +119,14 @@ vim.keymap.set('n', 'gi', function()
 end, { desc = 'LSP Implementations' })
 vim.keymap.set('n', '<leader>uf', '<CMD>KickstartFormatToggle<CR>', { desc = 'Format Toggle' })
 vim.keymap.set('n', '<leader>ud', '<CMD>KickstartDiagnosticsToggle<CR>', { desc = 'Diagnostic Toggle' })
+vim.keymap.set('n', 'gr', function()
+  require('telescope.builtin').lsp_references(
+    require('telescope.themes').get_cursor({ jump_type = 'vsplit', reuse_win = true })
+  )
+end, { desc = 'Goto References' })
+vim.keymap.set('n', 'gD', function()
+  vim.lsp.buf.declaration()
+end, { desc = 'Goto Declaration' })
 
 -- DAP Keymaps
 vim.keymap.set('n', '<F7>', function()
