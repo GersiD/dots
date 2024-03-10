@@ -17,7 +17,12 @@
     "pulseaudio",
     "pulseaudio#microphone",
     "battery",
+    "custom/power",
   ],
+  "custom/power": {
+    "format": "󰣇 ",
+    "on-click": "wlogout",
+  },
   "hyprland/window": {
     "format": "{}"
   },
