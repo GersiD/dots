@@ -1,3 +1,4 @@
+fastfetch
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -114,7 +115,7 @@ export EDITOR='nvim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 # eval "$(jump shell)"
-eval "$(zoxide init zsh --cmd j)"
+eval "$(~/.cargo/bin/zoxide init zsh --cmd j)"
 
 fzf_find_files ()
 {
@@ -148,12 +149,11 @@ zle -N cd_with_fzf
 zle -N tmux_fzf
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# bindkey '\C-f' fzf_find_files
+bindkey '\C-f' fzf_find_files
 bindkey '\C-k' cd_with_fzf
 alias ftmux="tmux_fzf"
 alias ktmux="tmux_del_fzf"
 alias v="nvim"
-alias fd="fdfind"
 alias resetZsh="source ~/.zshrc"
 alias update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh"
 alias lemonade="/home/gd1064/go/bin/lemonade"
@@ -173,7 +173,7 @@ export PATH=$PATH:$HOME/gurobi1001/linux64/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/gurobi1001/linux64/lib
 # export NVIM_APPNAME="nvim" # for lazy
 export NVIM_APPNAME="kick" # for kickstart
-export HOME="/home/gd1064"
+# export HOME="/home/gd"
 export XDG_CONFIG_HOME=$HOME/.config
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
