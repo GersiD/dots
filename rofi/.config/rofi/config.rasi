@@ -147,8 +147,13 @@ configuration {
 	me-select-entry: "MousePrimary";
 	me-accept-entry: "MouseDPrimary";
 	me-accept-custom: "Control+MouseDPrimary";
-*/
 	ml-row-up: "Control+k";
 	ml-row-down: "Control+j";
+*/
+  kb-accept-entry: "Return";
+  kb-remove-to-eol: "Control+d";
+  kb-remove-char-forward: "Delete";
 	kb-cancel: "Escape";
+  kb-row-down: "Control+j";
+  kb-row-up: "Control+k";
 }
