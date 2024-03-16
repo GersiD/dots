@@ -50,19 +50,19 @@ if jit.os == 'Windows' then
     },
   }
 else
-  -- vim.g.clipboard = {
-  --   name = "xclip",
-  --   copy = {
-  --     ["+"] = "xclip -selection clipboard",
-  --     ["*"] = "xclip -selection clipboard",
-  --   },
-  --   paste = {
-  --     ["+"] = "xclip -selection clipboard -o",
-  --     ["*"] = "xclip -selection clipboard -o",
-  --   },
-  --   cache_enabled = true,
-  -- }
-  vim.g.clipboard = 'unnamedplus'
+  vim.g.clipboard = {
+    name = 'wl-copy',
+    copy = {
+      ['+'] = 'wl-copy',
+      ['*'] = 'wl-copy',
+    },
+    paste = {
+      ['+'] = 'wl-paste',
+      ['*'] = 'wl-paste',
+    },
+    cache_enabled = true,
+  }
+  -- vim.g.clipboard = 'unnamedplus'
 end
 vim.g.ruby_host_skip_check = true
 vim.g.perl_host_skip_check = true

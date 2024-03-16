@@ -31,11 +31,13 @@ return {
           ['vimtex_view_general_options_latexmk'] = '-reuse-instance',
         }
       else
+        vim.g.vimtex_view_general_viewer = 'zathura'
+        vim.g.vimtex_view_method = 'zathura'
         return {
-          ['vimtex_view_general_viewer'] = '',
-          ['vimtex_view_method'] = '',
-          ['vimtex_view_general_options'] = '',
-          ['vimtex_view_general_options_latexmk'] = '',
+          -- ['vimtex_view_general_viewer'] = 'mupdf',
+          -- ['vimtex_view_method'] = 'mupdf',
+          -- ['vimtex_view_general_options'] = '',
+          -- ['vimtex_view_general_options_latexmk'] = '',
         }
       end
     end,
