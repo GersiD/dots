@@ -241,3 +241,4 @@ xorg-xinit
 yay
 zathura
 zathura-pdf-mupdf
+pipes.sh
