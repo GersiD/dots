@@ -14,7 +14,7 @@
 
 * {
     border: none;
-    border-radius: 15px;
+    border-radius: 12px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
     font-size: 14.2px;
@@ -90,100 +90,98 @@ tooltip {
     padding: 0px 8px;
     margin-top: 3px;
     margin-bottom: 3px;
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 12px;
     margin-right: 5px;
     margin-left: 5px;
 }
 
 #tray {
     border-radius: 15px;
-    margin-right: 5px;
+    margin-right: 2px;
 }
 
 #workspaces {
     background: #000000;
-    border-radius: 15px;
-    margin-left: 5px;
+    border-radius: 12px;
+    margin-left: 2px;
     padding-right: 1px;
 }
 
 #window {
-    border-radius: 15px;
+    border-radius: 12px;
     margin-left: 60px;
     margin-right: 60px;
 }
 
 #clock {
     color: #a6e3a1;
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 12px;
 }
 
 #network {
     color: #f9e2af;
-    border-radius: 15px 15px 15px 15px;
-    margin-right: 10px;
+    border-radius: 12px;
+    margin-right: 2px;
 }
 
 #custom-notifications {
     color: #f9e2af;
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 12px;
     padding-left: 12px;
-    margin-left:  5px;
-    margin-right: 5px;
+    margin-left:  2px;
+    margin-right: 2px;
 
 }
 
 #custom-power {
     color: #f9e2af;
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 12px;
     padding-left: 13px;
 }
 
 #custom-updates {
     color: #89b4fa;
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 12px;
     border-left:  0px;
     border-right: 0px;
     margin-left:  5px;
     margin-right: 0px;
 }
 
-
 #memory {
     color: #89b4fa;
-    border-radius: 15px 15px 15px 15px;
-    margin-left: 5px;
+    border-radius: 12px;
+    margin-left: 2px;
 }
 
 #disk {
     color: #a6e3a1;
-    border-radius: 15px 15px 15px 15px;
-    margin-left: 5px;
+    border-radius: 12px;
+    margin-left: 2px;
 }
-
 
 #bluetooth {
   color: #89b4fa;
-  border-radius: 15px 15px 15px 15px;
-  margin-left: 5px;
-  margin-right: 5px;
+  border-radius: 12px;
+  margin-left: 2px;
+  margin-right: 2px;
 } 
 
 #pulseaudio {
   color: #89b4fa;
-  border-radius: 15px 0px 0px 15px;
+  border-radius: 12px 0px 0px 12px;
   margin-right: 0px;
 }
 
 #pulseaudio.microphone {
     color: #cba6f7;
-    border-radius: 0px 15px 15px 0px;
+    border-radius: 0px 12px 12px 0px;
     margin-left: 0px;
 }
 
 #battery {
     color: #a6e3a1;
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 12px;
     margin-right: 5px;
     margin-left: 5px;
 }
