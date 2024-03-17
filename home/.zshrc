@@ -116,6 +116,8 @@ export EDITOR='nvim'
 #
 # eval "$(jump shell)"
 eval "$(~/.cargo/bin/zoxide init zsh --cmd j)"
+autoload -U compinit && compinit -u
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 fzf_find_files ()
 {
