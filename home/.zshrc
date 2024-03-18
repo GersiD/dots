@@ -167,6 +167,7 @@ alias t="tmux"
 alias a="tmux attach-session -t"
 alias ta="tmux attach-session -t TA"
 alias ra="tmux attach-session -t RA"
+alias icat="kitten icat"
 
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
