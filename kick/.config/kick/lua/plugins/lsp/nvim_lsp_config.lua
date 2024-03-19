@@ -39,8 +39,16 @@ return {
           },
         },
       },
+      rust_analyzer = {
+        mason = false,
+      },
     },
-    setup = {},
+    setup = {
+      rust_analyzer = function()
+        -- TODO: Cant see the inline hints!
+        return true -- return true to skip the default setup
+      end,
+    },
   },
   config = function(_, opts)
     vim.diagnostic.config({
