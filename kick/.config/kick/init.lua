@@ -1,6 +1,6 @@
 -- Must include options config before anything loads
+--NOTE: set all options before lazy
 require('config.options')
---TODO: set all options before lazy
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info

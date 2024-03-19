@@ -45,7 +45,6 @@ return {
     },
     setup = {
       rust_analyzer = function()
-        -- TODO: Cant see the inline hints!
         return true -- return true to skip the default setup
       end,
     },

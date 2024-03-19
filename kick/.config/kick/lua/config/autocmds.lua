@@ -25,9 +25,7 @@ vim.api.nvim_create_autocmd('InsertCharPre', {
       return
     end
     -- Get node and return early if not in a string
-    --- TODO: This is not working
     local node = vim.treesitter.get_node()
-    vim.notify(vim.inspect(node:type()))
     if not node then
       return
     end
