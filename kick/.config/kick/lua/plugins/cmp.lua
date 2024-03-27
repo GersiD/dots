@@ -52,6 +52,15 @@ return {
           fallback()
         end,
       },
+      ['<C-CR>'] = {
+        c = function(fallback)
+          if not cmp.visible() then
+            cmp.complete()
+          else
+            fallback()
+          end
+        end,
+      },
     })
     -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
     ---@diagnostic disable-next-line: missing-fields
@@ -98,6 +107,7 @@ return {
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<C-CR>'] = cmp.mapping.complete(),
         ['<Tab>'] = cmp.mapping(function(fallback)
           if luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
