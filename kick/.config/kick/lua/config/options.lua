@@ -50,19 +50,22 @@ if jit.os == 'Windows' then
     },
   }
 else
-  vim.g.clipboard = {
-    name = 'wl-copy',
-    copy = {
-      ['+'] = 'wl-copy',
-      ['*'] = 'wl-copy',
-    },
-    paste = {
-      ['+'] = 'wl-paste',
-      ['*'] = 'wl-paste',
-    },
-    cache_enabled = true,
-  }
-  -- vim.g.clipboard = 'unnamedplus'
+  if vim.fn.executable('wl-copy') == 1 then
+    vim.g.clipboard = {
+      name = 'wl-copy',
+      copy = {
+        ['+'] = 'wl-copy',
+        ['*'] = 'wl-copy',
+      },
+      paste = {
+        ['+'] = 'wl-paste',
+        ['*'] = 'wl-paste',
+      },
+      cache_enabled = true,
+    }
+  else
+    vim.g.clipboard = 'unnamedplus'
+  end
 end
 vim.g.ruby_host_skip_check = true
 vim.g.perl_host_skip_check = true
