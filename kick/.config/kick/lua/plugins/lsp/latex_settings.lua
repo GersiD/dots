@@ -3,6 +3,22 @@ return {
     'lervag/vimtex',
     lazy = false,
     config = function()
+      vim.api.nvim_create_autocmd({"BufEnter"}, {
+        pattern = '*.tex',
+        desc = 'Setup Vimtex',
+        callback = function()
+          local i = true
+          vim.keymap.set('n', '<leader><esc>', function ()
+            if i then
+              vim.cmd('VimtexCompile')
+              i = false
+            else
+              vim.cmd('VimtexView')
+            end
+          end
+          , {desc = 'Compile Latex File'})
+        end,
+      })
       vim.g.vimtex_compiler_latexmk = {
         build_dir = 'build',
         aux_dir = 'build',
