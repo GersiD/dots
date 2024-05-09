@@ -22,14 +22,18 @@ return {
       ['q'] = 'actions.close',
       -- ['<CR>'] = 'actions.select_vsplit',
       ['<CR>'] = function()
-        -- -- If the number of vsplits is 0, then open a new vsplit
-        -- if vim.fn.winnr('$') == 1 then
-        --   require('oil.actions').select_vsplit.callback()
-        --   require('oil').close()
-        -- else
-        --   require('oil.actions').select.callback()
-        -- end
-        require('oil.actions').select.callback()
+        -- If the file is a pdf file open it with zathura
+        local entry = require('oil').get_cursor_entry()
+        if not entry then
+          require('oil.actions').select.callback()
+          return
+        end
+        local filetype = vim.fn.fnamemodify(entry.name, ':e')
+        if filetype == 'pdf' then
+          vim.fn.jobstart('zathura ' .. entry.name, { detach = true })
+        else
+          require('oil.actions').select.callback()
+        end
       end,
       ['<C-s>'] = false,
       ['v'] = 'actions.select_vsplit',
