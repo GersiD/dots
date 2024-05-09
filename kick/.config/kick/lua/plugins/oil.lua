@@ -40,7 +40,6 @@ return {
       ['<C-h>'] = false,
       ['<C-l>'] = false,
       ['r'] = 'actions.refresh',
-      ['b'] = 'actions.parent',
       -- ["y"] = "actions.copy_entry_path", -- cant use y because we need that
       ['_'] = 'actions.open_cwd',
       ['`'] = 'actions.cd',
