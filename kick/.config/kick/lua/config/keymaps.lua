@@ -91,7 +91,6 @@ vim.keymap.set('n', 'gd', function()
   require('telescope.builtin').lsp_definitions(require('telescope.themes').get_cursor({
     jump_type = 'vsplit',
     reuse_win = true,
-    initial_mode = 'normal',
     attach_mappings = function(_, map)
       map('n', '<CR>', require('telescope.actions').select_vertical)
       return true
