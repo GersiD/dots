@@ -12,6 +12,7 @@ return {
             vim.cmd('VimtexView')
           end, { desc = 'Compile Latex File' })
         end,
+        once = true,
       })
       vim.g.vimtex_compiler_latexmk = {
         build_dir = 'build',
