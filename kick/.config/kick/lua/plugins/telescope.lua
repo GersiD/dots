@@ -1,5 +1,6 @@
 return {
   'nvim-telescope/telescope.nvim',
+  version = false,
   keys = {
     {
       '<leader>ft',
@@ -31,7 +32,14 @@ return {
     { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = 'Find Help' },
     {
       '<leader>fw',
-      '<cmd>lua require("telescope.builtin").live_grep({additional_args = function(args)return vim.list_extend(args, { "--hidden", "--no-ignore" })end,})<cr>',
+      function()
+        require('telescope.builtin').live_grep({
+          additional_args = function(args)
+            table.insert(args, '--hidden')
+            table.insert(args, '--no-ignore')
+          end,
+        })
+      end,
       desc = 'Find words',
     },
 
