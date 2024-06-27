@@ -4,6 +4,7 @@
 vim.keymap.set('n', '<A-j>', '15j', {})
 vim.keymap.set('n', '<A-k>', '15k', {})
 -- vim.keymap.set("n", "<cr>", "ciw", { remap = true, desc = "Change word" })
+vim.keymap.set({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and Clear hlsearch' })
 vim.keymap.set('n', '<TAB>', '<cmd>BufferLineCycleNext<cr>', { desc = 'Prev buffer' })
 vim.keymap.set('n', '<S-TAB>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'Neotree' })
@@ -182,7 +183,7 @@ vim.keymap.set('n', '<C-s>', function()
 end, { desc = 'Save' })
 vim.keymap.set('i', '<C-s>', function()
   -- send esc key to exit from insert mode
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('jj', true, false, true), 'n', false)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('jk', true, false, true), 'n', false)
   vim.cmd(':w')
 end, { desc = 'Save' })
 -- Fuzzy search all open buffers
