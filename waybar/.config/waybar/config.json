@@ -21,7 +21,7 @@
   ],
   "custom/power": {
     "format": "󰣇 ",
-    "on-click": "wlogout",
+    "on-click": "wlogout -l $HOME/.config/wlogout/layout -C $HOME/.config/wlogout/style.css",
   },
   "hyprland/window": {
     "format": "{}"
