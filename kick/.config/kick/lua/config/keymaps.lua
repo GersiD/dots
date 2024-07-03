@@ -60,7 +60,7 @@ vim.keymap.set('n', '<leader>la', function()
   vim.lsp.buf.code_action({
     ['range'] = {
       ['start'] = { curr_row, 0 },
-      ['end'] = { curr_row, 100 },
+      ['end'] = { curr_row, 1000 },
     },
   })
 end, { desc = 'Code Action on Line' })
