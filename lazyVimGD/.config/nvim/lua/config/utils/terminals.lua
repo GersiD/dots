@@ -48,10 +48,10 @@ return {
         cmd = command,
         hidden = true,
         direction = opts and opts.direction or "float",
-        close_on_exit = false,
+        close_on_exit = true,
         on_exit = function()
           -- enter normal mode
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", false, false, true), "n", false)
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("jj", false, false, true), "n", false)
         end,
         float_opts = {
           border = "curved",
