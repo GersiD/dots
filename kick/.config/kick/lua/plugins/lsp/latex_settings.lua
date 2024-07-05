@@ -62,7 +62,7 @@ return {
             texlab = {
               chktex = {
                 onEdit = false, -- default value
-                onOpenAndSave = false,
+                onOpenAndSave = true,
               },
               latexindent = {
                 modifyLineBreaks = false,
@@ -72,8 +72,16 @@ return {
           },
         },
         ltex = {
+          -- mason = false,
+          -- autostart = false,
           settings = {
-            ltex = { checkFrequency = 'save', language = 'en-US', diagnosticSeverity = 'info' },
+            ltex = {
+              checkFrequency = 'save',
+              language = 'en-US',
+              diagnosticSeverity = 'hint',
+              completionEnabled = true,
+              dictionary = { ['en-US'] = { 'Gersi', 'Doko', 'CVaR', 'Palash', 'Petrik', 'VaR' } },
+            },
           },
         },
       },
