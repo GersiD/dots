@@ -25,6 +25,13 @@ return {
     {
       '<leader>ff',
       function()
+        require('telescope.builtin').find_files({})
+      end,
+      desc = 'Find files',
+    },
+    {
+      '<leader>fa',
+      function()
         require('telescope.builtin').find_files({
           hidden = true,
           no_ignore = true,
@@ -32,6 +39,7 @@ return {
       end,
       desc = 'Find all files',
     },
+
     { '<leader>fH', '<cmd>Telescope highlights<cr>', desc = 'Find Highlights' },
     { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = 'Find Help' },
     {
