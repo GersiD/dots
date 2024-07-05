@@ -24,10 +24,14 @@ return {
     { '<leader>fv', '<cmd>lua require("telescope.builtin").vim_options()<cr>', desc = 'Find vim opts' },
     {
       '<leader>ff',
-      '<cmd>lua require("telescope.builtin").find_files({ hidden = true, no_ignore = true })<cr>',
+      function()
+        require('telescope.builtin').find_files({
+          hidden = true,
+          no_ignore = true,
+        })
+      end,
       desc = 'Find all files',
     },
-
     { '<leader>fH', '<cmd>Telescope highlights<cr>', desc = 'Find Highlights' },
     { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = 'Find Help' },
     {
