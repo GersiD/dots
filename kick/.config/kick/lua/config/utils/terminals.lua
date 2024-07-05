@@ -6,7 +6,7 @@ M.terminals = {
   lazygit = Terminal:new({ cmd = 'lazygit', direction = 'float' }),
   bottom = Terminal:new({ cmd = 'btop', direction = 'float' }),
   gdu = Terminal:new({ cmd = 'gdu', direction = 'float' }),
-  float_term = Terminal:new({ cmd = 'zsh' }),
+  float_term = Terminal:new({ cmd = 'fish' }),
   python = Terminal:new({ cmd = 'bpython' }),
 }
 
