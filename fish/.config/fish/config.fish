@@ -9,6 +9,7 @@ alias icat="kitten icat"
 alias lg="lazygit"
 alias ls="exa --icons"
 alias l="exa --icons"
+alias nv="neovide --fork"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
     alias mpra="kitten ssh gersi@mp-sys76.cs.unh.edu"
@@ -18,7 +19,7 @@ else
 end
 export EDITOR=nvim
 export NVIM_APPNAME="kick"
-#export NVIM_APPNAME="nvim" # lazyvim
+# export NVIM_APPNAME="nvim" # lazyvim
 
 
 # https://starship.rs/
