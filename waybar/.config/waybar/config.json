@@ -2,34 +2,48 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 30,
+  "height" : 10,
   "modules-left": [
-    "hyprland/workspaces",
+    "clock",
     "bluetooth",
-    "custom/notifications",
+    "tray",
   ],
   "modules-center": [
-    "clock",
+    "hyprland/workspaces",
   ],
   "modules-right": [
-    "tray",
+    "cpu",
+    "memory",
     "network",
     "pulseaudio",
     "pulseaudio#microphone",
     "battery",
-    "custom/power",
+    "custom/power"
   ],
+  "cpu": {
+      "format": "󰮩 {usage}%",
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": ["", "", ""]
+  },
   "custom/power": {
     "format": "󰣇 ",
     "on-click": "wlogout -l $HOME/.config/wlogout/layout -C $HOME/.config/wlogout/style.css",
   },
   "hyprland/window": {
-    "format": "{}"
+    "format": "{}",
+    "separate-outputs": true,
   },
   "hyprland/workspaces": {
-    "sort-by-name": true,
+    "sort-by-number": true,
     "format": "{id}",
-    "show-special": true,
+    "on-click": "activate",
+    "format-icons": {
+      "active": " ",
+    },
+    "show-special": false,
     "persistent_workspaces": {
       "*": 0
     }
@@ -52,6 +66,7 @@
         "today": "<span color='#f5a97f'><b><u>{}</u></b></span>"
       }
     },
+    "on-click": "gnome-calendar",
   },
   "battery": {
     "states": {
@@ -109,6 +124,7 @@
   },
   "network": {
     "format-disconnected": "Disconnected",
+    "format-ethernet": "󰈀 {ipaddr}",
     "format-wifi": "  {essid}",
     "tooltip-format": " {signalStrength}",
     "on-click": "wifimenu",
@@ -124,7 +140,7 @@
   },
   "memory": {
     "interval": 300,
-    "format": "  {used}G ",
+    "format": " {used}G",
     "tooltip-format": "{used} / {total} G",
   },
   "disk": {
