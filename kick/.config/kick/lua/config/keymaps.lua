@@ -1,6 +1,12 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
+vim.keymap.set('n', '<C-v>', '"+p', { desc = 'Paste from system clipboard' })
+vim.keymap.set('i', '<C-v>', function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', false)
+  vim.cmd('normal! "+p')
+end, { desc = 'Paste from system clipboard' })
+vim.keymap.set('v', '<C-c>', '"+y', { desc = 'Copy to system clipboard' })
 vim.keymap.set('n', '<A-j>', '15j', {})
 vim.keymap.set('n', '<A-k>', '15k', {})
 -- vim.keymap.set("n", "<cr>", "ciw", { remap = true, desc = "Change word" })
@@ -183,7 +189,7 @@ vim.keymap.set('n', '<C-s>', function()
 end, { desc = 'Save' })
 vim.keymap.set('i', '<C-s>', function()
   -- send esc key to exit from insert mode
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('jk', true, false, true), 'n', false)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', false)
   vim.cmd(':w')
 end, { desc = 'Save' })
 -- Fuzzy search all open buffers
