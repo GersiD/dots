@@ -8,6 +8,14 @@ return {
       -- timeout = vim.o.timeoutlen,
       -- clear_empty_lines = true,
       -- keys = "<Esc>",
+      mappings = {
+        t = {
+          j = {
+            k = false,
+            j = false,
+          },
+        },
+      },
     })
   end,
 }
