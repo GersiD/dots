@@ -98,6 +98,7 @@ tooltip {
 }
 
 #tray {
+    background: @surface0;
     border-radius: 15px;
     margin-right: 2px;
 }

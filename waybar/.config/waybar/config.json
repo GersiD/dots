@@ -25,7 +25,18 @@
     "custom/power"
   ],
   "cpu": {
-      "format": "󰮩 {usage}%",
+     "interval": 2,
+     "format": "{usage}%",
+     "format-icons": [
+          "<span color='#69ff94'>▁</span>", // green
+          "<span color='#2aa9ff'>▂</span>", // blue
+          "<span color='#f8f8f2'>▃</span>", // white
+          "<span color='#f8f8f2'>▄</span>", // white
+          "<span color='#ffffa5'>▅</span>", // yellow
+          "<span color='#ffffa5'>▆</span>", // yellow
+          "<span color='#ff9977'>▇</span>", // orange
+          "<span color='#dd532e'>█</span>"  // red
+     ]
   },
   "temperature": {
     "critical-threshold": 80,
@@ -54,7 +65,8 @@
   },
   "tray": {
     "icon-size": 12,
-    "spacing": 2
+    "spacing": 2,
+    "show-passive-items": true,
   },
   "clock": {
     "interval": 60,
@@ -143,7 +155,7 @@
     "on-click": "blueman-manager",
   },
   "memory": {
-    "interval": 300,
+    "interval": 10,
     "format": " {used}G",
     "tooltip-format": "{used} / {total} G",
   },
