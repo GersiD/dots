@@ -1,5 +1,6 @@
 return {
   'nvim-treesitter/nvim-treesitter',
+  version = false, -- last release is way too old and doesn't work on Windows
   build = ':TSUpdate',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
@@ -10,8 +11,15 @@ return {
     { '<c-\\>', desc = 'Increment selection' },
     { '<bs>', desc = 'Decrement selection', mode = 'x' },
   },
-  --@type TSConfig
+
+  ---@type TSConfig
+  ---@diagnostic disable-next-line: missing-fields
   opts = {
+    highlight = {
+      enable = true,
+      disable = { 'tex' },
+    },
+    indent = { enable = true },
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = {
       'markdown',
@@ -30,16 +38,10 @@ return {
       'typescript',
       'vimdoc',
       'vim',
+      'hyprlang',
     },
-
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = true,
-
-    highlight = {
-      enable = true,
-      disable = { 'tex' },
-    },
-    indent = { enable = true },
     incremental_selection = {
       enable = true,
       keymaps = {
@@ -94,4 +96,7 @@ return {
       },
     },
   },
+  config = function()
+    vim.cmd('TSEnable highlight') -- WARN: This is not ideal, but it's the only way to force enable treesitter highlighting
+  end,
 }
