@@ -10,7 +10,7 @@ return {
           vim.cmd('VimtexCompile')
           vim.keymap.set('n', '<leader><esc>', function()
             vim.cmd('VimtexView')
-          end, { desc = 'Compile Latex File' })
+          end, { desc = 'Compile Latex File', buffer = true })
         end,
         once = true,
       })

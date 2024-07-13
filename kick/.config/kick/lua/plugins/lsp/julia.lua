@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
   callback = function()
     vim.keymap.set('n', '<leader><esc>', function()
       require('config.utils.terminals').run('julia' .. ' ' .. vim.fn.expand('%'))
-    end, { desc = 'Run Julia File' })
+    end, { desc = 'Run Julia File', buffer = true })
     -- require("null-ls").register({})
   end,
 })
