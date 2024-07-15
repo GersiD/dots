@@ -5,7 +5,7 @@ return {
     {
       '<leader>ft',
       function()
-        local themes = require('plugins.themes')
+        local themes = require('plugins.ui.themes')
         for _, theme in ipairs(themes) do
           local name = theme.name and theme.name or string.match(theme[1], '([^/]+)$')
           require('lazy').load({ plugins = name })
