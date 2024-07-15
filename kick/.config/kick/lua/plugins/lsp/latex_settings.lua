@@ -6,13 +6,14 @@ return {
       vim.api.nvim_create_autocmd({ 'BufEnter' }, {
         pattern = '*.tex',
         desc = 'Setup Vimtex',
+        once = true,
         callback = function()
+          vim.cmd('TSDisable highlight')
           vim.cmd('VimtexCompile')
           vim.keymap.set('n', '<leader><esc>', function()
             vim.cmd('VimtexView')
           end, { desc = 'Compile Latex File', buffer = true })
         end,
-        once = true,
       })
       vim.g.vimtex_compiler_latexmk = {
         build_dir = 'build',
@@ -25,6 +26,7 @@ return {
       vim.api.nvim_create_autocmd({ 'BufEnter' }, {
         pattern = '*.tex',
         desc = 'setup_omni',
+        once = true,
         callback = function()
           -- Use omnifunc for completion
           local cmp = require('cmp')
