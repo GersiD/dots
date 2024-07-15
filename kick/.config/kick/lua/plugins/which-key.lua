@@ -1,28 +1,34 @@
 return {
   'folke/which-key.nvim',
-  lazy = false,
+  event = 'VeryLazy',
+  opts_extend = { 'spec' },
   opts = {
     plugins = { spelling = true },
-    defaults = {
-      mode = { 'n', 'v' },
-      ['g'] = { name = '+goto' },
-      ['gz'] = { name = '+surround' },
-      [']'] = { name = '+next' },
-      ['['] = { name = '+prev' },
-      ['<leader>b'] = { name = '+buffer' },
-      ['<leader>l'] = { name = '+code' },
-      ['<leader>f'] = { name = '+file/find' },
-      ['<leader>g'] = { name = '+git' },
-      ['<leader>s'] = { name = '+search' },
-      ['<leader>u'] = { name = '+ui' },
-      ['<leader>w'] = { name = '+windows' },
-      ['<leader>x'] = { name = '+diagnostics/quickfix' },
-      ['<leader>p'] = { name = '+packages' },
+    spec = {
+      {
+        mode = { 'n', 'v' },
+        { 'g', group = 'goto' },
+        { '[', group = 'prev' },
+        { ']', group = 'next' },
+        { '<leader>b', group = 'buffer' },
+        { '<leader>l', group = 'code' },
+        { '<leader>f', group = 'file/find' },
+        { '<leader>t', group = 'terminal' },
+        { '<leader>d', group = 'debug' },
+        { '<leader>g', group = 'git' },
+        { '<leader><tab>', group = 'tabs' },
+        { '<leader>s', group = 'search' },
+        { '<leader>u', group = 'ui' },
+        { '<leader>w', group = 'windows' },
+        { '<leader>x', group = 'diagnostics/quickfix' },
+        { 'gs', group = 'surround' },
+        { 'z', group = 'fold' },
+        { '<leader>p', group = 'packages' },
+      },
     },
   },
   config = function(_, opts)
     local wk = require('which-key')
     wk.setup(opts)
-    wk.register(opts.defaults)
   end,
 }
