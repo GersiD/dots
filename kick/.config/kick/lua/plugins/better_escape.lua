@@ -16,8 +16,14 @@ return {
           },
         },
         v = {
-          j = false,
-          k = false,
+          j = {
+            j = false,
+            k = false,
+          },
+          k = {
+            j = false,
+            k = false,
+          },
         },
       },
     })
