@@ -4,8 +4,9 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   desc = 'Setup CSV LSP',
   callback = function()
     vim.keymap.set('n', '<leader><esc>', function()
-      require("config.utils.terminals").run("csvlens " .. vim.fn.expand("%"))
-    end, { desc = 'Open CSV File' })
+      require('config.utils.terminals').run('csvlens ' .. vim.fn.expand('%'))
+    end, { desc = 'Open CSV File', buffer = true })
+    vim.cmd('TSBufDisable highlight')
   end,
 })
 
