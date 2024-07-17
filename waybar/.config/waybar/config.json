@@ -140,10 +140,11 @@
   },
   "network": {
     "format-disconnected": "Disconnected",
-    "format-ethernet": "󰈀 {ipaddr}",
+    "format-ethernet": "󰈀 ",
     "format-wifi": "  {essid}",
     "tooltip-format": " {signalStrength}",
     "on-click": "wifimenu",
+    "tooltip-format": "{ipaddr}"
   },
   "bluetooth": {
     "format": " {status}",
