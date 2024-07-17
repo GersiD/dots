@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 
     -- Python Specific Keymaps
     -- run current file in terminal
-    vim.keymap.set('n', '<leader><esc>', function()
+    vim.keymap.set('n', '<leader>1', function()
       -- Save current file
       vim.cmd('w')
       if jit.os == 'Windows' then

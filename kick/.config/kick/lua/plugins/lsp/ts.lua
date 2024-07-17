@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 
     -- Python Specific Keymaps
     -- run current file in terminal
-    vim.keymap.set('n', '<leader><esc>', function()
+    vim.keymap.set('n', '<leader>1', function()
       require('config.utils.terminals').run('tsc ' .. vim.fn.expand('%') .. '; node ' .. vim.fn.expand('%:r') .. '.js')
     end, { desc = 'Run TS File' })
   end,

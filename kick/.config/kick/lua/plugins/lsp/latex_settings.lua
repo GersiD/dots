@@ -10,7 +10,7 @@ return {
         callback = function()
           vim.cmd('TSDisable highlight')
           vim.cmd('VimtexCompile')
-          vim.keymap.set('n', '<leader><esc>', function()
+          vim.keymap.set('n', '<leader>1', function()
             vim.cmd('VimtexView')
           end, { desc = 'Compile Latex File', buffer = true })
         end,
