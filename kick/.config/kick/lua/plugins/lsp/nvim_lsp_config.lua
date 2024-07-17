@@ -83,9 +83,9 @@ return {
     vim.api.nvim_create_user_command('KickstartDiagnosticsToggle', function()
       diagnostics_are_enabled = not diagnostics_are_enabled
       if diagnostics_are_enabled then
-        vim.diagnostic.enable()
+        vim.diagnostic.enable(true)
       else
-        vim.diagnostic.disable()
+        vim.diagnostic.enable(false)
       end
       print('Diagnostics = ' .. tostring(diagnostics_are_enabled))
     end, {})
