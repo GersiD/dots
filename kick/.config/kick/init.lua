@@ -34,7 +34,7 @@ require('lazy').setup({
 -- Set Colorscheme
 -- See `:help colorscheme`
 vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = '#FFFFFF' })
-vim.cmd.colorscheme('github_dark_default')
+vim.cmd.colorscheme('catppuccin')
 require('config.keymaps')
 
 -- [[ Highlight on yank ]]
