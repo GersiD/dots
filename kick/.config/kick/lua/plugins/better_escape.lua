@@ -15,6 +15,10 @@ return {
             j = false,
           },
         },
+        v = {
+          j = false,
+          k = false,
+        },
       },
     })
   end,
