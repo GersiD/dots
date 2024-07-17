@@ -46,21 +46,28 @@ return {
     },
   },
   config = function(_, opts)
+    -- Change the Diagnostic symbols
+    local diagnostic_type_icon = require('config.icons').diagnostics
     vim.diagnostic.config({
       virtual_text = false,
-      signs = true,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = diagnostic_type_icon.Error,
+          [vim.diagnostic.severity.WARN] = diagnostic_type_icon.Warn,
+          [vim.diagnostic.severity.INFO] = diagnostic_type_icon.Info,
+          [vim.diagnostic.severity.HINT] = diagnostic_type_icon.Hint,
+        },
+        texthl = {
+          [vim.diagnostic.severity.ERROR] = 'DiagnosticError',
+          [vim.diagnostic.severity.WARN] = 'DiagnosticWarn',
+          [vim.diagnostic.severity.INFO] = 'DiagnosticInfo',
+          [vim.diagnostic.severity.HINT] = 'DiagnosticHint',
+        },
+      },
       underline = true,
       update_in_insert = false,
       severity_sort = true,
     })
-
-    -- Change the Diagnostic symbols
-    local signs = require('config.icons').diagnostics
-
-    for type, icon in pairs(signs) do
-      local hl = 'DiagnosticSign' .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    end
 
     -- Switch for controlling whether you want autoformatting.
     --  Use :KickstartFormatToggle to toggle autoformatting on or off
