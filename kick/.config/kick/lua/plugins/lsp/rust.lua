@@ -27,11 +27,11 @@ return {
         vim.keymap.set('n', 'K', function()
           vim.lsp.buf.hover()
         end, { desc = 'Rust Tools Hover', buffer = bufnr })
-        require('null-ls').register({
-          require('null-ls').builtins.formatting.rustfmt,
-        })
+        -- require('null-ls').register({
+        --   require('null-ls').builtins.formatting.rustfmt,
+        -- })
         -- set timout to nil
-        require('null-ls.config').get().default_timeout = 10000
+        -- require('null-ls.config').get().default_timeout = 10000
       end,
 
       default_settings = {
