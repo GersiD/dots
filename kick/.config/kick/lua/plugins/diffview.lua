@@ -1,6 +1,29 @@
 return {
   'sindrets/diffview.nvim',
   cmd = 'DiffviewOpen',
+  keys = {
+    -- { 'n', '<leader>gd', '<cmd>DiffviewOpen<CR>', { desc = 'Diffview' } },
+    {
+      '<leader>gH',
+      '<cmd>DiffviewFileHistory<CR>',
+      desc = 'Stage all',
+    },
+    {
+      '<leader>gd',
+      function()
+        -- Git Keymaps
+        local view = require('diffview.lib').get_current_view()
+        if view then
+          -- Current tabpage is a Diffview; close it
+          vim.cmd(':DiffviewClose')
+        else
+          -- No open Diffview exists: open a new one
+          vim.cmd(':DiffviewOpen')
+        end
+      end,
+      desc = 'Diffview',
+    },
+  },
   opts = function()
     local custom_keymaps = {
       { 'n', 'q', '<cmd>DiffviewClose<CR>', { desc = 'Close Diffview' } },
