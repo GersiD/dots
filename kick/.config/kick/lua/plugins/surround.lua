@@ -8,9 +8,7 @@ return {
       move_cursor = false,
       keymaps = {
         normal = 's',
-        normal_cur = 'ss',
-        normal_line = 'S',
-        normal_cur_line = 'SS',
+        normal_cur_line = 'SS', -- Add surround to the whole line
         visual = 's',
       },
       aliases = {
