@@ -15,7 +15,7 @@ return {
     numhl = true,
 
     on_attach = function(bufnr)
-      vim.keymap.set('n', '<leader>gp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
+      vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
       vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { buffer = bufnr, desc = 'Git blame' })
       vim.keymap.set('n', '<leader>gs', require('gitsigns').stage_buffer, { buffer = bufnr, desc = 'Stage buffer' })
 
