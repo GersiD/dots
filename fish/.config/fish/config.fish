@@ -27,6 +27,7 @@ export NVIM_APPNAME="kick"
 
 # https://starship.rs/
 starship init fish | source
+starship completions fish | source
 
 function fish_greeting
     fastfetch
