@@ -10,6 +10,7 @@ alias lg="lazygit"
 alias ls="exa --icons"
 alias l="exa --icons"
 alias nv="neovide --fork; exit"
+alias e="nohup setsid nautilus &"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
