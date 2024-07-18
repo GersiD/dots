@@ -6,13 +6,14 @@ alias v=nvim
 alias resetFish="source ~/.config/fish/config.fish"
 alias update="sudo pacman -Syu && yay -Syu"
 alias icat="kitten icat"
-alias lg="lazygit"
+alias lg="git fetch & lazygit"
 alias ls="exa --icons"
 alias l="exa --icons"
 alias nv="neovide --fork; exit"
 alias e="nohup setsid nautilus &"
 alias tt="tt -theme gruvbox -showwpm"
-alias ttt="tt -theme $(tt -list themes | fzf) -showwpm"
+alias ttt="tt -theme \$(tt -list themes | fzf) -showwpm"
+alias zz="zoxide edit"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
@@ -31,3 +32,17 @@ function fish_greeting
     fastfetch
 end
 set fish_greeting
+
+function fzf_find_file
+  fd -H -t f | fzf --preview="batcat --color=always --style=numbers --line-range :500 {}" --bind="space:toggle-preview" --preview-window=:hidden
+end
+
+function cd_fzf
+  set -l dir (fd -t d | fzf)
+  if test -n "$dir"
+    cd $dir
+  end
+end
+
+bind \cf 'fzf_find_file'
+bind \ck 'cd_fzf'
