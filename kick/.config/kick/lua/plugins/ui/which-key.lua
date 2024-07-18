@@ -6,6 +6,7 @@ return {
   opts = {
     ---@type false | "classic" | "modern" | "helix"
     preset = 'modern',
+    ---@type wk.Spec
     spec = {
       {
         mode = { 'n', 'v' },
@@ -28,6 +29,25 @@ return {
         { '<leader>p', group = 'packages' },
       },
     },
+    ---@param mapping wk.Mapping
+    filter = function(mapping)
+      local disabled = {
+        'gbc',
+        'gcA',
+        'grn',
+        'grr',
+        'gra',
+        'gco',
+        'gcO',
+        'gcc',
+      }
+      for _, v in ipairs(disabled) do
+        if mapping.lhs == v then
+          return false
+        end
+      end
+      return true
+    end,
   },
   config = function(_, opts)
     local wk = require('which-key')
