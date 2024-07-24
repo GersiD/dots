@@ -37,17 +37,11 @@ require('lazy').setup({
 -- Set Colorscheme
 -- See `:help colorscheme`
 vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = '#FFFFFF' })
-vim.schedule(function()
-  vim.cmd.colorscheme('catppuccin')
-end)
+vim.cmd.colorscheme('catppuccin')
 -- Load the keymaps
-vim.schedule(function()
-  require('config.keymaps')
-end)
+require('config.keymaps')
 -- Load the autocommands
-vim.schedule(function()
-  require('config.autocmds')
-end)
+require('config.autocmds')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
