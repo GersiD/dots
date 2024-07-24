@@ -14,6 +14,7 @@ alias e="nohup setsid nautilus &"
 alias tt="tt -theme gruvbox -showwpm"
 alias ttt="tt -theme \$(tt -list themes | fzf) -showwpm"
 alias zz="zoxide edit"
+alias todo="cd ~ && nvim ~/vaults/gersi_notes/todo.md && cd -"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
