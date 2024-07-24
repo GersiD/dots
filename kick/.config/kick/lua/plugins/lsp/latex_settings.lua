@@ -10,9 +10,6 @@ return {
         callback = function()
           vim.cmd('TSDisable highlight')
           vim.cmd('VimtexCompile')
-          vim.keymap.set('n', '<leader>1', function()
-            vim.cmd('VimtexView')
-          end, { desc = 'Compile Latex File', buffer = true })
         end,
       })
       vim.g.vimtex_compiler_latexmk = {
@@ -82,7 +79,7 @@ return {
               language = 'en-US',
               diagnosticSeverity = 'hint',
               completionEnabled = true,
-              dictionary = { ['en-US'] = { 'Gersi', 'Doko', 'CVaR', 'Palash', 'Petrik', 'VaR' } },
+              dictionary = { ['en-US'] = { 'Gersi', 'Doko', 'CVaR', 'Palash', 'Petrik', 'VaR', 'CVaR', 'Neovim' } },
             },
           },
         },
