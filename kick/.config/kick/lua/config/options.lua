@@ -72,7 +72,7 @@ vim.g.perl_host_skip_check = true
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
-vim.opt.conceallevel = 0
+vim.opt.conceallevel = 1
 -- This file is automatically loaded by plugins.core
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
