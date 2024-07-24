@@ -1,0 +1,10 @@
+vim.keymap.set('n', 'gc', function()
+  vim.cmd('ObsidianToggleCheckbox')
+end, { desc = 'Add checkbox to line', noremap = true, silent = true })
+
+vim.keymap.set('n', 'gC', function()
+  vim.cmd('ObsidianToggleCheckbox')
+  vim.cmd('ObsidianToggleCheckbox')
+  vim.cmd('ObsidianToggleCheckbox')
+  vim.cmd('ObsidianToggleCheckbox')
+end, { desc = 'Complete checkbox item', noremap = true, silent = true })
