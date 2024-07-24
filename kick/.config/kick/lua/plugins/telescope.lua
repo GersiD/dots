@@ -3,6 +3,30 @@ return {
   version = false,
   keys = {
     {
+      '<leader>fm',
+      function()
+        require('telescope.builtin').man_pages({ sections = { 'ALL' } })
+      end,
+      desc = 'Find Man Pages',
+    },
+    {
+      '<leader>gf',
+      function()
+        require('telescope.builtin').git_files({
+          hidden = true,
+          no_ignore = true,
+        })
+      end,
+      desc = 'Find git files',
+    },
+    {
+      '<leader>fd',
+      function()
+        require('telescope.builtin').diagnostics()
+      end,
+      desc = 'Search diagnostics',
+    },
+    {
       '<leader>ft',
       function()
         local themes = require('plugins.ui.themes')
