@@ -1,4 +1,5 @@
 fish_add_path ~/.cargo/bin
+source ~/.config/fish/themes/tokyo_moon.fish
 zoxide init fish | source
 alias j=__zoxide_z
 alias ji=__zoxide_zi
@@ -10,11 +11,13 @@ alias lg="git fetch &> /dev/null & lazygit"
 alias ls="exa --icons"
 alias l="exa --icons"
 alias nv="neovide --fork; exit"
-alias e="nohup setsid nautilus &"
+alias e="nohup nautilus &"
 alias tt="tt -theme gruvbox -showwpm"
 alias ttt="tt -theme \$(tt -list themes | fzf) -showwpm"
 alias zz="zoxide edit"
 alias todo="cd ~ && nvim ~/vaults/gersi_notes/todo.md && cd -"
+alias reboot="killall chrome ; sudo reboot"
+alias shutdown="killall chrome ; sudo shutdown now"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
