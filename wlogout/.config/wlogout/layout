@@ -1,18 +1,18 @@
 {
     "label" : "reboot",
-    "action" : "systemctl reboot",
+    "action" : "killall chrome && sleep 2 && systemctl reboot",
     "text" : "Reboot",
     "keybind" : "r"
 }
 {
     "label" : "shutdown",
-    "action" : "systemctl poweroff",
+    "action" : "killall chrome && sleep 2 && systemctl poweroff",
     "text" : "Shutdown",
     "keybind" : "s"
 }
 {
     "label" : "logout",
-    "action" : "loginctl kill-session $XDG_SESSION_ID",
+    "action" : "killall chrome && sleep 2 && loginctl kill-session $XDG_SESSION_ID",
     "text" : "Logout",
     "keybind" : "e"
 }
