@@ -79,7 +79,9 @@ return {
               language = 'en-US',
               diagnosticSeverity = 'hint',
               completionEnabled = true,
-              dictionary = { ['en-US'] = { 'Gersi', 'Doko', 'CVaR', 'Palash', 'Petrik', 'VaR', 'CVaR', 'Neovim' } },
+              dictionary = {
+                ['en-US'] = { 'Gersi', 'Doko', 'CVaR', 'Palash', 'Petrik', 'VaR', 'CVaR', 'Neovim', 'Zettelkasten' },
+              },
             },
           },
         },
