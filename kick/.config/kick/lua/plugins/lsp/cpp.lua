@@ -37,37 +37,12 @@ return {
             completeUnimported = true,
             clangdFileStatus = true,
           },
+          on_attach = function(_, opts)
+            require('clangd_extensions').setup(vim.tbl_deep_extend('force', {}, { server = opts }))
+            -- vim.notify('Setup clangd extension', 'info', { title = 'LSP' })
+            return false
+          end,
         },
-      },
-      setup = {
-        clangd = function(_, opts)
-          vim.api.nvim_create_autocmd('FileType', {
-            desc = 'Setup CPP',
-            pattern = 'cpp',
-            once = true,
-            callback = function()
-              require('clangd_extensions').setup(vim.tbl_deep_extend('force', {}, { server = opts }))
-              -- require('clangd_extensions.inlay_hints').setup_autocmd()
-              -- require('clangd_extensions.inlay_hints').set_inlay_hints()
-              -- vim.notify('Setup clangd extension', 'info', { title = 'LSP' })
-              vim.keymap.set('n', '<leader>1', function()
-                -- Save the current buffer
-                vim.cmd('w')
-                -- Read the compile_commands.json file in the current directory
-                local compile_commands = vim.fn.json_decode(vim.fn.readfile('compile_commands.json'))
-                local command = compile_commands and compile_commands[4]['run_command_custom'] or 'make'
-                require('config.utils.terminals').run(command, { direction = 'horizontal' })
-              end, { desc = 'Computer Graphics' })
-              vim.keymap.set(
-                'n',
-                '<leader>lh',
-                '<CMD>ClangdSwitchSourceHeader<CR>',
-                { desc = 'Switch Source/Header (C/C++)' }
-              )
-            end,
-          })
-          return false
-        end,
       },
     },
   },
