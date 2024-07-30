@@ -1,10 +1,9 @@
 return {
   'hrsh7th/nvim-cmp',
   version = false,
+  event = 'VeryLazy',
   dependencies = {
-    {
-      'zbirenbaum/copilot.lua',
-    },
+    'zbirenbaum/copilot.lua',
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-nvim-lsp',
@@ -20,7 +19,6 @@ return {
     'chrisgrieser/cmp-nerdfont',
     'hrsh7th/cmp-nvim-lsp-signature-help',
   },
-  event = 'VeryLazy',
   opts = function(_)
     local cmp = require('cmp')
     local luasnip = require('luasnip')
