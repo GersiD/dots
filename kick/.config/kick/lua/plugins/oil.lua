@@ -21,20 +21,6 @@ return {
       ['?'] = 'actions.show_help',
       ['q'] = 'actions.close',
       -- ['<CR>'] = 'actions.select_vsplit',
-      ['<CR>'] = function()
-        -- If the file is a pdf file open it with zathura
-        local entry = require('oil').get_cursor_entry()
-        if not entry then
-          require('oil.actions').select.callback()
-          return
-        end
-        local filetype = vim.fn.fnamemodify(entry.name, ':e')
-        if filetype == 'pdf' then
-          vim.fn.jobstart('zathura ' .. entry.name, { detach = true })
-        else
-          require('oil.actions').select.callback()
-        end
-      end,
       ['<C-s>'] = false,
       ['v'] = 'actions.select_vsplit',
       ['h'] = 'actions.select_split',
