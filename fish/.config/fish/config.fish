@@ -22,7 +22,8 @@ alias headphones="wpctl status | grep \"WH-1000XM5\" | awk '{print \$2}' | awk -
 alias speaker="wpctl status | grep \"GP102 HDMI Audio Controller Digital Stereo\" | awk '{print \$2}' | awk -F'[^0-9]*' '{print \$1}' | xargs -I{} wpctl set-default {}"
 alias y="yazi"
 alias notes="tmux new-session -A -s notes -c ~/vaults/gersi_notes/"
-alias kick="tmux new-session -A -s kick && cd ~/dots/kick/.config/kick/"
+alias kick="tmux new-session -A -s kick -c ~/dots/kick/.config/kick/"
+alias work="tmux new-session -A -s work"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
