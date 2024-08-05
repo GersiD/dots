@@ -26,11 +26,11 @@ return {
         once = true,
         callback = function()
           -- Use omnifunc for completion
-          local cmp = require('cmp')
-          local sources = cmp.get_config().sources
-          local addOmni = { name = 'omni', priority = 750 }
-          vim.list_extend(sources, { addOmni })
-          cmp.setup.buffer({ sources = sources })
+          -- local cmp = require('cmp')
+          -- local sources = cmp.get_config().sources
+          -- local addOmni = { name = 'omni', priority = 500 }
+          -- vim.list_extend(sources, { addOmni })
+          -- cmp.setup.buffer({ sources = sources })
         end,
       })
       if jit.os == 'Windows' then
@@ -72,7 +72,7 @@ return {
         },
         ltex = {
           -- mason = false,
-          -- autostart = false,
+          autostart = false,
           settings = {
             ltex = {
               checkFrequency = 'save',
