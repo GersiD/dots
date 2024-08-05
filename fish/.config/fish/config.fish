@@ -21,9 +21,9 @@ alias shutdown="killall chrome ; sudo shutdown now"
 alias headphones="wpctl status | grep \"WH-1000XM5\" | awk '{print \$2}' | awk -F'[^0-9]*' '{print \$1}' | xargs -I{} wpctl set-default {}"
 alias speaker="wpctl status | grep \"GP102 HDMI Audio Controller Digital Stereo\" | awk '{print \$2}' | awk -F'[^0-9]*' '{print \$1}' | xargs -I{} wpctl set-default {}"
 alias y="yazi"
-alias notes="tmux new-session -A -s notes -c ~/vaults/gersi_notes/"
-alias kick="tmux new-session -A -s kick -c ~/dots/kick/.config/kick/"
-alias work="tmux new-session -A -s work"
+alias notes="tmux detach ; tmux new-session -A -s notes -c ~/vaults/gersi_notes/"
+alias kick="tmux detach ; tmux new-session -A -s kick -c ~/dots/kick/.config/kick/"
+alias work="tmux detach ; tmux new-session -A -s work"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
