@@ -66,6 +66,10 @@ function M.run(command, opts)
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', false, false, true), 'n', false)
     end,
     on_open = function(term)
+      if opts and opts.normal_on_open then
+        -- enter normal mode
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', false, false, true), 'n', false)
+      end
       vim.api.nvim_buf_set_keymap(
         term.bufnr,
         'n',
