@@ -32,3 +32,7 @@ end, { desc = 'Open in Obsidian', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>mb', function()
   vim.cmd('ObsidianBacklinks')
 end, { desc = 'MD Backlinks', noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>ls', function()
+  vim.cmd('LspStart ltex')
+end, { desc = 'Start Ltex (spell check)', buffer = true })
