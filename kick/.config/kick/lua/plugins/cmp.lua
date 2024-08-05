@@ -128,13 +128,14 @@ return {
         end, { 'i', 's' }),
       }),
       -- Only use buffer source if LSP is not available (e.g. inside a string context)
+      --- @type cmp.SourceConfig[]
       sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lua' },
-        { name = 'lazydev', group_index = 0 },
-        { name = 'luasnip' },
-        { name = 'path' },
-        { name = 'nerdfont' },
+        { name = 'nvim_lsp', priority = 1000 },
+        -- { name = 'nvim_lua', priority = 1000 },
+        -- { name = 'lazydev', group_index = 0 },
+        { name = 'luasnip', priority = 750 },
+        { name = 'path', priority = 500 },
+        { name = 'nerdfont', priority = 500 },
       }, {
         { name = 'buffer' },
       }),
