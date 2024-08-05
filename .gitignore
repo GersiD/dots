@@ -3,3 +3,4 @@ kick/.config/kick/lazy-lock.json
 home/.p10k.zsh
 home/.p10k.zsh
 fish/.config/fish/nohup.out
+btop/.config/btop/btop.conf
