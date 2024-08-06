@@ -65,18 +65,12 @@ function M.run(command, opts)
       -- enter normal mode
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', false, false, true), 'n', false)
     end,
+    ---@diagnostic disable-next-line: unused-local
     on_open = function(term)
       if opts and opts.normal_on_open then
         -- enter normal mode
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', false, false, true), 'n', false)
       end
-      vim.api.nvim_buf_set_keymap(
-        term.bufnr,
-        'n',
-        '<leader>1',
-        "<cmd>lua require('config.utils.terminals').run(nil, nil)<cr>",
-        { desc = 'Run last command', noremap = true, silent = true }
-      )
     end,
     float_opts = {
       border = 'curved',
