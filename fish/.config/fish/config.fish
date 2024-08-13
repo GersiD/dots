@@ -29,7 +29,7 @@ if test "$TERM" = xterm-kitty
 else
     alias ssh="ssh"
 end
-alias mpra="waypipe ssh -X gersi@mp-sys76.cs.unh.edu"
+alias mpra="waypipe ssh -Y gersi@mp-sys76.cs.unh.edu"
 export EDITOR=nvim
 export NVIM_APPNAME="kick"
 # export NVIM_APPNAME="nvim" # lazyvim

@@ -64,6 +64,10 @@ return {
       end
       return suffix
     end,
+    follow_url_func = function(url)
+      -- Open URLs in the browser.
+      vim.fn.jobstart({ 'google-chrome-stable', url })
+    end,
     picker = {
       name = 'telescope.nvim',
       note_mappings = {
