@@ -1,4 +1,5 @@
 fish_add_path ~/.cargo/bin
+fish_add_path ~/.local/share/gem/ruby/3.2.0/bin
 source ~/.config/fish/themes/tokyo_moon.fish
 zoxide init fish | source
 alias j=__zoxide_z
@@ -24,6 +25,7 @@ alias y="yazi"
 alias notes="tmux detach ; tmux new-session -A -s notes -c ~/vaults/gersi_notes/"
 alias kick="tmux detach ; tmux new-session -A -s kick -c ~/dots/kick/.config/kick/"
 alias work="tmux detach ; tmux new-session -A -s work"
+alias serve="source ~/deploy_website.sh"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
@@ -40,7 +42,7 @@ starship init fish | source
 starship completions fish | source
 
 function fish_greeting
-    fastfetch
+    fastfetch --logo mac
 end
 set fish_greeting
 
