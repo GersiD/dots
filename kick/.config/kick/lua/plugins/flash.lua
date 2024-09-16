@@ -8,6 +8,9 @@ return {
         keys = { 't', 'T', ';', ',' },
       },
     },
+    jump = {
+      autojump = true,
+    },
   },
   -- stylua: ignore
   keys = {
