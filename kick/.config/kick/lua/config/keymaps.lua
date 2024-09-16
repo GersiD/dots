@@ -94,7 +94,6 @@ vim.keymap.set('n', 'gt', function()
 end, { desc = 'LSP Type Definitions' })
 vim.keymap.set('n', 'gd', function()
   require('telescope.builtin').lsp_definitions(require('telescope.themes').get_cursor({
-    jump_type = 'vsplit',
     reuse_win = true,
     attach_mappings = function(_, map)
       map('n', '<CR>', require('telescope.actions').select_vertical)
@@ -200,13 +199,15 @@ vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Go to upper window', remap = tr
 vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Go to right window', remap = true })
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', function()
-  vim.diagnostic.jump({ count = 1 })
+  vim.diagnostic.jump({ count = -1 })
 end, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', function()
-  vim.diagnostic.jump({ count = -1 })
+  vim.diagnostic.jump({ count = 1 })
 end, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 -- better indenting
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
+-- delete line into black hole register
+vim.api.nvim_set_keymap('n', 'dl', '"_dd', { noremap = true, silent = true })
