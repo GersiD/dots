@@ -37,3 +37,9 @@ pacman -Qqe > pkglist.txt
 ```bash
 pacman -S --needed - < pkglist.txt
 ```
+
+### With yay
+
+```bash
+yay -S --needed - < pkglist.txt
+```
