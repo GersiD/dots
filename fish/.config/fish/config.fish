@@ -19,8 +19,8 @@ alias zz="zoxide edit"
 alias todo="cd ~ && nvim ~/vaults/gersi_notes/todo.md && cd -"
 alias reboot="killall chrome ; sleep 2; sudo reboot"
 alias shutdown="killall chrome ; sudo shutdown now"
-alias headphones="bash ~/audio.sh 'WH-1000XM5'"
-alias speaker="bash ~/audio.sh 'GP102 HDMI Audio Controller Digital'"
+alias headphones="bash ~/bin/audio.sh 'WH-1000XM5'"
+alias speaker="bash ~/bin/audio.sh 'GP102 HDMI Audio Controller Digital'"
 alias y="yazi"
 alias notes="tmux detach ; tmux new-session -A -s notes -c ~/vaults/gersi_notes/"
 alias kick="tmux detach ; tmux new-session -A -s kick -c ~/dots/kick/.config/kick/"
@@ -60,3 +60,4 @@ end
 
 bind \cf 'fzf_find_file'
 bind \ck 'cd_fzf'
+set -U fish_user_paths $HOME/bin $fish_user_paths
