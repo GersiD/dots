@@ -78,6 +78,7 @@ tooltip {
 #custom-notifications,
 #custom-updates,
 #custom-power,
+#custom-media,
 #workspaces,
 #tray,
 #memory,
@@ -109,6 +110,7 @@ tooltip {
 }
 
 #temperature {
+    background-color: @background;
     background: @red;
 }
 
@@ -141,6 +143,11 @@ tooltip {
 #custom-power {
     background-color: @background;
     color: @sky;
+}
+
+#custom-media {
+    background-color: @background;
+    color: @spotify-green;
 }
 
 #custom-updates {
