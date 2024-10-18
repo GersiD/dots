@@ -25,6 +25,11 @@ background-color=#1DB954
 text-color=#FFFFFF
 border-color=#191414
 
+[app-name=Morgen]
+background-color=#FFD700
+text-color=#000000
+border-color=#000000
+
 [app-name="Google Chrome"]
 background-color=#202124
 text-color=#E8EAED
