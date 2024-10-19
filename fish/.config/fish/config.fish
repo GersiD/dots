@@ -28,6 +28,8 @@ alias kick="tmux detach ; tmux new-session -A -s kick -c ~/dots/kick/.config/kic
 alias work="tmux detach ; tmux new-session -A -s work"
 alias serve="source ~/deploy_website.sh"
 alias fix="systemctl --user restart wireplumber pipewire pipewire-pulse; alsactl init"
+alias boston="mullvad disconnect -w; mullvad relay set location us bos; mullvad connect -w; mullvad status"
+alias ukraine="mullvad disconnect -w; mullvad relay set location ua; mullvad connect -w; mullvad status"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
