@@ -41,7 +41,7 @@
   "custom/media": {
     "format": "{} {}",
     "return-type": "json",
-    "max-length": 40,
+    "max-length": 60,
     "format-icons": {
         "spotify": "",
         "default": "󰐌 "
@@ -159,6 +159,7 @@
     "tooltip-format": "{ipaddr}"
   },
   "bluetooth": {
+    "format": "󰂰",
     "format-disabled": "",
     "format-off": "",
     "format-on": "󰂰 ",
