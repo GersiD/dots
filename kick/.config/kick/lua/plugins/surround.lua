@@ -7,15 +7,30 @@ return {
     opts = {
       move_cursor = false,
       keymaps = {
+        delete = 'ds',
+        change = 'cs',
+        change_line = 'cS',
         normal = 's',
         normal_cur_line = 'SS', -- Add surround to the whole line
         visual = 's',
       },
+      surrounds = {
+        ['q'] = {
+          add = { '"', '"' },
+          find = function()
+            local config = require('nvim-surround.config')
+            return config.get_selection({ motion = 'q' })
+          end,
+          delete = '^\\s*\\(\\(\\s*\\)\\(\\S\\)\\(.*\\)\\(\\S\\)\\(\\s*\\)\\)\\s*$',
+          change = {
+            target = '^\\s*\\(\\(\\s*\\)\\(\\S\\)\\(.*\\)\\(\\S\\)\\(\\s*\\)\\)\\s*$',
+          },
+        },
+      },
       aliases = {
         ['s'] = ']', -- Square brackets
-        ['p'] = ')', -- Paren
+        ['p'] = '(', -- Paren
         ['b'] = '}', -- Brackets
-        ['q'] = '"', -- Quotes
         ['m'] = '$', -- Math (latex)
       },
       highlight = {

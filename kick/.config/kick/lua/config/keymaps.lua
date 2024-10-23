@@ -122,6 +122,10 @@ vim.keymap.set('n', 'gi', function()
 end, { desc = 'LSP Implementations' })
 vim.keymap.set('n', '<leader>uf', '<CMD>KickstartFormatToggle<CR>', { desc = 'Format Toggle' })
 vim.keymap.set('n', '<leader>ud', '<CMD>KickstartDiagnosticsToggle<CR>', { desc = 'Diagnostic Toggle' })
+vim.keymap.set('n', '<leader>ul', function()
+  local current = vim.opt.relativenumber:get()
+  vim.opt.relativenumber = not current
+end, { desc = 'Toggle Line Numbers' })
 vim.keymap.set('n', 'gr', function()
   require('telescope.builtin').lsp_references(
     require('telescope.themes').get_cursor({ jump_type = 'vsplit', reuse_win = true })
@@ -209,5 +213,3 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- better indenting
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
--- delete line into black hole register
-vim.api.nvim_set_keymap('n', 'dl', '"_dd', { noremap = true, silent = true })
