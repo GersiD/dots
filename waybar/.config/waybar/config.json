@@ -39,13 +39,15 @@
      ]
   },
   "custom/media": {
-    "format": "{} {}",
+    "format": "{} {icon}",
     "return-type": "json",
     "max-length": 60,
     "format-icons": {
         "spotify": "",
-        "default": "󰐌 "
+        "chromium": " ",
+        "default": "󰽴"
     },
+    "tooltip-format": "{} {icon}",
     "escape": true,
     "exec": "~/.config/waybar/scripts/mediaplayer.py 2> /dev/null",
     "on-click": "playerctl play-pause",

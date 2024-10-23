@@ -68,8 +68,8 @@ class PlayerManager:
         logger.debug(f"Writing output: {text}")
 
         output = {"text": text,
-                  "class": "custom-" + player.props.player_name,
-                  "alt": player.props.player_name}
+                  "alt":player.props.player_name
+                  }
 
         sys.stdout.write(json.dumps(output) + "\n")
         sys.stdout.flush()
