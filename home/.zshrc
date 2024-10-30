@@ -129,6 +129,16 @@ cd_with_fzf() {
     cd "$(fd -H -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
 }
 
+custom_cd() {
+    # check if there is a venv folder if so activate the python venv
+    builtin cd "$1"
+    if [ -d "venv" ]; then
+        source venv/bin/activate
+    else 
+        deactivate
+    fi
+}
+
 tmux_fzf() {
     if [ -z "$TMUX" ]; then
         # Check if main session is running
@@ -159,7 +169,6 @@ alias v="nvim"
 alias resetZsh="source ~/.zshrc"
 alias update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh"
 alias lemonade="/home/gd1064/go/bin/lemonade"
-alias jrc="cd ~/grad_school/irl-non-homogeneous-trajectories/src/"
 alias python="python3"
 alias serve="python3 -m http.server 8080 &"
 alias sKill="sudo killall python3"
@@ -170,6 +179,7 @@ alias ra="tmux attach-session -t RA"
 alias icat="kitten icat"
 alias lg="lazygit"
 alias ls="exa --icons"
+alias cd="custom_cd"
 
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
