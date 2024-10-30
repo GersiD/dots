@@ -65,7 +65,20 @@ return {
     },
 
     { '<leader>fH', '<cmd>Telescope highlights<cr>', desc = 'Find Highlights' },
-    { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = 'Find Help' },
+    {
+      '<leader>fh',
+      function()
+        require('telescope.builtin').help_tags(require('telescope.themes').get_ivy({
+          winblend = 10,
+          attach_mappings = function(_, map)
+            map('n', '<CR>', require('telescope.actions').select_vertical)
+            map('i', '<CR>', require('telescope.actions').select_vertical)
+            return true
+          end,
+        }))
+      end,
+      desc = 'Find Help',
+    },
     {
       '<leader>fw',
       function()

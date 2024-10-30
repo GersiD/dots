@@ -24,7 +24,8 @@ return {
         { '<leader>u', group = 'ui' },
         { '<leader>w', group = 'windows' },
         { '<leader>x', group = 'diagnostics/quickfix' },
-        { 'gs', group = 'surround' },
+        { 's', group = 'surround' },
+        { 'ds', group = 'surround' },
         { 'z', group = 'fold' },
         { '<leader>p', group = 'packages' },
       },
@@ -40,6 +41,9 @@ return {
         'gco',
         'gcO',
         'gcc',
+        'gri',
+        'ii',
+        'ai',
       }
       for _, v in ipairs(disabled) do
         if mapping.lhs == v then

@@ -61,6 +61,18 @@ function cd_fzf
   end
 end
 
+function enter_venv --on-event fish_prompt
+  if test -d venv
+    if status --is-interactive
+      source venv/bin/activate.fish
+    end
+  else
+    if test -n "$VIRTUAL_ENV"
+      deactivate
+    end
+  end
+end
+
 bind \cf 'fzf_find_file'
 bind \ck 'cd_fzf'
 set -U fish_user_paths $HOME/bin $fish_user_paths

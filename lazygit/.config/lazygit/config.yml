@@ -4,4 +4,6 @@ gui:
   nerdFontsVersion: '3'
 os:
   copyToClipboardCmd: 'wl-copy'
+git:
+  parseEmoji: true
 notARepository: 'skip'
