@@ -1,9 +1,7 @@
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/share/gem/ruby/3.2.0/bin
 source ~/.config/fish/themes/tokyo_moon.fish
-zoxide init fish | source
-alias j=__zoxide_z
-alias ji=__zoxide_zi
+zoxide init fish --cmd j | source
 alias v=nvim
 alias resetFish="source ~/.config/fish/config.fish"
 alias update="sudo pacman -Syu && yay -Syu"
