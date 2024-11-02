@@ -34,7 +34,23 @@ return {
           local name = theme.name and theme.name or string.match(theme[1], '([^/]+)$')
           require('lazy').load({ plugins = name })
         end
-        require('telescope.builtin').colorscheme({ treesitter = false, enable_preview = true })
+        require('telescope.builtin').colorscheme(require('telescope.themes').get_dropdown({
+          layout_config = {
+            anchor = 'SE',
+            width = function(_, max_columns, _)
+              return math.min(max_columns, 40)
+            end,
+
+            height = function(_, _, max_lines)
+              return math.min(max_lines, 20)
+            end,
+          },
+          treesitter = false,
+          enable_preview = true, -- true to see the colorscheme changes in real time
+          ignore_builtins = true,
+          previewer = false, -- disable the previewer
+          winblend = 10,
+        }))
       end,
       desc = 'Find themes',
     },
