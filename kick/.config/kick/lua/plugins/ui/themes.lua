@@ -157,4 +157,14 @@ return {
       -- },
     },
   },
+  {
+    'Zeioth/neon.nvim',
+    opts = {
+      dim_inactive = false,
+      styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
+      },
+    },
+  },
 }

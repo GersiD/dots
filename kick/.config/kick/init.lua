@@ -37,7 +37,7 @@ require('lazy').setup({
 -- Set Colorscheme
 -- See `:help colorscheme`
 vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = '#FFFFFF' })
-vim.cmd.colorscheme('catppuccin-mocha')
+vim.cmd.colorscheme('neon-netrunner-night')
 -- Load the keymaps
 require('config.keymaps')
 -- Load the autocommands
