@@ -6,10 +6,10 @@ vim.keymap.set('n', '<leader>lc', function()
   -- Delete the build folder if it exists
   vim.fn.delete(vim.fn.expand('%:p:h') .. '/build', 'rf')
 end, { desc = 'Compile Latex File', buffer = true })
-vim.keymap.set('n', '<leader>lq', function()
+vim.keymap.set('n', '<leader>ls', function()
   vim.diagnostic.setqflist({
     namespace = vim.api.nvim_get_namespaces()['vim.lsp.ltex.3'],
     severity = vim.diagnostic.severity.HINT,
   })
-end, { desc = 'Show all diagnostics in quickfix' })
+end, { desc = 'Ltex Spelling QFix' })
 vim.opt.conceallevel = 0
