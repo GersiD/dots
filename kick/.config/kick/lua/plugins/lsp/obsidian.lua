@@ -73,7 +73,7 @@ return {
         name = 'telescope.nvim',
         note_mappings = {
           new = '<C-n>',
-          insert_link = '<CR>',
+          insert_link = '<C-l>',
         },
         tag_mappings = {
           tag_note = '<C-n>',
