@@ -15,23 +15,6 @@ vim.keymap.set('n', '<TAB>', '<cmd>BufferLineCycleNext<cr>', { desc = 'Prev buff
 vim.keymap.set('n', '<S-TAB>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'Neotree' })
 vim.keymap.set('n', 'U', '<cmd>redo<cr>', { desc = 'Redo' })
-vim.keymap.set('n', '<C-f>', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
-    layout_config = {
-      width = function(_, max_columns, _)
-        return math.min(max_columns, 100)
-      end,
-
-      height = function(_, _, max_lines)
-        return math.min(max_lines, 20)
-      end,
-    },
-    winblend = 10,
-    previewer = false,
-    skip_empty_lines = true,
-  }))
-end, { desc = 'Find in buffer' })
 vim.keymap.set('n', '<leader>gg', function()
   require('config.utils.terminals').lazygit()
 end, { desc = 'LazyGit' })

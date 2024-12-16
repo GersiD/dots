@@ -70,6 +70,27 @@ return {
       desc = 'Find files',
     },
     {
+      '<C-f>',
+      function()
+        -- You can pass additional configuration to telescope to change theme, layout, etc.
+        require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
+          layout_config = {
+            width = function(_, max_columns, _)
+              return math.min(max_columns, 100)
+            end,
+
+            height = function(_, _, max_lines)
+              return math.min(max_lines, 20)
+            end,
+          },
+          winblend = 10,
+          previewer = false,
+          skip_empty_lines = true,
+        }))
+      end,
+      desc = 'Find in buffer',
+    },
+    {
       '<leader>fa',
       function()
         require('telescope.builtin').find_files({
@@ -120,17 +141,19 @@ return {
         require('telescope').load_extension('fzf')
       end,
     },
+    'echasnovski/mini.icons',
   },
   cmd = 'Telescope',
   opts = function()
     return {
       defaults = {
         sorting_strategy = 'ascending',
+        results_title = false,
+        dynamic_preview_title = true,
         layout_config = {
           horizontal = {
-
             prompt_position = 'top',
-            preview_width = 0.55,
+            preview_width = 0.6,
           },
           width = 0.9,
           height = 0.9,
@@ -140,6 +163,12 @@ return {
           i = {
             ['<c-j>'] = require('telescope.actions').move_selection_next,
             ['<c-k>'] = require('telescope.actions').move_selection_previous,
+            ['<c-c>'] = function(prompt_bufnr) -- copy value
+              local value = require('telescope.actions.state').get_selected_entry().value
+              require('telescope.actions').close(prompt_bufnr)
+              vim.fn.setreg('+', value)
+              vim.notify(value, nil, { title = 'Copied', icon = '󰅍' })
+            end,
           },
           n = {
             ['q'] = require('telescope.actions').close,
@@ -149,9 +178,46 @@ return {
           },
         },
         preview = {
+          timeout = 500,
+          filesize_limit = 1,
           treesitter = false,
         },
         treesitter = false,
+      },
+      pickers = {
+        find_files = {
+          find_command = { 'rg', '--no-config', '--files', '--sortr=modified' },
+        },
+        current_buffer_fuzzy_find = {
+          tiebreak = function(current_entry, existing_entry)
+            -- returning true means preferring current entry
+            -- sort equal results by line number
+            return current_entry.lnum < existing_entry.lnum
+          end,
+        },
+        live_grep = {
+          disable_coordinates = true,
+          layout_config = { horizontal = { preview_width = 0.7 } },
+        },
+        lsp_references = {
+          trim_text = true,
+          show_line = false,
+          include_declaration = false,
+          include_current_line = true,
+          layout_config = { horizontal = { preview_width = { 0.7, min = 30 } } },
+        },
+        colorscheme = {
+          ignore_builtins = true,
+          enable_preview = true,
+          layout_config = {
+            horizontal = {
+              height = 0.4,
+              width = 0.3,
+              anchor = 'SE',
+              preview_width = 1, -- needs previewer for live preview of the theme
+            },
+          },
+        },
       },
       extensions = {
         fzf = {
