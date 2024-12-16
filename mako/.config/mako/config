@@ -30,6 +30,11 @@ background-color=#FFD700
 text-color=#000000
 border-color=#000000
 
+[summary="tool time"]
+background-color=#E8EAED
+text-color=#000000
+border-color=#000000
+
 [app-name="Google Chrome"]
 background-color=#202124
 text-color=#E8EAED
