@@ -36,19 +36,19 @@ vim.api.nvim_create_autocmd('InsertCharPre', {
       return
     end
 
-    vim.notify(node:type())
+    -- vim.notify(node:type())
     local row, col, _, _ = vim.treesitter.get_node_range(node)
 
     -- Return early if string is already a format string
     local first_char = vim.api.nvim_buf_get_text(opts.buf, row, col, row, col + 1, {})[1]
-    vim.notify('row ' .. row .. ' col ' .. col)
-    vim.notify("char: '" .. first_char .. "'")
+    -- vim.notify('row ' .. row .. ' col ' .. col)
+    -- vim.notify("char: '" .. first_char .. "'")
     if first_char == 'f' then
       return
     end
 
     -- Otherwise, make the string a format string
-    vim.notify('fstring')
+    -- vim.notify('fstring')
     vim.api.nvim_input("<Esc>m'" .. row + 1 .. 'gg' .. col + 1 .. "|if<Esc>`'la")
   end,
 })

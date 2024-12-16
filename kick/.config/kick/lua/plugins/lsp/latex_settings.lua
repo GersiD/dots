@@ -94,6 +94,7 @@ return {
                   'EVaR',
                   'monotonicity',
                   'functionals',
+                  'supremum',
                 },
               },
             },
