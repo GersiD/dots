@@ -147,10 +147,7 @@ return {
           buffer = bufnr,
           callback = function()
             if format_is_enabled then
-              vim.lsp.buf.format({
-                bufnr = bufnr,
-                client_id = client_id,
-              })
+              require('conform').format({ bufnr = bufnr, lsp_format = 'fallback' })
             end
           end,
         })

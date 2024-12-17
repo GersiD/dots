@@ -126,7 +126,6 @@ This will install the tree plugin and add the command `:Neotree` for you. You ca
 
 Pull-requests are welcome. The goal of this repo is not to create a Neovim configuration framework, but to offer a starting template that shows, by example, available features in Neovim. Some things that will not be included:
 
-* Custom language server configuration (null-ls templates)
 * Theming beyond a default colorscheme necessary for LSP highlight groups
 
 Each PR, especially those which increase the line count, should have a description as to why the PR is necessary.
