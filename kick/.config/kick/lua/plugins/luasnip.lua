@@ -1,7 +1,8 @@
-local types = require("luasnip.util.types")
 return {
   "L3MON4D3/LuaSnip",
-  opts = {
+  opts = function()
+    local types = require("luasnip.util.types")
+    return {
     history = true,
     delete_check_events = "TextChanged",
     ext_opts = {
@@ -21,5 +22,6 @@ return {
         },
       },
     },
-  },
+  }
+end
 }
