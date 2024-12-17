@@ -105,7 +105,7 @@ return {
     opts = function()
       local palette = require("nordic.colors")
       return {
-        override = {
+        on_highlight = {
           TelescopePromptTitle = {
             -- fg = palette.white1,
             bg = palette.green.dim,

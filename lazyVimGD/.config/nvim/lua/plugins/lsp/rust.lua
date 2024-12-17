@@ -1,21 +1,21 @@
-require("lspconfig.server_configurations.rust_analyzer").default_config.settings = {
-  ["rust-analyzer"] = {
-    assist = {
-      importGranularity = "module",
-      importPrefix = "by_self",
-    },
-    check = {
-      command = "clippy",
-      features = "all",
-    },
-    cargo = {
-      features = "all",
-    },
-    procMacro = { -- What does this do?
-      enable = true,
-    },
-  },
-}
+-- require("lspconfig.server_configurations.rust_analyzer").default_config.settings = {
+--   ["rust-analyzer"] = {
+--     assist = {
+--       importGranularity = "module",
+--       importPrefix = "by_self",
+--     },
+--     check = {
+--       command = "clippy",
+--       features = "all",
+--     },
+--     cargo = {
+--       features = "all",
+--     },
+--     procMacro = { -- What does this do?
+--       enable = true,
+--     },
+--   },
+-- }
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = "*.rs",

@@ -1,29 +1,29 @@
-require("lspconfig.server_configurations.texlab").default_config.settings = {
-  texlab = {
-    chktex = {
-      -- onEdit = false, -- default value
-      onOpenAndSave = true,
-    },
-    latexindent = {
-      modifyLineBreaks = true,
-    },
-  },
-}
-require("lspconfig.server_configurations.ltex").default_config.settings = {
-  ltex = { checkFrequency = "save", language = "en-US", diagnosticSeverity = "hint" },
-}
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = "*.tex",
-  desc = "setup_omni",
-  callback = function()
-    -- Use omnifunc for completion
-    local cmp = require("cmp")
-    local sources = cmp.get_config().sources
-    local addOmni = { name = "omni", priority = 750 }
-    vim.list_extend(sources, { addOmni })
-    cmp.setup.buffer({ sources = sources })
-  end,
-})
+-- require("lspconfig.server_configurations.texlab").default_config.settings = {
+--   texlab = {
+--     chktex = {
+--       -- onEdit = false, -- default value
+--       onOpenAndSave = true,
+--     },
+--     latexindent = {
+--       modifyLineBreaks = true,
+--     },
+--   },
+-- }
+-- require("lspconfig.server_configurations.ltex").default_config.settings = {
+--   ltex = { checkFrequency = "save", language = "en-US", diagnosticSeverity = "hint" },
+-- }
+-- vim.api.nvim_create_autocmd({ "BufEnter" }, {
+--   pattern = "*.tex",
+--   desc = "setup_omni",
+--   callback = function()
+--     -- Use omnifunc for completion
+--     local cmp = require("cmp")
+--     local sources = cmp.get_config().sources
+--     local addOmni = { name = "omni", priority = 750 }
+--     vim.list_extend(sources, { addOmni })
+--     cmp.setup.buffer({ sources = sources })
+--   end,
+-- })
 return {
   "lervag/vimtex",
   lazy = false,
