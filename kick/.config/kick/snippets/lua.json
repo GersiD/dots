@@ -1,0 +1,8 @@
+{
+        "lazy_boiler": {
+                "prefix": "retlaz",
+                "body": [
+                        "return {\n\t$0\n}"
+                ]
+        }
+}
