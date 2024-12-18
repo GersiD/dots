@@ -38,6 +38,21 @@ return {
       rust_analyzer = {
         mason = false,
       },
+      julials = {
+        mason = false,
+        settings = {
+          julia = {
+            NumThreads = 4,
+            execution = {
+              codeInREPL = true,
+            },
+            format = {
+              -- comments = false,
+              indents = 1,
+            },
+          },
+        },
+      },
     },
     setup = {
       rust_analyzer = function()
