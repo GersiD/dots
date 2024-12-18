@@ -53,7 +53,7 @@ return {
       menu = {
         draw = {
           treesitter = { 'lsp' },
-          -- columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+          -- columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind' } },
         },
       },
       documentation = {
@@ -73,7 +73,7 @@ return {
       -- adding any nvim-cmp sources here will enable them
       -- with blink.compat
       -- compat = {},
-      default = { 'lsp', 'path', 'luasnip', 'buffer' },
+      default = { 'lsp', 'luasnip', 'path', 'buffer' },
       -- cmdline = {}, -- This disables it
     },
     keymap = {
