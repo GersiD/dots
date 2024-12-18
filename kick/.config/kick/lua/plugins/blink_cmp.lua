@@ -42,7 +42,7 @@ return {
       trigger = {
         -- When true, will prefetch the completion items when entering insert mode
         -- WARN: buggy, not recommended unless you'd like to help develop prefetching
-        prefetch_on_insert = false,
+        prefetch_on_insert = true,
       },
       accept = {
         -- experimental auto-brackets support
