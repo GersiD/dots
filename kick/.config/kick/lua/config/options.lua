@@ -123,12 +123,9 @@ opt.wrap = true -- enable line wrap
 opt.wrapmargin = 2 -- wrap lines at 80 characters
 opt.linebreak = true -- wrap lines at convenient points
 opt.columns = 120
--- opt.colorcolumn = '100' -- highlight column 80
-
-if vim.fn.has('nvim-0.9.0') == 1 then
-  opt.splitkeep = 'screen'
-  opt.shortmess:append({ C = true })
-end
+opt.colorcolumn = '100' -- highlight column 100
+opt.splitkeep = 'screen'
+opt.shortmess:append({ C = true })
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
