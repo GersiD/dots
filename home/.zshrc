@@ -129,16 +129,6 @@ cd_with_fzf() {
     cd "$(fd -H -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
 }
 
-custom_cd() {
-    # check if there is a venv folder if so activate the python venv
-    builtin cd "$1"
-    if [ -d "venv" ]; then
-        source venv/bin/activate
-    else 
-        deactivate
-    fi
-}
-
 tmux_fzf() {
     if [ -z "$TMUX" ]; then
         # Check if main session is running
@@ -179,7 +169,6 @@ alias ra="tmux attach-session -t RA"
 alias icat="kitten icat"
 alias lg="lazygit"
 alias ls="exa --icons"
-alias cd="custom_cd"
 
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
