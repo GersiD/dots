@@ -6,10 +6,16 @@ return {
     float_opts = {
       border = 'curved',
       highlights = { border = 'Normal', background = 'Normal' },
-      -- width = 1000,
-      -- height = 100,
+      width = vim.o.columns + 10,
+      height = vim.o.lines - 5,
     },
-    -- size = 10,
+    size = function(term)
+      if term.direction == 'horizontal' then
+        return 20
+      elseif term.direction == 'vertical' then
+        return vim.o.columns / 2
+      end
+    end,
     shading_factor = -10,
     -- start_in_insert = true,
     shell = 'pwsh',
