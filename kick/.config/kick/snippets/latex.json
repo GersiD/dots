@@ -1,0 +1,8 @@
+{
+  "eqref": {
+    "prefix": "eqref",
+    "body": [
+      "\\eqref{$1}$0"
+    ]
+  }
+}

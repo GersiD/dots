@@ -1,13 +1,19 @@
 {
-        "name": "example-snippets",
-        "contributes": {
-                "snippets": [
-                        {
-                                "language": [
-                                        "lua"
-                                ],
-                                "path": "./lua.json"
-                        }
-                ]
-        }
+  "name": "example-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "lua"
+        ],
+        "path": "./lua.json"
+      },
+      {
+        "language": [
+          "tex"
+        ],
+        "path": "./latex.json"
+      }
+    ]
+  }
 }
