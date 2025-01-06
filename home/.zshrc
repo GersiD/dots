@@ -179,6 +179,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/gurobi1001/linux64/lib
 export NVIM_APPNAME="kick" # for kickstart
 # export HOME="/home/gd"
 export XDG_CONFIG_HOME=$HOME/.config
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
