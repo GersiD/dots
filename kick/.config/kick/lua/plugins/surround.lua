@@ -34,7 +34,7 @@ return {
         ['m'] = '$', -- Math (latex)
       },
       highlight = {
-        duration = 10,
+        duration = 100,
       },
     },
   },

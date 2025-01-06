@@ -57,11 +57,15 @@ return {
     opts = {
       servers = {
         texlab = {
+          mason = false,
           settings = {
             texlab = {
+              inlayHints = {
+                labelReferences = false,
+              },
               chktex = {
                 onEdit = false, -- default value
-                onOpenAndSave = true,
+                onOpenAndSave = false,
               },
               latexindent = {
                 modifyLineBreaks = false,

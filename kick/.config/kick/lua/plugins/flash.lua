@@ -9,7 +9,7 @@ return {
       },
     },
     jump = {
-      autojump = true,
+      autojump = false,
     },
   },
   -- stylua: ignore

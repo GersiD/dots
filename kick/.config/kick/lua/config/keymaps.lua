@@ -106,8 +106,7 @@ end, { desc = 'LSP Implementations' })
 vim.keymap.set('n', '<leader>uf', '<CMD>KickstartFormatToggle<CR>', { desc = 'Format Toggle' })
 vim.keymap.set('n', '<leader>ud', '<CMD>KickstartDiagnosticsToggle<CR>', { desc = 'Diagnostic Toggle' })
 vim.keymap.set('n', '<leader>ul', function()
-  local current = vim.opt.relativenumber:get()
-  vim.opt.relativenumber = not current
+  vim.opt.relativenumber = not vim.opt.relativenumber:get()
 end, { desc = 'Toggle Line Numbers' })
 vim.keymap.set('n', 'gr', function()
   require('telescope.builtin').lsp_references(
@@ -148,7 +147,7 @@ end, { desc = 'DAP Eval' })
 -- Buffer keymaps
 -- Delete all buffers except current
 vim.keymap.set('n', '<leader>bD', function()
-  vim.notify('Deleting all buffers except current', 'info', { timeout = 500 })
+  vim.notify('Deleting all buffers except current', vim.log.levels.INFO, { timeout = 500 })
   local current = vim.api.nvim_get_current_buf()
   for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
     if buffer ~= current then
