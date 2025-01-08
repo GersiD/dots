@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd('BufRead', {
   pattern = '*.png',
   callback = function()
     vim.keymap.set('n', '<leader>1', function()
-      vim.cmd('!eog ' .. vim.fn.expand('%'))
+      vim.cmd('!eog ' .. vim.fn.expand('%') .. ' &')
     end, { buffer = 0 })
   end,
 })
