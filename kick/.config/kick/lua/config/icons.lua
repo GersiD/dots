@@ -48,7 +48,7 @@ return {
     Package = ' ',
     Property = ' ',
     Reference = ' ',
-    Snippet = ' ',
+    Snippet = '󱙷 ',
     String = ' ',
     Struct = ' ',
     TabNine = '󰏚 ',

@@ -52,8 +52,22 @@ return {
       },
       menu = {
         draw = {
-          treesitter = { 'lsp' },
+          -- treesitter = { 'lsp' },
           -- columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind' } },
+          components = {
+            kind_icon = {
+              ellipsis = false,
+              text = function(ctx)
+                local kind_icon = require('config.icons').kinds[ctx.kind]
+                return kind_icon
+              end,
+              -- Optionally, you may also use the highlights from mini.icons
+              -- highlight = function(ctx)
+              --   local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+              --   return hl
+              -- end,
+            },
+          },
         },
       },
       documentation = {
@@ -64,7 +78,9 @@ return {
         enabled = false,
       },
       list = {
-        selection = 'auto_insert',
+        selection = {
+          auto_insert = true,
+        },
       },
     },
     -- experimental signature help support
@@ -73,7 +89,7 @@ return {
       -- adding any nvim-cmp sources here will enable them
       -- with blink.compat
       -- compat = {},
-      default = { 'lsp', 'luasnip', 'path', 'buffer' },
+      default = { 'lsp', 'snippets', 'path', 'buffer' },
       -- cmdline = {}, -- This disables it
     },
     keymap = {

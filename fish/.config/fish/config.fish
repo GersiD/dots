@@ -1,6 +1,7 @@
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/share/gem/ruby/3.2.0/bin
 source ~/.config/fish/themes/tokyo_moon.fish
+# cat ~/.cache/wal/sequences & # If you want to use wal colors
 zoxide init fish --cmd j | source
 alias v=nvim
 alias resetFish="source ~/.config/fish/config.fish"
@@ -34,7 +35,7 @@ if test "$TERM" = xterm-kitty
 else
     alias ssh="ssh"
 end
-alias mpra="waypipe ssh -Y gersi@mp-sys76.cs.unh.edu"
+alias mpra="waypipe -n --threads 4 ssh gersi@mp-sys76.cs.unh.edu"
 export EDITOR=nvim
 export NVIM_APPNAME="kick"
 # export NVIM_APPNAME="nvim" # lazyvim
