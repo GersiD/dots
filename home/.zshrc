@@ -169,6 +169,7 @@ alias ra="tmux attach-session -t RA"
 alias icat="kitten icat"
 alias lg="lazygit"
 alias ls="exa --icons"
+alias yay="yay --ignore waypipe"
 
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
@@ -179,6 +180,9 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/gurobi1001/linux64/lib
 export NVIM_APPNAME="kick" # for kickstart
 # export HOME="/home/gd"
 export XDG_CONFIG_HOME=$HOME/.config
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
+export EDITOR='nvim'
+export VISUAL='nvim'
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \

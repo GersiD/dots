@@ -11,9 +11,18 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
       -- Save current file
       vim.cmd('w')
       if jit.os == 'Windows' then
-        require('config.utils.terminals').run('python' .. ' ' .. vim.fn.expand('%'))
+        require('config.utils.terminals').run('python ' .. vim.fn.expand('%'))
       else
-        require('config.utils.terminals').run('time python3' .. ' ' .. vim.fn.expand('%'))
+        require('config.utils.terminals').run('time python3 ' .. vim.fn.expand('%'))
+      end
+    end, { desc = 'Run Python File' })
+    vim.keymap.set('n', '<leader>3', function()
+      -- Save current file
+      vim.cmd('w')
+      if jit.os == 'Windows' then
+        require('config.utils.terminals').run('python -i ' .. vim.fn.expand('%'))
+      else
+        require('config.utils.terminals').run('python3 -i ' .. vim.fn.expand('%'))
       end
     end, { desc = 'Run Python File' })
 

@@ -79,3 +79,12 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     end
   end,
 })
+-- Set keymap on PNG files to open in image preview
+vim.api.nvim_create_autocmd('BufRead', {
+  pattern = '*.png',
+  callback = function()
+    vim.keymap.set('n', '<leader>1', function()
+      vim.cmd('!eog ' .. vim.fn.expand('%') .. ' &')
+    end, { buffer = 0 })
+  end,
+})

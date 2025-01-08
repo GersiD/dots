@@ -40,7 +40,7 @@ alias mpra="waypipe -n --threads 4 ssh gersi@mp-sys76.cs.unh.edu"
 export EDITOR=nvim
 export NVIM_APPNAME="kick"
 # export NVIM_APPNAME="nvim" # lazyvim
-
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 
 # https://starship.rs/
 starship init fish | source

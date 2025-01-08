@@ -17,7 +17,7 @@ return {
   opts = {
     highlight = {
       enable = true,
-      disable = { 'tex' },
+      disable = { 'tex', 'csv' },
     },
     indent = { enable = true },
     -- Add languages to be installed here that you want installed for treesitter
