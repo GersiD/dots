@@ -1,0 +1,12 @@
+# ./config/starship.toml
+[env_var.SOFTWARE_UPDATE_AVAILABLE]
+variable = 'SOFTWARE_UPDATE_AVAILABLE'
+format = '[$env_value]($style)'
+default = ''
+style = 'bold cyan'
+
+[env_var.DOTFILES_UPDATE_AVAILABLE]
+variable = 'DOTFILES_UPDATE_AVAILABLE'
+format = '[$env_value]($style)'
+default = ''
+style = 'bold cyan'
