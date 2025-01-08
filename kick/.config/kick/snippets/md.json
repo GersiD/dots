@@ -1,0 +1,62 @@
+{
+  "ad-note": {
+    "prefix": "note",
+    "body": [
+      "```ad-note\n $1\n```$0"
+    ]
+  },
+  "ad-tldr": {
+    "prefix": "tldr",
+    "body": [
+      "```ad-tldr\n $1\n```$0"
+    ]
+  },
+  "ad-todo": {
+    "prefix": "todo",
+    "body": [
+      "```ad-todo\n $1\n```$0"
+    ]
+  },
+  "ad-hint": {
+    "prefix": "hint",
+    "body": [
+      "```ad-hint\n $1\n```$0"
+    ]
+  },
+  "ad-done": {
+    "prefix": "done",
+    "body": [
+      "```ad-done\n $1\n```$0"
+    ]
+  },
+  "ad-faq": {
+    "prefix": "faq",
+    "body": [
+      "```ad-faq\n $1\n```$0"
+    ]
+  },
+  "ad-warn": {
+    "prefix": "warn",
+    "body": [
+      "```ad-warning\n $1\n```$0"
+    ]
+  },
+  "ad-danger": {
+    "prefix": "danger",
+    "body": [
+      "```ad-danger\n $1\n```$0"
+    ]
+  },
+  "ad-example": {
+    "prefix": "example",
+    "body": [
+      "```ad-example\n $1\n```$0"
+    ]
+  },
+  "ad-info": {
+    "prefix": "info",
+    "body": [
+      "```ad-info\n $1\n```$0"
+    ]
+  }
+}
