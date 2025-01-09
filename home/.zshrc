@@ -169,7 +169,6 @@ alias ra="tmux attach-session -t RA"
 alias icat="kitten icat"
 alias lg="lazygit"
 alias ls="exa --icons"
-alias yay="yay --ignore waypipe"
 
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
