@@ -6,7 +6,6 @@ zoxide init fish --cmd j | source
 alias v=nvim
 alias resetFish="source ~/.config/fish/config.fish"
 alias update="sudo pacman -Syu && yay -Syu"
-alias yay="yay --ignore waypipe"
 alias cat="bat --style=full"
 alias icat="kitten icat"
 alias lg="git fetch &> /dev/null & lazygit"
