@@ -6,7 +6,7 @@ return {
     float_opts = {
       border = 'curved',
       highlights = { border = 'Normal', background = 'Normal' },
-      width = vim.o.columns + 10,
+      width = vim.o.columns + 40,
       height = vim.o.lines - 5,
     },
     size = function(term)

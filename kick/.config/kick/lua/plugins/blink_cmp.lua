@@ -79,7 +79,7 @@ return {
       },
       list = {
         selection = {
-          auto_insert = true,
+          auto_insert = false,
         },
       },
     },
