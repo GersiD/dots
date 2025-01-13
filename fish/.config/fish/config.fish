@@ -45,6 +45,10 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 starship init fish | source
 starship completions fish | source
 
+# fifc config
+# fisher install gazorby/fifc # fifc fzf completions for fish https://github.com/gazorby/fifc
+set -Ux fifc_editor nvim
+
 function fish_greeting
     fastfetch --logo mac
 end
