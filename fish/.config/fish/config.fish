@@ -1,6 +1,6 @@
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/share/gem/ruby/3.2.0/bin
-source ~/.config/fish/themes/tokyo_moon.fish
+source ~/.config/fish/themes/tokyo_moon.fish &
 # cat ~/.cache/wal/sequences & # If you want to use wal colors
 zoxide init fish --cmd j | source
 alias v=nvim
@@ -55,7 +55,8 @@ end
 set fish_greeting
 
 function fzf_find_file
-    fd -H -t f | fzf --preview="batcat --color=always --style=numbers --line-range :500 {}" --bind="space:toggle-preview" --preview-window=:hidden
+    fd -H -t f | fzf --preview="bat --color=always --style=numbers --line-range :500 {}" --bind="space:toggle-preview" |
+    wl-copy
 end
 
 function cd_fzf
