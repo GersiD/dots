@@ -8,8 +8,10 @@ else
 	num=$(wpctl status | grep "$1" | grep "vol" | tail -1 | awk -F'[^0-9]*' '{print $2}')
 fi
 if [ -z "$num" ]; then
-	echo "No such device"
+	echo "audio.sh : No such device"
 else
-	echo "Setting default audio device to num $num"
+	echo "audio.sh : Setting default audio device to num $num"
 	wpctl set-default $num
+    echo "audio.sh : Setting volume to 35%"
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 35%
 fi
