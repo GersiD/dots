@@ -3,7 +3,7 @@
 -- Add any additional keymaps here
 vim.keymap.set('n', '<C-v>', '"+p', { desc = 'Paste from system clipboard' })
 vim.keymap.set('i', '<C-v>', function()
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', false)
+  vim.cmd('stopinsert')
   vim.cmd('normal! "+p')
 end, { desc = 'Paste from system clipboard' })
 vim.keymap.set('v', '<C-c>', '"+y', { desc = 'Copy to system clipboard' })
@@ -34,6 +34,7 @@ vim.keymap.set('n', '<leader>tt', function()
   require('config.utils.terminals').run('cd ~ && nvim ~/vaults/gersi_notes/todo.md && cd -', {})
 end, { desc = 'Terminal TODO' })
 
+vim.keymap.set('n', '<C-0>', '$', { desc = 'End of line', remap = true }) -- TODO: Tmux blocks this :(
 vim.api.nvim_set_keymap('v', '<leader>/', 'gc', { desc = 'Comment Selection' })
 vim.api.nvim_set_keymap('n', '<leader>/', 'Vgc', { desc = 'Comment Line' })
 vim.keymap.set('n', 'q', '<C-w>q', { desc = 'Quit', remap = true })
@@ -159,8 +160,8 @@ vim.keymap.set('n', '<C-s>', function()
   vim.cmd(':w')
 end, { desc = 'Save' })
 vim.keymap.set('i', '<C-s>', function()
-  -- send esc key to exit from insert mode
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', false)
+  -- escape to normal mode and save
+  vim.cmd('stopinsert')
   vim.cmd(':w')
 end, { desc = 'Save' })
 -- Fuzzy search all open buffers

@@ -64,13 +64,13 @@ function M.run(command, opts)
     close_on_exit = false,
     on_exit = function()
       -- enter normal mode
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', false, false, true), 'n', false)
+      vim.cmd('stopinsert')
     end,
     ---@diagnostic disable-next-line: unused-local
     on_open = function(term)
       if opts and opts.normal_on_open then
         -- enter normal mode
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', false, false, true), 'n', false)
+        vim.cmd('stopinsert')
       end
     end,
     float_opts = {
