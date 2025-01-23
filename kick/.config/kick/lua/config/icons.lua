@@ -52,7 +52,7 @@ return {
     String = ' ',
     Struct = ' ',
     TabNine = '󰏚 ',
-    Text = ' ',
+    Text = ' ',
     TypeParameter = ' ',
     Unit = ' ',
     Value = ' ',

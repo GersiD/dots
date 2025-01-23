@@ -104,7 +104,7 @@ return {
       ['<Tab>'] = {
         function(cmp)
           if cmp.snippet_active() then
-            return cmp.accept()
+            return cmp.snippet_forward()
           else
             return cmp.select_and_accept()
           end
