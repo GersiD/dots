@@ -79,6 +79,12 @@ return {
       },
       list = {
         selection = {
+          preselect = function(ctx)
+            if ctx.mode == 'cmdline' then
+              return false
+            end
+            return true
+          end,
           auto_insert = false,
         },
       },

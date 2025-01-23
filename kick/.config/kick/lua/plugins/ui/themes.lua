@@ -43,13 +43,16 @@ return {
   },
   {
     'folke/tokyonight.nvim',
+    ---@class tokyonight.Config
+    ---@field on_colors fun(colors: ColorScheme)
+    ---@field on_highlights fun(highlights: tokyonight.Highlights, colors: ColorScheme)
     opts = {
       -- your configuration comes here
       -- or leave it empty to use the default settings
-      style = 'storm', -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-      -- terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+      style = 'moon', -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+      terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
       -- no_italic = true, -- Disable italic comments, keywords, etc.
-      -- transparent = true, -- Enable transparent background
+      transparent = false, -- Enable transparent background
       styles = {
         -- Style to be applied to different syntax groups
         -- Value is any valid attr-list value for `:help nvim_set_hl`
@@ -58,9 +61,10 @@ return {
         functions = { italic = false },
         variables = { italic = false },
         -- Background styles. Can be "dark", "transparent" or "normal"
-        -- sidebars = "transparent", -- style for sidebars, see below
-        -- floats = "transparent", -- style for floating windows
+        sidebars = 'normal', -- style for sidebars, see below
+        floats = 'normal', -- style for floating windows
       },
+      cache = true,
       -- sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
       -- day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
       -- hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
@@ -87,6 +91,7 @@ return {
         integrations = {
           alpha = true,
           cmp = true,
+          blink_cmp = true,
           dashboard = true,
           grug_far = true,
           gitsigns = true,
