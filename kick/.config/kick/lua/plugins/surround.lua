@@ -29,7 +29,7 @@ return {
       },
       aliases = {
         ['s'] = ']', -- Square brackets
-        ['p'] = '(', -- Paren
+        ['p'] = ')', -- Paren
         ['b'] = '}', -- Brackets
         ['m'] = '$', -- Math (latex)
       },
