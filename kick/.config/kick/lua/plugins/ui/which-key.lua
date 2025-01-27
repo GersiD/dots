@@ -6,6 +6,7 @@ return {
   opts = {
     ---@type false | "classic" | "modern" | "helix"
     preset = 'modern',
+    defaults = {},
     ---@type wk.Spec
     spec = {
       {
@@ -22,7 +23,7 @@ return {
         { '<leader><tab>', group = 'tabs' },
         { '<leader>s', group = 'search' },
         { '<leader>u', group = 'ui' },
-        { '<leader>w', group = 'windows' },
+        { '<leader>w', group = 'workspace' },
         { '<leader>x', group = 'diagnostics/quickfix' },
         { 's', group = 'surround' },
         { 'ds', group = 'surround' },
@@ -30,28 +31,22 @@ return {
         { '<leader>p', group = 'packages' },
       },
     },
-    ---@param mapping wk.Mapping
-    filter = function(mapping)
-      local disabled = {
-        'gbc',
-        'gcA',
-        'grn',
-        'grr',
-        'gra',
-        'gco',
-        'gcO',
-        'gcc',
-        'gri',
-        'ii',
-        'ai',
-      }
-      for _, v in ipairs(disabled) do
-        if mapping.lhs == v then
-          return false
-        end
-      end
-      return true
-    end,
+  },
+  keys = {
+    {
+      '<leader>?',
+      function()
+        require('which-key').show({ global = false })
+      end,
+      desc = 'Buffer Keymaps (which-key)',
+    },
+    {
+      '<c-w><space>',
+      function()
+        require('which-key').show({ keys = '<c-w>', loop = true })
+      end,
+      desc = 'Window Hydra Mode (which-key)',
+    },
   },
   config = function(_, opts)
     local wk = require('which-key')
