@@ -1,21 +1,7 @@
 -- Themes
 return {
-  {
-    'rose-pine/neovim',
-    config = function()
-      require('rose-pine').setup({
-        --- @usage 'auto'|'main'|'moon'|'dawn'
-        variant = 'moon',
-        --- @usage 'main'|'moon'|'dawn'
-        dark_variant = 'moon',
-        disable_italics = true,
-      })
-    end,
-  },
-  {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-  },
+  { 'sainnhe/everforest' },
+  { 'sainnhe/gruvbox-material' },
   {
     'rebelot/kanagawa.nvim',
     opts = {
@@ -129,29 +115,6 @@ return {
           -- For more plugins integrations see (https://github.com/catppuccin/nvim#integrations)
         },
       })
-    end,
-  },
-  { 'EdenEast/nightfox.nvim' },
-  { 'sainnhe/everforest' },
-  { 'sainnhe/gruvbox-material' },
-  { 'sainnhe/edge' },
-  { 'projekt0n/github-nvim-theme' },
-  {
-    'AlexvZyl/nordic.nvim',
-    opts = function()
-      local palette = require('nordic.colors')
-      return {
-        on_highlight = {
-          TelescopePromptTitle = {
-            -- fg = palette.white1,
-            bg = palette.green.dim,
-            italic = true,
-            underline = false,
-            sp = palette.yellow.dim,
-            undercurl = false,
-          },
-        },
-      }
     end,
   },
   {
