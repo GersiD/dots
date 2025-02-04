@@ -183,6 +183,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 export EDITOR='nvim'
 export VISUAL='nvim'
+export OLLAMA_MODELS='/mnt/2tb-drive/ollama-models'
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
