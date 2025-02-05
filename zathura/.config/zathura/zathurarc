@@ -38,16 +38,16 @@ set notification-error-fg "#151515" #00
 set notification-warning-bg "#AC4142" #08
 set notification-warning-fg "#151515" #00
 
-set highlight-color "rgba(198, 201, 47, 0.05)"
-set highlight-active-color "rgba(166, 201, 47, 0.34)"
+set highlight-color "rgba(154, 144, 255, 0.10)"
+set highlight-active-color "rgba(166, 144, 255, 0.34)"
 
 set completion-highlight-fg "#151515" #02
-set completion-highlight-bg "#90A959" #0C
+set completion-highlight-bg "#9A90FF" #0C
 
 set completion-bg "#303030" #02
 set completion-fg "#E0E0E0" #0C
 
-set notification-bg "#90A959" #0B
+set notification-bg "#9A90FF" #0C
 set notification-fg "#151515" #00
 
 set recolor "true"
