@@ -1,7 +1,7 @@
 -- Java
 -- Utility function to extend or override a config table, similar to the way
 -- that Plugin.opts works.
--- NOTE: jdtls version 1.27.1 is required for this to work.
+-- NOTE: jdtls version 1.43 is required for this to work.
 return {
   'mfussenegger/nvim-jdtls', -- load jdtls on module
   ft = { 'java' },
@@ -35,7 +35,7 @@ return {
       cmd = { 'jdtls' },
       root_dir = require('jdtls.setup').find_root({ 'build.gradle.kts', '.git', '.gradle', 'gradle.properties' }),
       -- enable CMP capabilities
-      capabilities = require('cmp_nvim_lsp').default_capabilities(),
+      capabilities = require('blink-cmp').get_lsp_capabilities({}, true),
       project_name = function(root_dir)
         return root_dir and vim.fs.basename(root_dir)
       end,
