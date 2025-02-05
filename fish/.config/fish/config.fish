@@ -30,6 +30,7 @@ alias serve="source ~/deploy_website.sh"
 alias fix="systemctl --user restart wireplumber pipewire pipewire-pulse; alsactl init"
 alias boston="mullvad disconnect -w; mullvad relay set location us bos; mullvad connect -w; mullvad status"
 alias ukraine="mullvad disconnect -w; mullvad relay set location ua; mullvad connect -w; mullvad status"
+alias setup-julia="~/.bin/setup-julia.sh"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
