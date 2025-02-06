@@ -170,6 +170,7 @@ alias icat="kitten icat"
 alias lg="lazygit"
 alias ls="exa --icons"
 alias setup-julia="~/bin/setup-julia.sh"
+alias askdeep="nvim +'terminal ollama run deepseek-r1:8b'"
 
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin

@@ -31,6 +31,7 @@ alias fix="systemctl --user restart wireplumber pipewire pipewire-pulse; alsactl
 alias boston="mullvad disconnect -w; mullvad relay set location us bos; mullvad connect -w; mullvad status"
 alias ukraine="mullvad disconnect -w; mullvad relay set location ua; mullvad connect -w; mullvad status"
 alias setup-julia="bash ~/bin/setup-julia.sh"
+alias askdeep="waypipe ssh -t gersi@rocket.cs.unh.edu 'zsh -i -c \"askdeep\"'"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
@@ -79,6 +80,11 @@ function enter_venv --on-event fish_prompt
     end
 end
 
+function copy_cmd_line
+    echo (commandline) | wl-copy -n
+end
+
 bind \cf fzf_find_file
 bind \ck cd_fzf
+bind \ec copy_cmd_line
 set -U fish_user_paths $HOME/bin $fish_user_paths
