@@ -103,6 +103,13 @@ return {
       default = { 'lsp', 'snippets', 'path', 'ripgrep' },
       -- cmdline = {}, -- This disables it
       providers = {
+        lsp = {
+          -- lsp appears before snippets, path, and rg
+          score_offset = 10,
+        },
+        path = {
+          min_keyword_length = 0,
+        },
         ripgrep = {
           module = 'blink-ripgrep',
           name = 'Ripgrep',
@@ -138,7 +145,7 @@ return {
             -- Examples:
             -- - ".git" (default)
             -- - { ".git", "package.json", ".root" }
-            project_root_marker = '.git',
+            project_root_marker = { '.git', 'init.lua' },
 
             -- Enable fallback to neovim cwd if project_root_marker is not
             -- found. Default: `true`, which means to use the cwd.
@@ -186,15 +193,15 @@ return {
           -- (optional) customize how the results are displayed. Many options
           -- are available - make sure your lua LSP is set up so you get
           -- autocompletion help
-          transform_items = function(_, items)
-            for _, item in ipairs(items) do
-              -- example: append a description to easily distinguish rg results
-              item.labelDetails = {
-                description = '*rg*',
-              }
-            end
-            return items
-          end,
+          -- transform_items = function(_, items)
+          --   for _, item in ipairs(items) do
+          --     -- example: append a description to easily distinguish rg results
+          --     item.labelDetails = {
+          --       description = '*rg*',
+          --     }
+          --   end
+          --   return items
+          -- end,
         },
       },
     },
