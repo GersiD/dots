@@ -9,9 +9,9 @@ end, { desc = 'Run Julia File', buffer = true })
 vim.keymap.set('n', '<leader>2', function()
   local num_cores = vim.fn.system('nproc')
   if num_cores >= '32' then
-    require('config.utils.terminals').run('time julia -t 32 --project=./test ' .. './test/runtests.jl', {})
+    require('config.utils.terminals').run('time julia -t 32 --project=. ' .. './test/runtests.jl', {})
   else
-    require('config.utils.terminals').run('time julia -t 4 --project=./test ' .. './test/runtests.jl', {})
+    require('config.utils.terminals').run('time julia -t 4 --project=. ' .. './test/runtests.jl', {})
   end
 end, { desc = 'Run Julia Tests', buffer = true })
 vim.keymap.set('n', '<leader>3', function()
