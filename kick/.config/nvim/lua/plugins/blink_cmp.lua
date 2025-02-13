@@ -100,7 +100,7 @@ return {
       -- adding any nvim-cmp sources here will enable them
       -- with blink.compat
       -- compat = {},
-      default = { 'lsp', 'snippets', 'path', 'ripgrep' },
+      default = { 'lsp', 'snippets', 'path', 'ripgrep', 'omni' },
       -- cmdline = {}, -- This disables it
       providers = {
         lsp = {

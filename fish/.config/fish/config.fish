@@ -39,8 +39,8 @@ else
 end
 alias mpra="waypipe -n --threads 4 ssh gersi@mp-sys76.cs.unh.edu"
 export EDITOR=nvim
-export NVIM_APPNAME="kick"
-# export NVIM_APPNAME="nvim" # lazyvim
+# export NVIM_APPNAME="lazyvimgd" # lazyvim
+export NVIM_APPNAME="nvim" # Now  kick!
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 
 # https://starship.rs/
