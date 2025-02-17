@@ -42,6 +42,7 @@ export EDITOR=nvim
 # export NVIM_APPNAME="lazyvimgd" # lazyvim
 export NVIM_APPNAME="nvim" # Now  kick!
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
+export BAT_CONFIG_DIR="$HOME/.config/bat"
 
 # https://starship.rs/
 starship init fish | source
