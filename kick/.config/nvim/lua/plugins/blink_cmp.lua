@@ -107,6 +107,9 @@ return {
           -- lsp appears before snippets, path, and rg
           score_offset = 10,
         },
+        omni = {
+          score_offset = 8,
+        },
         path = {
           min_keyword_length = 0,
         },
