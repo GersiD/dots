@@ -39,6 +39,7 @@ return {
         mason = false,
       },
       julials = {
+        -- cmd = { 'echo "hi"' }, -- NOTE: This works
         mason = false,
         settings = { -- WARN: Doesnt work
           julia = {
@@ -178,6 +179,21 @@ return {
       has_blink and blink.get_lsp_capabilities() or {},
       opts.capabilities or {}
     )
+    capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+    capabilities.textDocument.completion.completionItem.preselectSupport = true
+    capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown' }
+    capabilities.textDocument.codeAction = {
+      dynamicRegistration = true,
+      codeActionLiteralSupport = {
+        codeActionKind = {
+          valueSet = (function()
+            local res = vim.tbl_values(vim.lsp.protocol.CodeActionKind)
+            table.sort(res)
+            return res
+          end)(),
+        },
+      },
+    }
 
     -- CONFIGS
     local servers = opts.servers or {}
