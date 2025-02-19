@@ -20,19 +20,19 @@ return {
       vim.g.vimtex_compiler_method = 'latexmk'
       vim.g.vimtex_quickfix_open_on_warning = false
       vim.g.vimtex_quickfix_ignore_filters = { 'Underfull', 'Overfull' }
-      vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-        pattern = '*.tex',
-        desc = 'setup_omni',
-        once = true,
-        callback = function()
-          -- Use omnifunc for completion
-          -- local cmp = require('cmp')
-          -- local sources = cmp.get_config().sources
-          -- local addOmni = { name = 'omni', priority = 500 }
-          -- vim.list_extend(sources, { addOmni })
-          -- cmp.setup.buffer({ sources = sources })
-        end,
-      })
+      -- vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+      --   pattern = '*.tex',
+      --   desc = 'setup_omni',
+      --   once = true,
+      --   callback = function()
+      --     -- Use omnifunc for completion
+      --     local cmp = require('cmp')
+      --     local sources = cmp.get_config().sources
+      --     local addOmni = { name = 'omni', priority = 500 }
+      --     vim.list_extend(sources, { addOmni })
+      --     cmp.setup.buffer({ sources = sources })
+      --   end,
+      -- })
       if jit.os == 'Windows' then
         return {
           ['vimtex_view_general_viewer'] = 'C:/Users/gersi/AppData/Local/Microsoft/WindowsApps/SumatraPDF.exe',
