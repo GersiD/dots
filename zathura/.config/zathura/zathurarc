@@ -64,3 +64,8 @@ map f toggle_fullscreen
 map [fullscreen] f toggle_fullscreen
 map = zoom in
 map - zoom out
+# emulates smooth scrolling
+map j feedkeys "<C-Down>"
+map k feedkeys "<C-Up>"
+map h feedkeys "<C-Left>"
+map l feedkeys "<C-Right>"
