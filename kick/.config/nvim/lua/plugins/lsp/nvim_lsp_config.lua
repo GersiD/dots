@@ -40,7 +40,7 @@ return {
       },
       julials = {
         mason = false,
-        settings = {
+        settings = { -- WARN: Doesnt work
           julia = {
             NumThreads = 4,
             execution = {
