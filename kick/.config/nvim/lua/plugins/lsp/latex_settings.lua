@@ -20,6 +20,21 @@ return {
       vim.g.vimtex_compiler_method = 'latexmk'
       vim.g.vimtex_quickfix_open_on_warning = false
       vim.g.vimtex_quickfix_ignore_filters = { 'Underfull', 'Overfull' }
+      vim.g.vimtex_fold_manual = 1 -- faster
+      vim.g.vimtex_fold_enabled = 0
+      vim.g.vimtex_fold_bib_enabled = 0
+      vim.g.vimtex_matchparen_enabled = 0
+      vim.g.vimtex_delim_timeout = 100
+      vim.g.vimtex_delim_insert_timeout = 40
+      vim.g.vimtex_delim_stopline = 20
+      vim.g.vimtex_doc_enabled = 0
+      vim.g.vimtex_complete_enabled = 0
+      vim.g.vimtex_format_enabled = 0
+      vim.g.vimtex_include_search_enabled = 0
+      vim.g.vimtex_motion_enabled = 0
+      vim.g.vimtex_syntax_enabled = 1
+      vim.g.vimtex_syntax_conceal_disable = 1
+      vim.g.vimtex_toc_enabled = 0
       -- vim.api.nvim_create_autocmd({ 'BufEnter' }, {
       --   pattern = '*.tex',
       --   desc = 'setup_omni',
