@@ -6,20 +6,18 @@ return {
     -- https://github.com/zbirenbaum/copilot.lua/issues/321
     event = 'InsertEnter',
     build = ':Copilot auth',
-    config = function()
-      require('copilot').setup({
-        suggestion = {
-          auto_trigger = true,
-          keymap = { accept = '<Right>' },
-        },
-        panel = {
-          enabled = false,
-        },
-        filetypes = {
-          markdown = true,
-          help = true,
-        },
-      })
-    end,
+    opts = {
+      suggestion = {
+        auto_trigger = true,
+        keymap = { accept = '<Right>' },
+      },
+      panel = {
+        enabled = false,
+      },
+      filetypes = {
+        markdown = true,
+        help = true,
+      },
+    },
   },
 }
