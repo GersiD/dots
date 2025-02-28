@@ -4,7 +4,7 @@ return {
     cmd = 'Copilot',
     -- TODO: This was causing issues RPC[Error] code_name = ServerNotInitialized, message = "Agent service not initialized."
     -- https://github.com/zbirenbaum/copilot.lua/issues/321
-    event = 'InsertEnter',
+    event = 'BufEnter',
     build = ':Copilot auth',
     config = function()
       require('copilot').setup({
