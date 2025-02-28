@@ -16,18 +16,7 @@ return {
   ---@type blink.cmp.Config
   opts = {
     snippets = {
-      expand = function(snippet)
-        require('luasnip').lsp_expand(snippet)
-      end,
-      active = function(filter)
-        if filter and filter.direction then
-          return require('luasnip').jumpable(filter.direction)
-        end
-        return require('luasnip').in_snippet()
-      end,
-      jump = function(direction)
-        require('luasnip').jump(direction)
-      end,
+      preset = 'luasnip',
     },
     appearance = {
       -- sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -83,16 +72,15 @@ return {
         enabled = false,
       },
       list = {
+        max_items = 100,
         selection = {
-          preselect = function(ctx)
-            if ctx.mode == 'cmdline' then
-              return false
-            end
-            return true
-          end,
+          preselect = true,
           auto_insert = false,
         },
       },
+    },
+    fuzzy = {
+      implementation = 'rust', -- error if rust not available
     },
     -- experimental signature help support
     signature = { enabled = true },
@@ -101,7 +89,10 @@ return {
       -- with blink.compat
       -- compat = {},
       default = { 'lsp', 'snippets', 'path', 'ripgrep' },
-      -- cmdline = {}, -- This disables it
+      per_filetype = {
+        -- example: use treesitter for lua files
+        -- lua = { 'lsp', 'snippets', 'path' },
+      },
       providers = {
         lsp = {
           -- lsp appears before snippets, path, and rg
@@ -116,6 +107,7 @@ return {
         ripgrep = {
           module = 'blink-ripgrep',
           name = 'Ripgrep',
+          async = true,
           -- the options below are optional, some default values are shown
           ---@module "blink-ripgrep"
           ---@type blink-ripgrep.Options
@@ -206,6 +198,35 @@ return {
           --   return items
           -- end,
         },
+      },
+    },
+    cmdline = {
+      enabled = true,
+      completion = {
+        menu = {
+          auto_show = true,
+        },
+        ghost_text = {
+          enabled = false,
+        },
+      },
+      keymap = {
+        preset = 'enter',
+        ['<C-Space>'] = { 'show' },
+        ['<Tab>'] = {
+          function(cmp)
+            if cmp.snippet_active() then
+              return cmp.snippet_forward()
+            else
+              return cmp.select_and_accept()
+            end
+          end,
+          'snippet_forward',
+          'fallback',
+        },
+        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+        ['<C-j>'] = { 'select_next' },
+        ['<C-k>'] = { 'select_prev' },
       },
     },
     keymap = {
