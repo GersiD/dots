@@ -13,8 +13,9 @@ return {
         treesitter = true,
         lsp = true,
       },
-      -- Callback function to run any custom logic or keymaps for the quickfix buffer
-      on_qf = function(bufnr) end,
+      on_qf = function(bufnr)
+        require('quicker').toggle_expand({})
+      end,
       keys = {
         { '>', "<cmd>lua require('quicker').toggle_expand()<CR>", desc = 'Expand quickfix content' },
       },
