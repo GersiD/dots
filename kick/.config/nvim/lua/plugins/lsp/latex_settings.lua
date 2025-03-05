@@ -124,6 +124,7 @@ return {
                   'Expectile',
                   'OCE',
                   'Monkie',
+                  'TVaR',
                 },
               },
             },
