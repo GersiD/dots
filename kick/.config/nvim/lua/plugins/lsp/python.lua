@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
       end
     end, { desc = 'Run Python File' })
 
-    vim.keymap.set('n', '<leader>lt', function()
+    vim.keymap.set('n', '<leader>2', function()
       require('config.utils.terminals').run('pytest -v')
     end, { desc = 'Run Python Tests' })
 
@@ -68,5 +68,4 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   end,
 })
 
-return {
-}
+return {}

@@ -35,7 +35,7 @@ require('lazy').setup({
 -- Set Colorscheme
 -- See `:help colorscheme`
 vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = '#FFFFFF' })
-vim.cmd.colorscheme('bamboo-multiplex')
+vim.cmd.colorscheme('bamboo-vulgaris')
 -- Load the keymaps
 require('config.keymaps')
 -- Load the autocommands
