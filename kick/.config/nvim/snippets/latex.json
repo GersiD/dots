@@ -4,5 +4,13 @@
     "body": [
       "\\eqref{$1}$0"
     ]
+  },
+  "align": {
+    "prefix": "align",
+    "body": [
+      "\\begin{align}",
+      "\t$1",
+      "\\end{align}"
+    ]
   }
 }
