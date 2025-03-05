@@ -12,5 +12,17 @@
       "\t$1",
       "\\end{align}"
     ]
+  },
+  "leftright()": {
+    "prefix": "leftright()",
+    "body": [
+      "\\left($1\\right)$0"
+    ]
+  },
+  "leftright{}": {
+    "prefix": "leftright{}",
+    "body": [
+      "\\left{$1\\right}$0"
+    ]
   }
 }
