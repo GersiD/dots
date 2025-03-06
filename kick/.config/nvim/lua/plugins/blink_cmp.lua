@@ -31,7 +31,6 @@ return {
     completion = {
       trigger = {
         -- When true, will prefetch the completion items when entering insert mode
-        -- WARN: buggy, not recommended unless you'd like to help develop prefetching
         prefetch_on_insert = true, -- this is now default but good idea to keep here in case
       },
       accept = {
@@ -62,6 +61,7 @@ return {
         border = 'rounded',
       },
       documentation = {
+        treesitter_highlighting = true,
         auto_show = true,
         auto_show_delay_ms = 300,
         window = {
