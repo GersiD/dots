@@ -65,6 +65,7 @@ return {
         vim.g.vimtex_complete_ignore_case = 0
         vim.g.vimtex_complete_ref = 0
         vim.g.vimtex_complete_smart_case = 0
+        vim.g.vimtex_parser_bib_backend = 'bibtex'
         return {
           -- ['vimtex_view_general_viewer'] = 'mupdf',
           -- ['vimtex_view_method'] = 'mupdf',
