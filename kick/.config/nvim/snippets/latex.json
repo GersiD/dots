@@ -24,5 +24,27 @@
     "body": [
       "\\left{$1\\right}$0"
     ]
+  },
+  "begin": {
+    "prefix": "begin",
+    "body": [
+      "\\begin{$1}",
+      "\t$2",
+      "\\end{$1}$0"
+    ]
+  },
+  "bigMath": {
+    "prefix": "mathBig",
+    "body": [
+      "\\[",
+      "\t$1",
+      "\\]$0"
+    ]
+  },
+  "inlineMath": {
+    "prefix": "math",
+    "body": [
+      "$$1$$0"
+    ]
   }
 }
