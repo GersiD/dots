@@ -71,6 +71,10 @@
             "type": "terminal"
         },
         {
+            "key": "│           │\u001b[11D{#31}󰧳 font",
+            "type": "terminalfont"
+        },
+        {
             "key": "│           │\u001b[11D{#31} wm",
             "type": "wm"
         },
