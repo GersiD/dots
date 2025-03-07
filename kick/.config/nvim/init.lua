@@ -36,6 +36,9 @@ require('lazy').setup({
 -- See `:help colorscheme`
 vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = '#FFFFFF' })
 vim.cmd.colorscheme('tokyodark')
+vim.cmd('hi IlluminatedWordRead cterm=underline gui=underline guifg=#FFA500')
+vim.cmd('hi IlluminatedWordWrite cterm=underline gui=underline guifg=#FFA500')
+vim.cmd('hi IlluminatedWordText cterm=underline gui=underline guifg=#FFA500')
 -- Load the keymaps
 require('config.keymaps')
 -- Load the autocommands
