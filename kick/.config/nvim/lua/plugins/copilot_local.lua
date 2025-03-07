@@ -16,7 +16,7 @@ return {
       },
       filetypes = {
         markdown = true,
-        help = false,
+        help = true,
       },
     },
   },
