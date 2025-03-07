@@ -1,6 +1,6 @@
 return {
   {
-    'epwalsh/obsidian.nvim',
+    'obsidian-nvim/obsidian.nvim',
     version = '*', -- recommended, use latest release instead of latest commit
     lazy = true,
     event = {
@@ -26,6 +26,7 @@ return {
       completion = {
         -- FIX: next time you're here https://github.com/epwalsh/obsidian.nvim/issues/770
         nvim_cmp = false,
+        blink = true,
         min_chars = 0,
       },
       mappings = {
