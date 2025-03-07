@@ -140,7 +140,7 @@ return {
             -- Examples:
             -- - ".git" (default)
             -- - { ".git", "package.json", ".root" }
-            project_root_marker = { '.git', 'init.lua' },
+            project_root_marker = { '.git', 'init.lua', '.root' },
 
             -- Enable fallback to neovim cwd if project_root_marker is not
             -- found. Default: `true`, which means to use the cwd.
