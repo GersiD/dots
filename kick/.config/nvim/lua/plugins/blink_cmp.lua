@@ -83,7 +83,7 @@ return {
       implementation = 'rust', -- error if rust not available
     },
     -- experimental signature help support
-    signature = { enabled = true },
+    signature = { enabled = true, window = { border = 'single' } },
     sources = {
       -- adding any nvim-cmp sources here will enable them
       -- with blink.compat
