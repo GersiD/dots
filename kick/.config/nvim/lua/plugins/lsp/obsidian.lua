@@ -1,8 +1,7 @@
 return {
   {
-    'obsidian-nvim/obsidian.nvim',
-    version = '*', -- recommended, use latest release instead of latest commit
-    lazy = true,
+    'GersiD/obsidian.nvim',
+    -- version = '*', -- recommended, use latest release instead of latest commit
     event = {
       -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
       -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
@@ -26,7 +25,21 @@ return {
       completion = {
         -- FIX: next time you're here https://github.com/epwalsh/obsidian.nvim/issues/770
         nvim_cmp = false,
-        blink = true,
+        blink = {
+          enabled = true,
+          obsidian = {
+            score_offset = 10,
+          },
+          obsidian_tags = {
+            score_offset = 10,
+            transform_items = function(_, items)
+              for _, item in ipairs(items) do
+                item.kind = 10
+              end
+              return items
+            end,
+          },
+        },
         min_chars = 0,
       },
       mappings = {
