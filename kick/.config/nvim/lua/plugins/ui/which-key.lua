@@ -20,6 +20,7 @@ return {
         { '<leader>t', group = 'terminal' },
         { '<leader>d', group = 'debug' },
         { '<leader>g', group = 'git' },
+        { '<leader>n', group = 'noice' },
         { '<leader><tab>', group = 'tabs' },
         { '<leader>s', group = 'search' },
         { '<leader>u', group = 'ui' },
