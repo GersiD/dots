@@ -32,6 +32,7 @@ alias boston="mullvad disconnect -w; mullvad relay set location us bos; mullvad 
 alias ukraine="mullvad disconnect -w; mullvad relay set location ua; mullvad connect -w; mullvad status"
 alias setup-julia="bash ~/bin/setup-julia.sh"
 alias askdeep="waypipe ssh -t gersi@rocket.cs.unh.edu 'zsh -i -c \"askdeep\"'"
+alias wallmart="nohup microsoft-edge-stable https://www.walmart.com/cart &; disown; exit"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
