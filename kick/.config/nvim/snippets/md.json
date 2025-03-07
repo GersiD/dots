@@ -58,5 +58,11 @@
     "body": [
       "```ad-info\n $1\n```$0"
     ]
+  },
+  "link": {
+    "prefix": "link",
+    "body": [
+      "[${1:Link Text}](${2:URL})$0"
+    ]
   }
 }
