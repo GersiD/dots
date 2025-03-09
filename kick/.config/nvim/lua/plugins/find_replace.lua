@@ -1,22 +1,22 @@
 return {
-  'chrisgrieser/nvim-rip-substitute',
-  cmd = 'RipSubstitute',
+  'MagicDuck/grug-far.nvim',
+  opts = { headerMaxWidth = 80 },
+  cmd = 'GrugFar',
   keys = {
     {
       '<leader>fr',
       function()
-        require('rip-substitute').sub()
+        local grug = require('grug-far')
+        local ext = vim.bo.buftype == '' and vim.fn.expand('%:e')
+        grug.open({
+          transient = true,
+          prefills = {
+            filesFilter = ext and ext ~= '' and '*.' .. ext or nil,
+          },
+        })
       end,
-      mode = { 'n', 'x' },
-      desc = ' rip substitute',
-    },
-  },
-  opts = {
-    regexOptions = {
-      -- pcre2 enables lookarounds and backreferences, but performs slower
-      pcre2 = false,
-      ---@type "case-sensitive"|"ignore-case"|"smart-case"
-      casing = 'smart-case',
+      mode = { 'n', 'v' },
+      desc = 'Search and Replace',
     },
   },
 }
