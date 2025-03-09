@@ -243,7 +243,7 @@ return {
     {
       '<leader>sW',
       function()
-        require('fzf_lua').grep_visual({ root = false })
+        require('fzf-lua').grep_visual({ root = false })
       end,
       mode = 'v',
       desc = 'Selection (cwd)',
@@ -251,7 +251,7 @@ return {
     {
       '<leader>uC',
       function()
-        require('fzf_lua').colorschemes()
+        require('fzf-lua').colorschemes()
       end,
       desc = 'Colorscheme with Preview',
     },
