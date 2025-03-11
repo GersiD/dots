@@ -20,7 +20,7 @@ vim.keymap.set('n', '<S-TAB>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'Next bu
 vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'Neotree' })
 vim.keymap.set('n', 'U', '<cmd>redo<cr>', { desc = 'Redo' })
 vim.keymap.set('n', '<leader>gg', function()
-  require('config.utils.terminals').lazygit()
+  require('snacks').lazygit()
 end, { desc = 'LazyGit' })
 vim.keymap.set('n', '<leader>tb', function()
   require('config.utils.terminals').bottom()

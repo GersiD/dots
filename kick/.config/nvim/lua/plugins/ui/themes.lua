@@ -1,7 +1,17 @@
 -- Themes
 return {
   { 'sainnhe/everforest' },
-  { 'sainnhe/gruvbox-material' },
+  {
+    'sainnhe/gruvbox-material',
+    config = function()
+      vim.g.gruvbox_material_enable_italic = false
+      ---@usage 'original'|'mix'|'material'
+      vim.g.gruvbox_material_foreground = 'original'
+      ---@usage 'hard'|'medium'|'soft'
+      vim.g.gruvbox_material_background = 'hard'
+      vim.g.gruvbox_material_better_performance = 1
+    end,
+  },
   {
     'rebelot/kanagawa.nvim',
     opts = {
