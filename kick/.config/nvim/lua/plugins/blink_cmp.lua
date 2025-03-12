@@ -214,17 +214,10 @@ return {
         preset = 'enter',
         ['<C-Space>'] = { 'show' },
         ['<Tab>'] = {
-          function(cmp)
-            if cmp.snippet_active() then
-              return cmp.snippet_forward()
-            else
-              return cmp.select_and_accept()
-            end
-          end,
-          'snippet_forward',
+          'select_next',
           'fallback',
         },
-        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
         ['<C-j>'] = { 'select_next' },
         ['<C-k>'] = { 'select_prev' },
       },

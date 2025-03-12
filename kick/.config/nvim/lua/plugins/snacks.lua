@@ -5,8 +5,8 @@ return {
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
-    dashboard = {
-      enabled = true,
+    dashboard = { --NOTE: For some reason this caused blink cmdline completion to fail?
+      enabled = false,
       preset = {
         keys = {
           { icon = ' ', key = 'f', desc = 'Find File', action = ':Telescope find_files' },
