@@ -40,8 +40,8 @@ else
 end
 alias mpra="waypipe -n --threads 4 ssh gersi@mp-sys76.cs.unh.edu"
 export EDITOR=nvim
-# export NVIM_APPNAME="lazyvimgd" # lazyvim
 export NVIM_APPNAME="nvim" # Now  kick!
+#export NVIM_APPNAME="lazyvimgd" # lazyvim
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 export BAT_CONFIG_DIR="$HOME/.config/bat"
 
@@ -60,7 +60,7 @@ set fish_greeting
 
 function fzf_find_file
     fd -H -t f | fzf --preview="bat --color=always --style=numbers --line-range :500 {}" --bind="space:toggle-preview" |
-    wl-copy
+        wl-copy
 end
 
 function cd_fzf
