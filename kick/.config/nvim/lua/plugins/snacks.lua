@@ -19,6 +19,12 @@ return {
             action = ':lua require("config.utils.terminals").lazygit()',
           },
           { icon = ' ', key = 's', desc = 'Restore Session', section = 'session' },
+          {
+            icon = ' ',
+            key = 'S',
+            desc = 'Restore SessionS',
+            action = ":lua require('snacks').picker.projects()",
+          },
           { icon = '󰒲 ', key = 'l', desc = 'Lazy', action = ':Lazy', enabled = package.loaded.lazy ~= nil },
           { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
         },
@@ -35,7 +41,7 @@ return {
     lazygit = { enabled = true },
     notifier = { enabled = true },
     scope = { enabled = true },
-    -- picker = { enabled = true }, -- TODO: Try picker?
+    picker = { enabled = true },
   },
   -- stylua: ignore
   keys = {

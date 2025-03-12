@@ -20,7 +20,7 @@ vim.keymap.set('n', '<S-TAB>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'Next bu
 vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'Neotree' })
 vim.keymap.set('n', 'U', '<cmd>redo<cr>', { desc = 'Redo' })
 vim.keymap.set('n', '<leader>gg', function()
-  require('snacks').lazygit()
+  require('config.utils.terminals').lazygit()
 end, { desc = 'LazyGit' })
 vim.keymap.set('n', '<leader>tb', function()
   require('config.utils.terminals').bottom()
@@ -38,6 +38,11 @@ vim.keymap.set('n', '<leader>tt', function()
   require('config.utils.terminals').run('cd ~ && nvim ~/vaults/gersi_notes/todo.md && cd -', {})
 end, { desc = 'Terminal TODO' })
 
+vim.keymap.set('n', '<leader>ss', function()
+  require('snacks').picker.projects({
+    patterns = { '.git', 'Project.toml' },
+  })
+end, { desc = 'Session' })
 vim.keymap.set('n', '<C-0>', '$', { desc = 'End of line', remap = true }) -- TODO: Tmux blocks this :(
 vim.api.nvim_set_keymap('v', '<leader>/', 'gc', { desc = 'Comment Selection' })
 vim.api.nvim_set_keymap('n', '<leader>/', 'Vgc', { desc = 'Comment Line' })
