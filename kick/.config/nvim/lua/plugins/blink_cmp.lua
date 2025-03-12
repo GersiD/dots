@@ -230,13 +230,22 @@ return {
           if cmp.snippet_active() then
             return cmp.snippet_forward()
           else
-            return cmp.select_and_accept()
+            return cmp.select_next()
           end
         end,
         'snippet_forward',
         'fallback',
       },
-      ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+      ['<S-Tab>'] = {
+        function(cmp)
+          if cmp.snippet_active() then
+            return cmp.snippet_backward()
+          else
+            return cmp.select_prev()
+          end
+        end,
+        'fallback',
+      },
       ['<C-j>'] = { 'select_next' },
       ['<C-k>'] = { 'select_prev' },
       ['<C-d>'] = { 'scroll_documentation_down' },
