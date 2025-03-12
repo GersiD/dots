@@ -38,7 +38,6 @@ return {
     },
     indent = { enabled = true },
     input = { enabled = true },
-    lazygit = { enabled = true },
     notifier = { enabled = true },
     scope = { enabled = true },
     picker = { enabled = true },
