@@ -1,3 +1,4 @@
-vim.cmd('hi IlluminatedWordRead cterm=underline gui=underline guifg=#FFA500')
-vim.cmd('hi IlluminatedWordWrite cterm=underline gui=underline guifg=#FFA500')
-vim.cmd('hi IlluminatedWordText cterm=underline gui=underline guifg=#FFA500')
+vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { link = '@markup.link' })
+vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { link = '@markup.link' })
+vim.api.nvim_set_hl(0, 'IlluminatedWordText', { link = '@markup.link' })
+vim.api.nvim_set_hl(0, '@markup.italic', { link = '@string.special.uri' }) -- link one highlight to another
