@@ -5,7 +5,9 @@
 # Goal: Remove noeovim and neovide and reinstall them
 # Usage: replace-neovim.sh
 echo "Removing neovim and neovide"
-yay -R neovim-git neovim-git-debug neovide
+yay -R neovide
+yay -R neovim-git neovim-git-debug
 echo "Reinstalling neovim and neovide"
-yay -S neovim-git neovide
+yay -S neovim-git
+yay -S neovide
 echo "Done"
