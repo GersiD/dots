@@ -24,7 +24,18 @@ return {
       },
       ui = {
         hl_groups = {
+          -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
+          ObsidianTodo = { bold = true, fg = '#f78c6c' },
           ObsidianDone = { fg = '#4CAF50', bold = true },
+          ObsidianRightArrow = { bold = true, fg = '#f78c6c' },
+          ObsidianTilde = { bold = true, fg = '#ff5370' },
+          ObsidianImportant = { bold = true, fg = '#d73128' },
+          ObsidianBullet = { bold = true, fg = '#89ddff' },
+          ObsidianRefText = { underline = true, fg = '#c792ea' },
+          ObsidianExtLinkIcon = { fg = '#c792ea' },
+          ObsidianTag = { italic = true, fg = '#89ddff' },
+          ObsidianBlockID = { italic = true, fg = '#89ddff' },
+          ObsidianHighlightText = { bg = '#75662e' },
         },
       },
       completion = {
