@@ -25,9 +25,9 @@ return {
       button.opts.hl = 'AlphaButtons'
       button.opts.hl_shortcut = 'AlphaShortcut'
     end
-    dashboard.section.header.opts.hl = 'AlphaHeader'
-    dashboard.section.buttons.opts.hl = 'AlphaButtons'
-    dashboard.section.footer.opts.hl = 'AlphaFooter'
+    dashboard.section.header.opts.hl = 'Special'
+    dashboard.section.buttons.opts.hl = 'TSField'
+    dashboard.section.footer.opts.hl = 'TSAnnotation'
     dashboard.opts.layout[1].val = 8
     return dashboard
   end,
