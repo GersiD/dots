@@ -88,3 +88,17 @@ vim.api.nvim_create_autocmd('BufRead', {
     end, { buffer = 0 })
   end,
 })
+-- Set keymap for terminal buffers and other terminal config
+vim.api.nvim_create_autocmd('TermOpen', {
+  callback = function()
+    vim.keymap.set('n', 'q', function()
+      vim.api.nvim_buf_delete(0, {})
+    end, { desc = 'Close Terminal', buffer = true })
+    vim.keymap.set('n', '<Esc>', function()
+      vim.api.nvim_buf_delete(0, {})
+    end, { desc = 'Close Terminal', buffer = true })
+    -- disable insert mode, since any keypress in insert mode on an exited term buffer will close it
+    vim.keymap.set('n', 'i', '', { buffer = true })
+    vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { buffer = true })
+  end,
+})
