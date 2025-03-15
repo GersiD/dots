@@ -14,7 +14,7 @@ return {
         lsp = true,
       },
       on_qf = function(bufnr)
-        require('quicker').toggle_expand({})
+        -- require('quicker').toggle_expand({}) -- TODO: Doesnt work on latex files sometimes
       end,
       keys = {
         { '>', "<cmd>lua require('quicker').toggle_expand()<CR>", desc = 'Expand quickfix content' },
