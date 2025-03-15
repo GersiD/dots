@@ -102,7 +102,7 @@ return {
           score_offset = 8,
         },
         path = {
-          min_keyword_length = 0,
+          min_keyword_length = 1,
         },
         ripgrep = {
           module = 'blink-ripgrep',
@@ -214,7 +214,13 @@ return {
         preset = 'enter',
         ['<C-Space>'] = { 'show' },
         ['<Tab>'] = {
-          'select_next',
+          function(cmp)
+            if cmp.is_active() then
+              return cmp.select_next()
+            else
+              require('blink-cmp').show({ providers = { 'cmdline' }, initial_selected_item_idx = 1 })
+            end
+          end,
           'fallback',
         },
         ['<S-Tab>'] = { 'select_prev', 'fallback' },
@@ -253,7 +259,7 @@ return {
       ['<C-g>'] = {
         function()
           -- invoke manually, requires blink >v0.8.0
-          require('blink-cmp').show({ providers = { 'ripgrep' } })
+          require('blink-cmp').show({ providers = { 'ripgrep' }, initial_selected_item_idx = 1 })
         end,
       },
     },
