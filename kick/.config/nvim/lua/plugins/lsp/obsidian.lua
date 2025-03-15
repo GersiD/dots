@@ -26,10 +26,10 @@ return {
         hl_groups = {
           -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
           ObsidianTodo = { bold = true, fg = '#f78c6c' },
-          ObsidianDone = { fg = '#4CAF50', bold = true },
-          ObsidianRightArrow = { bold = true, fg = '#f78c6c' },
-          ObsidianTilde = { bold = true, fg = '#ff5370' },
+          ObsidianTilde = { bold = true, fg = '#FFBD4f' },
           ObsidianImportant = { bold = true, fg = '#d73128' },
+          ObsidianRightArrow = { bold = true, fg = '#f78c6c' },
+          ObsidianDone = { fg = '#4CAF50', bold = true },
           ObsidianBullet = { bold = true, fg = '#89ddff' },
           ObsidianRefText = { underline = true, fg = '#c792ea' },
           ObsidianExtLinkIcon = { fg = '#c792ea' },
