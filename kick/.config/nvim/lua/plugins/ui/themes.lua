@@ -10,6 +10,8 @@ return {
       ---@usage 'hard'|'medium'|'soft'
       vim.g.gruvbox_material_background = 'hard'
       vim.g.gruvbox_material_better_performance = 1
+      ---@usage 'grey', 'red', 'orange', 'yellow', 'green', 'aqua', 'blue', 'purple'
+      vim.g.gruvbox_material_menu_selection_background = 'grey'
     end,
   },
   {
