@@ -8,8 +8,7 @@ return {
         desc = 'Setup Vimtex',
         once = true,
         callback = function()
-          vim.cmd('TSDisable highlight')
-          vim.cmd('VimtexCompile')
+          vim.schedule(vim.cmd('VimtexCompile'))
         end,
       })
       vim.g.vimtex_compiler_latexmk = {
