@@ -13,9 +13,12 @@ return {
         treesitter = true,
         lsp = true,
       },
-      on_qf = function(bufnr)
-        -- require('quicker').toggle_expand({}) -- TODO: Doesnt work on latex files sometimes
-      end,
+      follow = {
+        enabled = true,
+      },
+      -- on_qf = function(bufnr)
+      --   -- require('quicker').toggle_expand({}) -- TODO: Doesnt work on latex files sometimes
+      -- end,
       keys = {
         { '>', "<cmd>lua require('quicker').toggle_expand()<CR>", desc = 'Expand quickfix content' },
       },
