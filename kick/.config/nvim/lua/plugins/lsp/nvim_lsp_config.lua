@@ -130,6 +130,11 @@ return {
         local client_id = args.data.client_id
         local client = vim.lsp.get_client_by_id(client_id) or {}
         local bufnr = args.buf
+        -- Skip copilot
+        if client_id == 'copilot' then
+          vim.lsp.warn('Skipping setting up copilot')
+          return
+        end
 
         -- Enable inlay hints
         local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
