@@ -73,14 +73,23 @@ return {
     })
 
     -- Basic debugging keymaps, feel free to change to your liking!
-    vim.keymap.set('n', '<F8>', dap.continue, { desc = 'Debug: Start/Continue' })
-    vim.keymap.set('n', '<F9>', dap.step_into, { desc = 'Debug: Step Into' })
-    vim.keymap.set('n', '<F10>', dap.step_over, { desc = 'Debug: Step Over' })
-    vim.keymap.set('n', '<F7>', dap.step_out, { desc = 'Debug: Step Out' })
     vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
     vim.keymap.set('n', '<leader>dB', function()
       dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
     end, { desc = 'Debug: Set Breakpoint' })
+    -- DAP Keymaps
+    vim.keymap.set('n', '<F7>', require('dap').step_out, { desc = 'DAP Step Out' })
+    vim.keymap.set('n', '<F8>', require('dap').continue, { desc = 'DAP Continue' })
+    vim.keymap.set('n', '<F9>', require('dap').step_into, { desc = 'DAP Step Into' })
+    vim.keymap.set('n', '<F10>', require('dap').step_over, { desc = 'DAP Step Over' })
+    vim.keymap.set('n', 'K', function()
+      local dap_open = dap.session() ~= nil
+      if dap_open then
+        require('dapui').eval()
+      else
+        vim.lsp.buf.hover()
+      end
+    end, { desc = 'DAP Eval' })
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close

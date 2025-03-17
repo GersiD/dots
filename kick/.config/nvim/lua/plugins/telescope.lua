@@ -129,7 +129,22 @@ return {
       desc = 'Find words',
     },
 
-    { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = 'Find Buffers' },
+    {
+      '<leader>bf',
+      function()
+        require('telescope.builtin').buffers({
+          ignore_current_buffer = true,
+          sort_mru = true,
+          attach_mappings = function(_, map)
+            map('n', 'dd', function(prompt_bufnr)
+              require('telescope.actions').delete_buffer(prompt_bufnr)
+            end)
+            return true
+          end,
+        })
+      end,
+      desc = 'Find Buffers',
+    },
   },
   dependencies = {
     'nvim-lua/plenary.nvim',

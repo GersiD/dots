@@ -59,103 +59,12 @@ end, { desc = 'Close Open Terminals' })
 vim.keymap.set('n', '<leader>ps', '<cmd>Lazy<cr>', { desc = 'Package Status' })
 vim.keymap.set('n', '<leader>pS', '<cmd>Lazy sync<cr>', { desc = 'Package Sync' })
 
--- LSP keymaps
-vim.keymap.set('n', '<leader>la', function()
-  local curr_row = vim.api.nvim_win_get_cursor(0)[1]
-  vim.lsp.buf.code_action({
-    ['range'] = {
-      ['start'] = { curr_row, 0 },
-      ['end'] = { curr_row, 1000 },
-    },
-  })
-end, { desc = 'Code Action on Line' })
-vim.keymap.set('n', '<leader>ll', vim.lsp.codelens.run, { desc = 'LSP CodeLens' })
-vim.keymap.set('n', '<leader>lL', vim.lsp.codelens.refresh, { desc = 'Refresh CodeLens' })
-vim.keymap.set('n', '<leader>li', '<cmd>LspInfo<cr>', { desc = 'LSP Info' })
-vim.keymap.set('n', '<leader>lS', '<cmd>LspStart<cr>', { desc = 'LSP Start' })
-vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = 'LSP Diag' })
--- vim.keymap.set("n", "<leader>lf", require("lazyvim.plugins.lsp.format").format, { desc = "LSP Format" })
-vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'LSP Rename' })
-vim.keymap.set('n', 'gt', function()
-  -- I want <CR> to open the selection in a vertical split
-  require('telescope.builtin').lsp_type_definitions(require('telescope.themes').get_cursor({
-    jump_type = 'vsplit',
-    reuse_win = true,
-    initial_mode = 'normal',
-    attach_mappings = function(_, map)
-      map('n', '<CR>', require('telescope.actions').select_vertical)
-      return true
-    end,
-  }))
-end, { desc = 'LSP Type Definitions' })
-vim.keymap.set('n', 'gd', function()
-  require('telescope.builtin').lsp_definitions(require('telescope.themes').get_cursor({
-    reuse_win = true,
-    attach_mappings = function(_, map)
-      map('n', '<CR>', require('telescope.actions').select_vertical)
-      return true
-    end,
-  }))
-end, { desc = 'LSP Definitions' })
-vim.keymap.set('n', 'gs', function()
-  require('telescope.builtin').lsp_definitions(require('telescope.themes').get_cursor({
-    jump_type = 'vsplit',
-    reuse_win = false,
-    initial_mode = 'normal',
-    attach_mappings = function(_, map)
-      map('n', '<CR>', require('telescope.actions').select_vertical)
-      return true
-    end,
-  }))
-end, { desc = 'LSP Definitions Split' })
-vim.keymap.set('n', '<leader>fs', function()
-  require('telescope.builtin').treesitter()
-end, { desc = 'Find Symbols' })
-vim.keymap.set('n', 'gi', function()
-  require('telescope.builtin').lsp_implementations(
-    require('telescope.themes').get_cursor({ jump_type = 'vsplit', reuse_win = true })
-  )
-end, { desc = 'LSP Implementations' })
+-- Toggles
 vim.keymap.set('n', '<leader>uf', '<CMD>KickstartFormatToggle<CR>', { desc = 'Format Toggle' })
 vim.keymap.set('n', '<leader>ud', '<CMD>KickstartDiagnosticsToggle<CR>', { desc = 'Diagnostic Toggle' })
 vim.keymap.set('n', '<leader>ul', function()
   vim.opt.relativenumber = not vim.opt.relativenumber:get()
 end, { desc = 'Toggle Line Numbers' })
-vim.keymap.set('n', 'gr', function()
-  require('telescope.builtin').lsp_references(
-    require('telescope.themes').get_cursor({ jump_type = 'vsplit', reuse_win = true })
-  )
-end, { desc = 'Goto References' })
-vim.keymap.set('n', 'gD', function()
-  -- if lsp supports declaration, go to declaration
-  if vim.lsp.get_clients({ method = 'textDocument/declaration' })[1] then
-    vim.lsp.buf.declaration()
-  else
-    vim.lsp.buf.definition()
-  end
-end, { desc = 'Goto Declaration' })
-
--- DAP Keymaps
-vim.keymap.set('n', '<F7>', function()
-  require('dap').step_out()
-end, { desc = 'DAP Step Out' })
-vim.keymap.set('n', '<F8>', function()
-  require('dap').continue()
-end, { desc = 'DAP Continue' })
-vim.keymap.set('n', '<F9>', function()
-  require('dap').step_into()
-end, { desc = 'DAP Step Into' })
-vim.keymap.set('n', '<F10>', function()
-  require('dap').step_over()
-end, { desc = 'DAP Step Over' })
-vim.keymap.set('n', 'K', function()
-  local dap_open = require('dap').session() ~= nil
-  if dap_open then
-    require('dapui').eval()
-  else
-    vim.lsp.buf.hover()
-  end
-end, { desc = 'DAP Eval' })
 
 -- Buffer keymaps
 -- Delete all buffers except current
@@ -176,19 +85,6 @@ vim.keymap.set('i', '<C-s>', function()
   vim.cmd('stopinsert')
   vim.cmd(':w')
 end, { desc = 'Save' })
--- Fuzzy search all open buffers
-vim.keymap.set('n', '<leader>bf', function()
-  require('telescope.builtin').buffers({
-    ignore_current_buffer = true,
-    sort_mru = true,
-    attach_mappings = function(_, map)
-      map('n', 'dd', function(prompt_bufnr)
-        require('telescope.actions').delete_buffer(prompt_bufnr)
-      end)
-      return true
-    end,
-  })
-end, { desc = 'Find Buffer' })
 
 -- Window Keymaps
 -- Move to window using the <ctrl> hjkl keys

@@ -137,9 +137,9 @@ return {
           inlay_hint.enable(true)
         end
 
-        -- Only attach to clients that support document formatting
+        -- attach to clients that support document formatting but log if they don't
         if not client.server_capabilities.documentFormattingProvider then
-          return
+          vim.lsp.log.warn('Client does not support document formatting: ' .. client.name)
         end
         local function nmap(keys, func, desc)
           if desc then
@@ -149,12 +149,82 @@ return {
           vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
         end
 
+        -- LSP keymaps
         -- Lesser used LSP functionality
         nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
         nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
         nmap('<leader>wl', function()
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, '[W]orkspace [L]ist Folders')
+        nmap('gD', function()
+          -- if lsp supports declaration, go to declaration
+          if vim.lsp.get_clients({ method = 'textDocument/declaration' })[1] then
+            vim.lsp.buf.declaration()
+          else
+            vim.lsp.buf.definition()
+          end
+        end, 'Goto Declaration')
+        nmap('gr', function()
+          require('telescope.builtin').lsp_references(
+            require('telescope.themes').get_cursor({ jump_type = 'vsplit', reuse_win = true })
+          )
+        end, 'Goto References')
+        nmap('<leader>la', function()
+          local curr_row = vim.api.nvim_win_get_cursor(0)[1]
+          vim.lsp.buf.code_action({
+            ['range'] = {
+              ['start'] = { curr_row, 0 },
+              ['end'] = { curr_row, 1000 },
+            },
+          })
+        end, 'Code Action on Line')
+        nmap('<leader>ll', vim.lsp.codelens.run, 'CodeLens')
+        nmap('<leader>lL', vim.lsp.codelens.refresh, 'Refresh CodeLens')
+        nmap('<leader>li', '<cmd>LspInfo<cr>', 'Info')
+        nmap('<leader>lS', '<cmd>LspStart<cr>', 'Start')
+        nmap('<leader>ld', vim.diagnostic.open_float, 'Diag')
+        -- vim.keymap.set("n", "<leader>lf", require("lazyvim.plugins.lsp.format").format, { desc = "LSP Format" })
+        nmap('<leader>lr', vim.lsp.buf.rename, 'Rename')
+        nmap('gt', function()
+          -- I want <CR> to open the selection in a vertical split
+          require('telescope.builtin').lsp_type_definitions(require('telescope.themes').get_cursor({
+            jump_type = 'vsplit',
+            reuse_win = true,
+            initial_mode = 'normal',
+            attach_mappings = function(_, map)
+              map('n', '<CR>', require('telescope.actions').select_vertical)
+              return true
+            end,
+          }))
+        end, 'Type Definitions')
+        nmap('gd', function()
+          require('telescope.builtin').lsp_definitions(require('telescope.themes').get_cursor({
+            reuse_win = true,
+            attach_mappings = function(_, map)
+              map('n', '<CR>', require('telescope.actions').select_vertical)
+              return true
+            end,
+          }))
+        end, 'Definitions')
+        nmap('gs', function()
+          require('telescope.builtin').lsp_definitions(require('telescope.themes').get_cursor({
+            jump_type = 'vsplit',
+            reuse_win = false,
+            initial_mode = 'normal',
+            attach_mappings = function(_, map)
+              map('n', '<CR>', require('telescope.actions').select_vertical)
+              return true
+            end,
+          }))
+        end, 'Definitions Split')
+        nmap('<leader>fs', function()
+          require('telescope.builtin').treesitter()
+        end, 'Find Symbols')
+        nmap('gi', function()
+          require('telescope.builtin').lsp_implementations(
+            require('telescope.themes').get_cursor({ jump_type = 'vsplit', reuse_win = true })
+          )
+        end, 'Implementations')
 
         -- Create an autocmd that will run *before* we save the buffer.
         --  Run the formatting command for the LSP that has just attached.
