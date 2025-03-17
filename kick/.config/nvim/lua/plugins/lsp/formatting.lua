@@ -7,7 +7,7 @@ return {
     ---@type conform.setupOpts
     local opts = {
       default_format_opts = {
-        timout_ms = 3000,
+        timout_ms = 1000,
         async = false,
         quiet = false,
         lsp_format = 'fallback',
@@ -16,12 +16,18 @@ return {
         lua = { 'stylua' },
         fish = { 'fish_indent' },
         sh = { 'shfmt' },
+        markdown = { 'prettier' },
       },
-      -- format_on_save = { -- I have one already setup in nvim_lsp_config
-      --   timeout_ms = 1000,
-      --   lsp_format = 'fallback',
-      -- },
     }
     return opts
   end,
+  keys = {
+    {
+      '<leader>lf',
+      function()
+        require('conform').format({ bufnr = 0, lsp_format = 'fallback' })
+      end,
+      desc = 'LSP: Conform Format',
+    },
+  },
 }

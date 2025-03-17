@@ -130,6 +130,17 @@ return {
         local client_id = args.data.client_id
         local client = vim.lsp.get_client_by_id(client_id) or {}
         local bufnr = args.buf
+        -- Create an autocmd that will run *before* we save the buffer.
+        --  Run the formatting command for the LSP that has just attached.
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          group = get_augroup(client),
+          buffer = bufnr,
+          callback = function()
+            if format_is_enabled then
+              require('conform').format({ bufnr = bufnr, lsp_format = 'fallback' })
+            end
+          end,
+        })
         -- Skip copilot
         if client.name == 'copilot' then
           vim.lsp.log.warn('Skipping setting up copilot')
@@ -188,7 +199,6 @@ return {
         nmap('<leader>li', '<cmd>LspInfo<cr>', 'Info')
         nmap('<leader>lS', '<cmd>LspStart<cr>', 'Start')
         nmap('<leader>ld', vim.diagnostic.open_float, 'Diag')
-        -- vim.keymap.set("n", "<leader>lf", require("lazyvim.plugins.lsp.format").format, { desc = "LSP Format" })
         nmap('<leader>lr', vim.lsp.buf.rename, 'Rename')
         nmap('gt', function()
           -- I want <CR> to open the selection in a vertical split
@@ -230,18 +240,6 @@ return {
             require('telescope.themes').get_cursor({ jump_type = 'vsplit', reuse_win = true })
           )
         end, 'Implementations')
-
-        -- Create an autocmd that will run *before* we save the buffer.
-        --  Run the formatting command for the LSP that has just attached.
-        vim.api.nvim_create_autocmd('BufWritePre', {
-          group = get_augroup(client),
-          buffer = bufnr,
-          callback = function()
-            if format_is_enabled then
-              require('conform').format({ bufnr = bufnr, lsp_format = 'fallback' })
-            end
-          end,
-        })
       end,
     })
     -- local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
