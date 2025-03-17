@@ -64,5 +64,29 @@
     "body": [
       "[${1:Link Text}](${2:URL})$0"
     ]
+  },
+  "table1col": {
+    "prefix": "tab1col",
+    "body": [
+      "| ${1:Col} |",
+      "| --- |",
+      "| ${2:Val} |"
+    ]
+  },
+  "table2col": {
+    "prefix": "tab2col",
+    "body": [
+      "| ${1:Col1} | ${2:Col2} |",
+      "| --- | --- |",
+      "| ${3:Val1} | ${4:Val2} |"
+    ]
+  },
+  "table3col": {
+    "prefix": "tab3col",
+    "body": [
+      "| ${1:Col1} | ${2:Col2} | ${3:Col3} |",
+      "| --- | --- | --- |",
+      "| ${4:Val1} | ${5:Val2} | ${6:Val3} |"
+    ]
   }
 }

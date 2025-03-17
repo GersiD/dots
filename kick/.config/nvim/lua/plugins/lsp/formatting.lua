@@ -16,7 +16,7 @@ return {
         lua = { 'stylua' },
         fish = { 'fish_indent' },
         sh = { 'shfmt' },
-        markdown = { 'prettier' },
+        -- markdown = { 'prettier' },
       },
     }
     return opts
