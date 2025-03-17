@@ -131,8 +131,8 @@ return {
         local client = vim.lsp.get_client_by_id(client_id) or {}
         local bufnr = args.buf
         -- Skip copilot
-        if client_id == 'copilot' then
-          vim.lsp.warn('Skipping setting up copilot')
+        if client.name == 'copilot' then
+          vim.lsp.log.warn('Skipping setting up copilot')
           return
         end
 
