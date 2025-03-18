@@ -97,7 +97,14 @@ vim.api.nvim_create_autocmd('TermOpen', {
     vim.keymap.set('n', '<Esc>', function()
       vim.api.nvim_buf_delete(0, {})
     end, { desc = 'Close Terminal', buffer = true })
-    -- disable insert mode, since any keypress in insert mode on an exited term buffer will close it
-    vim.keymap.set('n', 'i', '', { buffer = true })
+  end,
+})
+vim.api.nvim_create_autocmd('TermClose', {
+  callback = function(env)
+    if vim.api.nvim_get_current_buf() == env.buf then
+      vim.cmd('stopinsert')
+    end
+    -- NOTE: shouldnt be able to enter insert mode any more because any further inputs will close the term
+    vim.keymap.set('n', 'i', '', { desc = 'Insert (Closed Term)', buffer = env.buf })
   end,
 })
