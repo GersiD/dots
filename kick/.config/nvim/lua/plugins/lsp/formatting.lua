@@ -7,7 +7,7 @@ return {
     ---@type conform.setupOpts
     local opts = {
       default_format_opts = {
-        timout_ms = 1000,
+        timout_ms = 500,
         async = false,
         quiet = false,
         lsp_format = 'fallback',

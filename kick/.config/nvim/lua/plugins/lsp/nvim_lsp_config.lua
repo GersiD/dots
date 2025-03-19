@@ -92,6 +92,10 @@ return {
       format_is_enabled = not format_is_enabled
       print('AutoFormat = ' .. tostring(format_is_enabled))
     end, {})
+    vim.api.nvim_create_user_command('KickstartFormatDisable', function()
+      format_is_enabled = false
+      print('AutoFormat = ' .. tostring(format_is_enabled))
+    end, {})
 
     -- Switch for controlling wheter you want diagnostics.
     -- Use :KickstartDiagnosticsToggle to toggle diagnostics on or off
