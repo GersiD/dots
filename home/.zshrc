@@ -193,3 +193,5 @@ export FZF_DEFAULT_OPTS=" \
 --color=info:#cba6f7,prompt:#cba6f7,hl+:#f38ba8,pointer:#f5e0dc \
 --cycle"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+. "$HOME/.local/bin/env"
