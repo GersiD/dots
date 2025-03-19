@@ -172,6 +172,7 @@ alias ls="exa --icons"
 alias setup-julia="~/bin/setup-julia.sh"
 alias askdeep="nvim +'terminal ollama run deepseek-r1:8b'"
 alias y="yazi"
+alias smuggle="julia --project -i -e \"using REPLSmuggler; smuggle()\""
 
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
