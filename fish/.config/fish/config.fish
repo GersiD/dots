@@ -33,6 +33,7 @@ alias ukraine="mullvad disconnect -w; mullvad relay set location ua; mullvad con
 alias setup-julia="bash ~/bin/setup-julia.sh"
 alias askdeep="waypipe ssh -t gersi@rocket.cs.unh.edu 'zsh -i -c \"askdeep\"'"
 alias wallmart="nohup microsoft-edge-stable https://www.walmart.com/cart &; disown; exit"
+alias smuggle="julia --project -i -e \"using REPLSmuggler; smuggle()\""
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
