@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/7d26a751bd4dc32d0e4de88aba296050d8c58285/schema/config.json
 gui:
   showBottomLine: false
   nerdFontsVersion: '3'
@@ -6,4 +6,8 @@ os:
   copyToClipboardCmd: 'wl-copy'
 git:
   parseEmoji: true
+  commitPrefixes:
+    vaults: # This is repository folder name
+    - pattern: "main"
+      replace: "vault backup"
 notARepository: 'skip'
