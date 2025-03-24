@@ -82,7 +82,7 @@ function field
         set sep $argv[2]
     end
     awk -F $sep "{print \$$f}"
-    # awk -F '${2:- }' '{print \\$${1:-1}}'
+    set -e f sep
 end
 
 function enter_venv --on-event fish_prompt
