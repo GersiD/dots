@@ -34,6 +34,7 @@ alias setup-julia="bash ~/bin/setup-julia.sh"
 alias askdeep="waypipe ssh -t gersi@rocket.cs.unh.edu 'zsh -i -c \"askdeep\"'"
 alias wallmart="nohup microsoft-edge-stable https://www.walmart.com/cart &; disown; exit"
 alias smuggle="julia --project -i -e \"using REPLSmuggler; smuggle()\""
+alias hl="rg --passthru"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
@@ -69,6 +70,19 @@ function cd_fzf
     if test -n "$dir"
         cd $dir
     end
+end
+
+function field
+    set f 1
+    set sep ' '
+    if [ -n "$argv[1]" ]
+        set f $argv[1]
+    end
+    if [ -n "$argv[2]" ]
+        set sep $argv[2]
+    end
+    awk -F $sep "{print \$$f}"
+    # awk -F '${2:- }' '{print \\$${1:-1}}'
 end
 
 function enter_venv --on-event fish_prompt
