@@ -5,6 +5,7 @@ return {
   opts = {
     headerMaxWidth = 80,
     visualSelectionUsage = 'operate-within-range',
+    ---@diagnostic disable-next-line: missing-fields
     keymaps = {
       previewLocation = { n = '<localleader>i' },
       applyNext = { n = '<C-j>' },
@@ -13,7 +14,7 @@ return {
       replace = { n = '<leader>r' },
       qflist = { n = '<C-q>' },
       syncLocations = { n = '<C-s>' },
-      syncLine = { n = '<localleader>l' },
+      syncLine = { n = '<C-CR>' },
       openLocation = { n = '<localleader>o' },
       openNextLocation = { n = '<down>' },
       openPrevLocation = { n = '<up>' },
