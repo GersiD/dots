@@ -1,5 +1,5 @@
 vim.keymap.set('n', '<leader>1', function()
-  require('config.utils.terminals').run('time go run .')
+  vim.cmd('terminal time go run .')
 end, { desc = 'Run Go File', buffer = true })
 vim.keymap.set('n', '<leader>2', function()
   require('config.utils.terminals').run('time go test')

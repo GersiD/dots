@@ -10,24 +10,24 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
     vim.keymap.set('n', '<leader>1', function()
       -- Save current file
       vim.cmd('w')
-      if jit.os == 'Windows' then
-        require('config.utils.terminals').run('python ' .. vim.fn.expand('%'))
-      else
-        require('config.utils.terminals').run('time python3 ' .. vim.fn.expand('%'))
+      local cmd = 'python ' .. vim.fn.expand('%')
+      if jit.os ~= 'Windows' then
+        cmd = 'time python3 ' .. vim.fn.expand('%')
       end
+      vim.cmd('terminal ' .. cmd)
     end, { desc = 'Run Python File' })
     vim.keymap.set('n', '<leader>3', function()
       -- Save current file
       vim.cmd('w')
-      if jit.os == 'Windows' then
-        require('config.utils.terminals').run('python -i ' .. vim.fn.expand('%'))
-      else
-        require('config.utils.terminals').run('python3 -i ' .. vim.fn.expand('%'))
+      local cmd = 'python -i ' .. vim.fn.expand('%')
+      if jit.os ~= 'Windows' then
+        cmd = 'time python3 -i ' .. vim.fn.expand('%')
       end
+      vim.cmd('terminal ' .. cmd)
     end, { desc = 'Run Python File' })
 
     vim.keymap.set('n', '<leader>2', function()
-      require('config.utils.terminals').run('pytest -v')
+      vim.cmd('terminal pytest -v')
     end, { desc = 'Run Python Tests' })
 
     local dap = require('dap')
