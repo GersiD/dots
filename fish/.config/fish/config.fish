@@ -35,6 +35,7 @@ alias askdeep="waypipe ssh -t gersi@rocket.cs.unh.edu 'zsh -i -c \"askdeep\"'"
 alias wallmart="nohup microsoft-edge-stable https://www.walmart.com/cart &; disown; exit"
 alias smuggle="julia --project -i -e \"using REPLSmuggler; smuggle()\""
 alias hl="rg --passthru"
+alias grep="rg"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
@@ -72,6 +73,12 @@ function cd_fzf
     end
 end
 
+# Function that returns the *n*'th field of a string seperated by a delimiter *d*
+# Usage: Field *n* *d*
+# Usage: echo "a b c" | field 2
+# Output: b
+# Usage: echo "a,b,c" | field 2 ,
+# Output: b
 function field
     set f 1
     set sep ' '
