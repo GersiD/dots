@@ -99,6 +99,8 @@ end, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', function()
   vim.diagnostic.jump({ count = 1 })
 end, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', ']]', '<Plug>(MatchitNormalMultiForward)', { desc = 'Go to next block' })
+vim.keymap.set('n', '[[', '<Plug>(MatchitNormalMultiBackward)', { desc = 'Go to previous block' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 -- better indenting
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
