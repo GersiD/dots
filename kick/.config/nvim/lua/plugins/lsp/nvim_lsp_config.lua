@@ -14,6 +14,7 @@ return {
   opts = {
     -- LSP Server Settings
     servers = {
+      ---@type vim.lsp.Config
       lua_ls = {
         -- mason = false, -- set to false if you don't want this server to be installed with mason
         -- Use this to add any additional keymaps
@@ -35,9 +36,11 @@ return {
           },
         },
       },
+      ---@type vim.lsp.Config
       rust_analyzer = {
         mason = false,
       },
+      ---@type vim.lsp.Config
       julials = {
         -- cmd = { 'echo "hi"' }, -- NOTE: This works
         mason = false,
