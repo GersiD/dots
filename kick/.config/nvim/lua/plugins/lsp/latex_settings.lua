@@ -58,11 +58,12 @@ return {
         vim.g.vimtex_view_general_viewer = 'zathura'
         vim.g.vimtex_view_method = 'zathura'
         vim.g.vimtex_complete_enabled = 0 -- Disable completion from vimmtex (slow)
-        vim.g.vimtex_complete_bib = 0
+        vim.g.vimtex_complete_bib = {
+          simple = 1,
+        }
         vim.g.vimtex_complete_close_braces = 0
         vim.g.vimtex_complete_enabled = 0
         vim.g.vimtex_complete_ignore_case = 0
-        vim.g.vimtex_complete_ref = 0
         vim.g.vimtex_complete_smart_case = 0
         vim.g.vimtex_parser_bib_backend = 'bibtex'
         return {
