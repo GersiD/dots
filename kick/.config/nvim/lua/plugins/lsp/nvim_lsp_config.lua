@@ -15,6 +15,28 @@ return {
     -- LSP Server Settings
     servers = {
       ---@type vim.lsp.Config
+      lua_ls = {
+        -- mason = false, -- set to false if you don't want this server to be installed with mason
+        -- Use this to add any additional keymaps
+        -- for specific lsp servers
+        ---@type LazyKeys[]
+        -- keys = {},
+        settings = {
+          Lua = {
+            workspace = {
+              checkThirdParty = false,
+            },
+            -- → Lua.format.enable                   default: true
+            format = {
+              enable = false,
+            },
+            completion = {
+              callSnippet = 'Replace',
+            },
+          },
+        },
+      },
+      ---@type vim.lsp.Config
       rust_analyzer = {
         mason = false,
       },
@@ -287,7 +309,6 @@ return {
       end
     end
 
-    require('mason-lspconfig').setup({ ensure_installed = ensure_installed })
-    vim.lsp.enable({ 'lua_ls' })
+    require('mason-lspconfig').setup({ ensure_installed = ensure_installed, handlers = { setup } })
   end,
 }
