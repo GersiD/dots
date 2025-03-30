@@ -8,7 +8,9 @@ return {
         desc = 'Setup Vimtex',
         once = true,
         callback = function()
-          vim.schedule(vim.cmd('VimtexCompile'))
+          vim.cmd('KickstartFormatDisable')
+          vim.opt_local.conceallevel = 0
+          vim.cmd('VimtexCompile')
         end,
       })
       vim.g.vimtex_compiler_latexmk = {

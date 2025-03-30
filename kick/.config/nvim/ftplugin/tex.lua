@@ -12,5 +12,3 @@ vim.keymap.set('n', '<leader>ls', function()
     severity = vim.diagnostic.severity.HINT,
   })
 end, { desc = 'Ltex Spelling QFix' })
-vim.opt.conceallevel = 0
-vim.cmd('KickstartFormatDisable')
