@@ -112,6 +112,9 @@ return {
           ---@module "blink-ripgrep"
           ---@type blink-ripgrep.Options
           opts = {
+            future_features = { -- TODO: Remove
+              issue185_workaround = true,
+            },
             -- For many options, see `rg --help` for an exact description of
             -- the values that ripgrep expects.
 
