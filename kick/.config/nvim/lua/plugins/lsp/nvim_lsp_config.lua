@@ -68,7 +68,16 @@ return {
     -- Change the Diagnostic symbols
     local diagnostic_type_icon = require('config.icons').diagnostics
     vim.diagnostic.config({
-      virtual_lines = true,
+      virtual_text = {
+        severity = {
+          max = vim.diagnostic.severity.WARN,
+        },
+      },
+      virtual_lines = {
+        severity = {
+          min = vim.diagnostic.severity.ERROR,
+        },
+      },
       signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = diagnostic_type_icon.Error,
