@@ -102,7 +102,7 @@ return {
           score_offset = 8,
         },
         path = {
-          min_keyword_length = 1,
+          min_keyword_length = 0,
         },
         ripgrep = {
           module = 'blink-ripgrep',
