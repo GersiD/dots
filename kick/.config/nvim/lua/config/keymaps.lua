@@ -61,6 +61,14 @@ vim.keymap.set('n', '<leader>pS', '<cmd>Lazy sync<cr>', { desc = 'Package Sync' 
 
 -- Toggles
 vim.keymap.set('n', '<leader>uf', '<CMD>KickstartFormatToggle<CR>', { desc = 'Format Toggle' })
+vim.keymap.set('n', '<leader>uw', function()
+  vim.opt.wrap = not vim.opt.wrap:get()
+  if vim.opt.wrap:get() then
+    vim.notify('Word wrap enabled', vim.log.levels.INFO, {})
+  else
+    vim.notify('Word wrap disabled', vim.log.levels.INFO, {})
+  end
+end, { desc = 'Toggle word wrap' })
 vim.keymap.set('n', '<leader>ud', '<CMD>KickstartDiagnosticsToggle<CR>', { desc = 'Diagnostic Toggle' })
 vim.keymap.set('n', '<leader>ul', function()
   vim.opt.relativenumber = not vim.opt.relativenumber:get()
