@@ -8,8 +8,9 @@ return {
         desc = 'Setup Vimtex',
         once = true,
         callback = function()
+          vim.cmd('TSBufDisable highlight')
           vim.cmd('KickstartFormatDisable')
-          vim.opt_local.conceallevel = 0
+          vim.opt.conceallevel = 0
           vim.cmd('VimtexCompile')
         end,
       })
@@ -25,17 +26,20 @@ return {
       vim.g.vimtex_fold_enabled = 0
       vim.g.vimtex_fold_bib_enabled = 0
       vim.g.vimtex_matchparen_enabled = 0
-      vim.g.vimtex_delim_timeout = 100
-      vim.g.vimtex_delim_insert_timeout = 40
-      vim.g.vimtex_delim_stopline = 20
       vim.g.vimtex_doc_enabled = 0
-      vim.g.vimtex_complete_enabled = 0
       vim.g.vimtex_format_enabled = 0
       vim.g.vimtex_include_search_enabled = 0
-      vim.g.vimtex_motion_enabled = 0
-      vim.g.vimtex_syntax_enabled = 0
-      vim.g.vimtex_syntax_conceal_disable = 1
+      vim.g.vimtex_complete_enabled = 0 -- Disable completion from vimmtex (slow)
       vim.g.vimtex_toc_enabled = 0
+      vim.g.vimtex_syntax_conceal_disable = 1
+      -- only if matchparen is enabled
+      -- vim.g.vimtex_delim_timeout = 100 
+      -- vim.g.vimtex_delim_insert_timeout = 40
+      -- vim.g.vimtex_delim_stopline = 20
+      --
+      -- vim.g.vimtex_motion_enabled = 0
+      -- vim.g.vimtex_syntax_enabled = 0
+      --
       -- vim.api.nvim_create_autocmd({ 'BufEnter' }, {
       --   pattern = '*.tex',
       --   desc = 'setup_omni',
@@ -59,15 +63,6 @@ return {
       else
         vim.g.vimtex_view_general_viewer = 'zathura'
         vim.g.vimtex_view_method = 'zathura'
-        vim.g.vimtex_complete_enabled = 0 -- Disable completion from vimmtex (slow)
-        vim.g.vimtex_complete_bib = {
-          simple = 1,
-        }
-        vim.g.vimtex_complete_close_braces = 0
-        vim.g.vimtex_complete_enabled = 0
-        vim.g.vimtex_complete_ignore_case = 0
-        vim.g.vimtex_complete_smart_case = 0
-        vim.g.vimtex_parser_bib_backend = 'bibtex'
         return {
           -- ['vimtex_view_general_viewer'] = 'mupdf',
           -- ['vimtex_view_method'] = 'mupdf',
