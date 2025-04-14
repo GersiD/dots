@@ -1,5 +1,6 @@
 return {
   'stevearc/quicker.nvim',
+  enabled = false, -- bug with quickfix window and vimtex :(
   event = 'FileType qf',
   ---@module "quicker"
   ---@type quicker.SetupOptions
@@ -7,7 +8,7 @@ return {
     edit = { enabled = true },
     highlight = {
       load_buffers = false,
-      treesitter = true,
+      treesitter = false,
       lsp = true,
     },
     follow = {
