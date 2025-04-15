@@ -37,7 +37,7 @@ require('lazy').setup({
 
 -- Set Colorscheme
 -- See `:help colorscheme`
-local colorscheme = 'gruvbox-material'
+local colorscheme = 'catppuccin'
 vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = '#FFFFFF' })
 local ok, err = pcall(vim.cmd.colorscheme, colorscheme)
 if not ok then

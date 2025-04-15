@@ -1,6 +1,14 @@
 -- Themes
 return {
-  { 'sainnhe/everforest' },
+  {
+    'sainnhe/everforest',
+    config = function()
+      -- Available values: 'hard', 'medium'(default), 'soft'
+      vim.g.everforest_background = 'hard'
+      vim.g.everforest_better_performance = 1
+      vim.g.everforest_ui_contrast = 'high'
+    end,
+  },
   {
     'sainnhe/gruvbox-material',
     config = function()
@@ -13,31 +21,6 @@ return {
       ---@usage 'grey', 'red', 'orange', 'yellow', 'green', 'aqua', 'blue', 'purple'
       vim.g.gruvbox_material_menu_selection_background = 'grey'
     end,
-  },
-  {
-    'rebelot/kanagawa.nvim',
-    opts = {
-      compile = false, -- enable compiling the colorscheme
-      undercurl = true, -- enable undercurls
-      commentStyle = { italic = false },
-      functionStyle = { italic = false },
-      keywordStyle = { italic = false },
-      statementStyle = { italic = false },
-      typeStyle = { italic = false },
-      variableStyle = { italic = false },
-      transparent = false, -- do not set background color
-      dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-      terminalColors = true, -- define vim.g.terminal_color_{0,17}
-      colors = { -- add/modify theme and palette colors
-        palette = {},
-        theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
-      },
-      theme = 'dragon', -- Load "wave" theme when 'background' option is not set
-      background = { -- map the value of 'background' option to a theme
-        dark = 'wave', -- try "dragon" !
-        light = 'lotus',
-      },
-    },
   },
   {
     'folke/tokyonight.nvim',
@@ -187,4 +170,29 @@ return {
       },
     },
   },
+  -- {
+  --   'rebelot/kanagawa.nvim',
+  --   opts = {
+  --     compile = false, -- enable compiling the colorscheme
+  --     undercurl = true, -- enable undercurls
+  --     commentStyle = { italic = false },
+  --     functionStyle = { italic = false },
+  --     keywordStyle = { italic = false },
+  --     statementStyle = { italic = false },
+  --     typeStyle = { italic = false },
+  --     variableStyle = { italic = false },
+  --     transparent = false, -- do not set background color
+  --     dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+  --     terminalColors = true, -- define vim.g.terminal_color_{0,17}
+  --     colors = { -- add/modify theme and palette colors
+  --       palette = {},
+  --       theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+  --     },
+  --     theme = 'dragon', -- Load "wave" theme when 'background' option is not set
+  --     background = { -- map the value of 'background' option to a theme
+  --       dark = 'wave', -- try "dragon" !
+  --       light = 'lotus',
+  --     },
+  --   },
+  -- },
 }
