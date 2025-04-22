@@ -34,5 +34,5 @@ vim.keymap.set('n', '<leader>3', function()
     local cmd = 'julia --project=. -i ' .. vim.fn.expand('%')
     vim.cmd('terminal ' .. cmd)
   end
-end, { desc = 'Run Julia REPL' })
+end, { desc = 'Run Julia REPL', buffer = true })
 vim.keymap.set('v', '<C-CR>', ':SmuggleVisual<CR>', { buffer = true })
