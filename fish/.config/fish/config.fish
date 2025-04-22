@@ -12,7 +12,7 @@ alias lg="git fetch &> /dev/null & lazygit"
 alias ls="exa --icons"
 alias l="exa --icons"
 alias nv="neovide --fork; exit"
-alias e="nautilus . &"
+alias e="nautilus . & disown"
 alias tt="tt -theme gruvbox -showwpm"
 alias ttt="tt -theme \$(tt -list themes | fzf) -showwpm"
 alias zz="zoxide edit"
@@ -36,7 +36,7 @@ alias wallmart="nohup microsoft-edge-stable https://www.walmart.com/cart &; diso
 alias smuggle="julia --project -i -e \"using REPLSmuggler; smuggle()\""
 alias hl="rg --passthru"
 alias grep="rg -S" # -S smart-case
-alias weather="curl https://wttr.in/farmington+new+hampshire"
+alias weather="curl https://wttr.in/farmington+new+hampshire -s | tail -n +2 | head -n -3"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else

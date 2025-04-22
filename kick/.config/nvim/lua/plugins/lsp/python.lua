@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
         cmd = 'time python3 ' .. vim.fn.expand('%')
       end
       vim.cmd('terminal ' .. cmd)
-    end, { desc = 'Run Python File' })
+    end, { desc = 'Run Python File', buffer = true })
     vim.keymap.set('n', '<leader>3', function()
       -- Save current file
       vim.cmd('w')
@@ -24,11 +24,11 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
         cmd = 'time python3 -i ' .. vim.fn.expand('%')
       end
       vim.cmd('terminal ' .. cmd)
-    end, { desc = 'Run Python File' })
+    end, { desc = 'Run Python File', buffer = true })
 
     vim.keymap.set('n', '<leader>2', function()
       vim.cmd('terminal pytest -v')
-    end, { desc = 'Run Python Tests' })
+    end, { desc = 'Run Python Tests', buffer = true })
 
     local dap = require('dap')
     local python_command = 'python3'
