@@ -6,3 +6,5 @@ fish/.config/fish/nohup.out
 btop/.config/btop/btop.conf
 kick/.config/nvim/lazy-lock.json
 kick/.config/nvim/lazy-lock.json
+kick/.config/nvim/lua/plugins/lsp/code_companion.lua
+kick/.config/nvim/lua/plugins/lsp/code_companion.lua
