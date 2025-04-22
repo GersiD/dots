@@ -36,6 +36,7 @@ alias wallmart="nohup microsoft-edge-stable https://www.walmart.com/cart &; diso
 alias smuggle="julia --project -i -e \"using REPLSmuggler; smuggle()\""
 alias hl="rg --passthru"
 alias grep="rg -S" # -S smart-case
+alias weather="curl https://wttr.in/farmington+new+hampshire"
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
