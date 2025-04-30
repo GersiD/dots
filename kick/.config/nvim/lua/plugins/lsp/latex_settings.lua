@@ -77,11 +77,19 @@ return {
     opts = {
       servers = {
         texlab = {
+          skip_inlay = true,
           mason = false,
           settings = {
             texlab = {
+              build = {
+                args = {},
+                executable = '',
+                forwardSearchAfter = false,
+                onSave = false,
+              },
               inlayHints = {
                 labelReferences = false,
+                labelDefinitions = false,
               },
               chktex = {
                 onEdit = false, -- default value
