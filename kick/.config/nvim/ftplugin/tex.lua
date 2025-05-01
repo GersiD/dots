@@ -7,7 +7,9 @@ vim.keymap.set('n', '<leader>lc', function()
   vim.fn.delete(vim.fn.expand('%:p:h') .. '/build', 'rf')
 end, { desc = 'Compile Latex File', buffer = true })
 vim.keymap.set('n', '<leader>ls', function()
+  vim.cmd('LspStart ltex-ls-plus')
   vim.diagnostic.setqflist({
+    -- TODO: Check?
     namespace = vim.api.nvim_get_namespaces()['vim.lsp.ltex.3'],
     severity = vim.diagnostic.severity.HINT,
   })
