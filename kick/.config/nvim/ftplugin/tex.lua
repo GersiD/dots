@@ -9,8 +9,7 @@ end, { desc = 'Compile Latex File', buffer = true })
 vim.keymap.set('n', '<leader>ls', function()
   vim.cmd('LspStart ltex-ls-plus')
   vim.diagnostic.setqflist({
-    -- TODO: Check?
-    namespace = vim.api.nvim_get_namespaces()['vim.lsp.ltex.3'],
+    namespace = vim.api.nvim_get_namespaces()['vim.lsp.ltex.2'],
     severity = vim.diagnostic.severity.HINT,
   })
 end, { desc = 'Ltex Spelling QFix' })
