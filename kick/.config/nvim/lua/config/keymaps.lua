@@ -47,7 +47,7 @@ vim.keymap.set('n', '<leader>ss', function()
     patterns = { '.git', 'Project.toml' },
   })
 end, { desc = 'Session' })
-vim.keymap.set('n', '<C-0>', '$', { desc = 'End of line', remap = true }) -- TODO: Tmux blocks this :(
+vim.keymap.set('n', ')', '$', { desc = 'End of line', remap = true })
 vim.api.nvim_set_keymap('v', '<leader>/', 'gc', { desc = 'Comment Selection' })
 vim.api.nvim_set_keymap('n', '<leader>/', 'Vgc', { desc = 'Comment Line' })
 vim.keymap.set('n', 'q', '<C-w>q', { desc = 'Quit', remap = true })
