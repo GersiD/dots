@@ -8,6 +8,7 @@ vim.keymap.set('i', '<C-v>', function()
 end, { desc = 'Paste from system clipboard' })
 vim.keymap.set('n', '<C-d>', function() end, { desc = 'disable default <C-d>' })
 vim.keymap.set('v', '<C-c>', '"+y', { desc = 'Copy to system clipboard' })
+vim.keymap.set('x', '/', '<Esc>/\\%V') --search within visual selection - this is magic
 vim.keymap.set('n', '<A-j>', '15j', {})
 vim.keymap.set('n', '<A-k>', '15k', {})
 vim.keymap.set('v', '<A-j>', '15j', {})
