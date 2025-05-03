@@ -104,7 +104,6 @@ vim.api.nvim_create_autocmd('TermClose', {
     if vim.api.nvim_get_current_buf() == env.buf then
       vim.cmd('stopinsert')
     end
-    -- NOTE: shouldnt be able to enter insert mode any more because any further inputs will close the term
     vim.keymap.set('n', 'i', '', { desc = 'Insert (Closed Term)', buffer = env.buf })
   end,
 })

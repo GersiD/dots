@@ -7,7 +7,6 @@ return {
     { 'folke/neoconf.nvim', cmd = 'Neoconf', config = false, dependencies = { 'nvim-lspconfig' } },
 
     -- Useful status updates for LSP
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
     { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
   },
   event = 'BufReadPre',
@@ -42,9 +41,9 @@ return {
       },
       ---@type vim.lsp.Config
       julials = {
-        -- cmd = { 'echo "hi"' }, -- NOTE: This works
+        -- cmd = { 'echo "hi"' },
         mason = false,
-        settings = { -- WARN: Doesnt work
+        settings = {
           julia = {
             NumThreads = 4,
             execution = {

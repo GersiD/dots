@@ -1,5 +1,4 @@
 -- Add any additional options here
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 vim.o.termguicolors = true
@@ -19,7 +18,6 @@ vim.o.smartcase = true
 vim.wo.signcolumn = 'yes'
 -- Set completeopt to have a better completion experience
 -- vim.o.completeopt = 'menuone,noselect'
--- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 vim.g.nofsync = true
 vim.g.python_host_skip_check = true

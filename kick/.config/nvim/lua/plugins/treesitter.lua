@@ -98,6 +98,6 @@ return {
     },
   },
   config = function()
-    vim.cmd('TSEnable highlight') -- HACK: This is not ideal, but it's the only way to force enable treesitter highlighting
+    vim.cmd('TSEnable highlight')
   end,
 }

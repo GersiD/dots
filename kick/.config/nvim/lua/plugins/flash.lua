@@ -1,6 +1,7 @@
 return {
   'folke/flash.nvim',
   ---@type Flash.Config
+  --TODO: add config
   opts = {
     modes = {
       char = {

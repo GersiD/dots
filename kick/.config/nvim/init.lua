@@ -2,7 +2,6 @@
 vim.loader.enable()
 
 -- Must include options config before anything loads
---NOTE: set all options before lazy
 local ok, err = pcall(require, 'config.options')
 if not ok then
   vim.notify('init.lua: Error loading options ' .. err, vim.log.levels.ERROR, { title = 'Config Error' })
