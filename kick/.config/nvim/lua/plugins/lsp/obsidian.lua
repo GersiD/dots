@@ -39,7 +39,6 @@ return {
         },
       },
       completion = {
-        -- FIX: next time you're here https://github.com/epwalsh/obsidian.nvim/issues/770
         nvim_cmp = false,
         blink = {
           enabled = true,
