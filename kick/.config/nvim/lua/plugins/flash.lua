@@ -1,16 +1,21 @@
 return {
   'folke/flash.nvim',
   ---@type Flash.Config
-  --TODO: add config
   opts = {
     modes = {
       char = {
         enabled = false,
-        keys = { 't', 'T', ';', ',' },
       },
     },
     jump = {
       autojump = false,
+    },
+    label = {
+      rainbow = {
+        enabled = true,
+        -- number between 1 and 9
+        shade = 5,
+      },
     },
   },
   -- stylua: ignore
