@@ -97,6 +97,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
     vim.keymap.set('n', '<Esc>', function()
       vim.api.nvim_buf_delete(0, {})
     end, { desc = 'Close Terminal', buffer = true })
+    vim.api.nvim_feedkeys('G', 'n', true) -- Go to the end of the terminal buffer so it auto-scrolls
   end,
 })
 vim.api.nvim_create_autocmd('TermClose', {
