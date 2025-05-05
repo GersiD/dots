@@ -5,6 +5,7 @@ gui:
 os:
   copyToClipboardCmd: 'wl-copy'
 git:
+  autoForwardBranches: none
   parseEmoji: true
   commitPrefixes:
     vaults: # This is repository folder name
