@@ -1,6 +1,7 @@
 return {
   {
     'GersiD/obsidian.nvim',
+    -- 'obsidian-nvim/obsidian.nvim',
     -- version = '*', -- recommended, use latest release instead of latest commit
     event = {
       -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
