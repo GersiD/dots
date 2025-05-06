@@ -23,7 +23,7 @@ alias shutdown="killall chrome ; sudo shutdown now"
 alias headphones="bash ~/bin/audio.sh 'WH-1000XM5'"
 alias speaker="bash ~/bin/audio.sh 'GP102 HDMI Audio Controller Digital'"
 alias y="yazi"
-alias notes="tmux new-session -A -s notes -c ~/vaults/gersi_notes/"
+alias notes="type -q deactivate && deactivate; tmux new-session -A -s notes -c ~/vaults/gersi_notes/"
 alias kick="tmux new-session -A -s kick -c ~/dots/kick/.config/nvim/"
 alias work="tmux new-session -A -s work"
 alias serve="source ~/deploy_website.sh"
@@ -99,7 +99,7 @@ function enter_venv --on-event fish_prompt
             source venv/bin/activate.fish
         end
     else
-        if test -n "$VIRTUAL_ENV"
+        if test -n "$VIRTUAL_ENV" && type -q deactivate
             deactivate
         end
     end
