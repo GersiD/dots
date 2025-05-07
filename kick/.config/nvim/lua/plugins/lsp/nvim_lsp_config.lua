@@ -307,7 +307,8 @@ return {
     end
 
     -- get all the servers that are available through mason-lspconfig
-    local all_mslp_servers = vim.tbl_keys(require('mason-lspconfig.mappings.server').lspconfig_to_package)
+    -- TODO: https://github.com/LazyVim/LazyVim/issues/6039
+    local all_mslp_servers = vim.tbl_keys(require('mason-lspconfig').get_mappings().lspconfig_to_package)
     local ensure_installed = {} ---@type string[]
     for server, server_opts in pairs(servers) do
       if server_opts then
