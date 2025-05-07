@@ -102,7 +102,7 @@ return {
             },
           },
         },
-        ltex = {
+        ltex_plus = {
           cmd = { 'ltex-ls-plus' },
           mason = false,
           autostart = false,

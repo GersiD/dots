@@ -2,8 +2,8 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
-    { 'williamboman/mason.nvim', opts = {} },
-    { 'williamboman/mason-lspconfig.nvim', opts = {} },
+    { 'mason-org/mason.nvim', opts = {} },
+    { 'mason-org/mason-lspconfig.nvim', opts = {} },
     { 'folke/neoconf.nvim', cmd = 'Neoconf', config = false, dependencies = { 'nvim-lspconfig' } },
 
     -- Useful status updates for LSP
@@ -303,25 +303,31 @@ return {
           return
         end
       end
-      require('lspconfig')[server].setup(server_opts)
+      vim.lsp.config(server, server_opts)
     end
 
     -- get all the servers that are available through mason-lspconfig
     -- TODO: https://github.com/LazyVim/LazyVim/issues/6039
     local all_mslp_servers = vim.tbl_keys(require('mason-lspconfig').get_mappings().lspconfig_to_package)
     local ensure_installed = {} ---@type string[]
+    local exclude = { 'ltex_plus' } ---@type string[]
     for server, server_opts in pairs(servers) do
       if server_opts then
         server_opts = server_opts == true and {} or server_opts
         -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
         if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
-          setup(server)
+          vim.lsp.enable(server, not vim.tbl_contains(exclude, server))
         else
           ensure_installed[#ensure_installed + 1] = server
         end
       end
     end
-
-    require('mason-lspconfig').setup({ ensure_installed = ensure_installed, handlers = { setup } })
+    require('mason-lspconfig').setup({
+      ensure_installed = ensure_installed,
+      automatic_enable = {
+        exclude = exclude,
+      },
+      handlers = { setup },
+    })
   end,
 }
