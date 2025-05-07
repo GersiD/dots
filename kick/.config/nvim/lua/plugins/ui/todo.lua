@@ -30,6 +30,10 @@ return {
     'folke/trouble.nvim',
     opts = {}, -- for default options, refer to the configuration section for custom setup.
     cmd = 'Trouble',
+    config = function(_, opts)
+      require('trouble').setup(opts)
+      vim.api.nvim_set_hl(0, 'TroublePreview', { link = '@comment.note' })
+    end,
     keys = {
       {
         '<leader>xx',
