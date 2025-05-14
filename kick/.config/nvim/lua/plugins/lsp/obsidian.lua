@@ -47,7 +47,7 @@ return {
             score_offset = 10,
           },
           obsidian_tags = {
-            score_offset = 10,
+            score_offset = 20,
             transform_items = function(_, items)
               for _, item in ipairs(items) do
                 item.kind = 10
