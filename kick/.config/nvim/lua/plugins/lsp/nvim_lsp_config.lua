@@ -64,6 +64,15 @@ return {
     },
   },
   config = function(_, opts)
+    -- Register Command LspLog to open the LSP log file
+    vim.api.nvim_create_user_command('LspLog', function()
+      local log_path = vim.lsp.get_log_path()
+      if log_path then
+        vim.cmd('edit ' .. log_path)
+      else
+        print('No LSP log file found')
+      end
+    end, {})
     -- Change the Diagnostic symbols
     local diagnostic_type_icon = require('config.icons').diagnostics
     vim.diagnostic.config({
