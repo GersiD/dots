@@ -8,8 +8,14 @@ vim.keymap.set('n', '<leader>lc', function()
 end, { desc = 'Compile Latex File', buffer = true })
 vim.keymap.set('n', '<leader>ls', function()
   vim.cmd('LspStart ltex_plus')
-  vim.diagnostic.setqflist({
-    namespace = vim.api.nvim_get_namespaces()['vim.lsp.ltex.2'],
-    severity = vim.diagnostic.severity.HINT,
+  ---@diagnostic disable-next-line: missing-fields
+  require('trouble').toggle({
+    mode = 'diagnostics',
+    filter = function(items)
+      return vim.tbl_filter(function(item)
+        -- vim.notify(item['item.source'], vim.log.levels.INFO, {}) -- Wow that took a while
+        return item['item.source'] == 'LTeX'
+      end, items)
+    end,
   })
 end, { desc = 'Ltex Spelling QFix' })
