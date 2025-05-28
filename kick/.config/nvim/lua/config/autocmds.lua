@@ -98,6 +98,10 @@ vim.api.nvim_create_autocmd('TermOpen', {
       vim.api.nvim_buf_delete(0, {})
     end, { desc = 'Close Terminal', buffer = true })
     vim.api.nvim_feedkeys('G', 'n', true) -- Go to the end of the terminal buffer so it auto-scrolls
+    vim.keymap.set('t', '<TAB>', function()
+      vim.api.nvim_feedkeys('<C-s>', 't', false) -- terminal mode to normal mode
+      vim.cmd('BufferLineCycleNext')
+    end, { desc = 'Stop Insert Mode', buffer = true })
   end,
 })
 vim.api.nvim_create_autocmd('TermClose', {
