@@ -2,11 +2,13 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 vim.keymap.set('n', '<C-v>', '"+p', { desc = 'Paste from system clipboard' })
+vim.keymap.set('n', 'P', '"vdibhp', { desc = '' })
 vim.keymap.set('i', '<C-v>', function()
   vim.cmd('stopinsert')
   vim.cmd('normal! "+p')
 end, { desc = 'Paste from system clipboard' })
 vim.keymap.set('n', '<C-d>', function() end, { desc = 'disable default <C-d>' })
+vim.keymap.set('n', 'D', 'd$', { desc = 'Delete Remaining Line no Newline' })
 vim.keymap.set('v', '<C-c>', '"+y', { desc = 'Copy to system clipboard' })
 vim.keymap.set('x', '/', '<Esc>/\\%V') --search within visual selection - this is magic
 vim.keymap.set('n', '<A-j>', '15j', {})
