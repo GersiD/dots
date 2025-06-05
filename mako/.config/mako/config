@@ -39,3 +39,8 @@ border-color=#000000
 background-color=#202124
 text-color=#E8EAED
 border-color=#5F6368
+
+[app-name="microsoftteams-nativefier-6234c0"]
+background-color=#464775
+text-color=#E8EAED
+border-color=#33350F
