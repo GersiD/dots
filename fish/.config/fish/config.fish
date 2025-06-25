@@ -37,6 +37,7 @@ alias smuggle="julia --project -i -e \"using REPLSmuggler; smuggle()\""
 alias hl="rg --passthru"
 alias grep="rg -S" # -S smart-case
 alias weather="curl https://wttr.in/farmington+new+hampshire?u -s | tail -n +2 | head -n -3"
+alias killlast="kill \$last_pid" # kill the last job
 if test "$TERM" = xterm-kitty
     alias ssh="kitten ssh"
 else
@@ -112,4 +113,7 @@ end
 bind \cf fzf_find_file
 bind \ck cd_fzf
 bind \ec copy_cmd_line
+bind \cb backward-word
+bind \cw forward-word
+bind \cu clear-commandline
 set -U fish_user_paths $HOME/bin $fish_user_paths
