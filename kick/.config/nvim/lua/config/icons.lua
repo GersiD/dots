@@ -18,6 +18,7 @@ return {
     removed = ' ',
   },
   kinds = {
+    rg = ' ',
     Array = '󰅨 ',
     Boolean = '󰨙 ',
     Class = ' ',

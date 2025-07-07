@@ -42,12 +42,13 @@ return {
       menu = {
         draw = {
           -- treesitter = { 'lsp' },
-          columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind' } },
+          columns = { { 'label', gap = 1 }, { 'kind_icon', 'kind' }, { 'label_description' } },
           components = {
             kind_icon = {
               ellipsis = false,
               text = function(ctx)
                 local kind_icon = require('config.icons').kinds[ctx.kind]
+                vim.notify(string.format('kind: %s, icon: %s', ctx.kind, kind_icon), vim.log.levels.DEBUG)
                 return kind_icon
               end,
               -- Optionally, you may also use the highlights from mini.icons
@@ -108,6 +109,7 @@ return {
           module = 'blink-ripgrep',
           name = 'Ripgrep',
           async = true,
+          score_offset = -3,
           -- the options below are optional, some default values are shown
           ---@module "blink-ripgrep"
           ---@type blink-ripgrep.Options
@@ -188,15 +190,16 @@ return {
           -- (optional) customize how the results are displayed. Many options
           -- are available - make sure your lua LSP is set up so you get
           -- autocompletion help
-          -- transform_items = function(_, items)
-          --   for _, item in ipairs(items) do
-          --     -- example: append a description to easily distinguish rg results
-          --     item.labelDetails = {
-          --       description = '*rg*',
-          --     }
-          --   end
-          --   return items
-          -- end,
+          transform_items = function(_, items)
+            for _, item in ipairs(items) do
+              -- example: append a description to easily distinguish rg results
+              -- item.labelDetails = {
+              --   description = '-rg',
+              -- }
+              item.kind_name = 'rg'
+            end
+            return items
+          end,
         },
       },
     },
