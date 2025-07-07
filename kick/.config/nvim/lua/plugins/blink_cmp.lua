@@ -48,7 +48,6 @@ return {
               ellipsis = false,
               text = function(ctx)
                 local kind_icon = require('config.icons').kinds[ctx.kind]
-                vim.notify(string.format('kind: %s, icon: %s', ctx.kind, kind_icon), vim.log.levels.DEBUG)
                 return kind_icon
               end,
               -- Optionally, you may also use the highlights from mini.icons
