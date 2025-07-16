@@ -1,3 +1,3 @@
 vim.keymap.set('n', 'q', function()
-  vim.cmd('cclose')
+  vim.cmd('close')
 end, { desc = 'Close qf', buffer = true })
