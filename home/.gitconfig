@@ -2,8 +2,12 @@
 	email = Gersi.doko@unh.edu
 	name = Gersi.doko
 [core]
-	filemode = false
+    filemode = false
+    autocrlf = input
+    editor = nvim
 [pull]
-	rebase = false
+    rebase = false
+[color]
+    ui = auto
 [credential]
 	helper = store
