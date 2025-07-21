@@ -108,4 +108,5 @@ vim.opt.splitkeep = 'screen'
 vim.opt.shortmess:append({ C = true })
 
 vim.opt.guifont = { 'FiraCode Nerd Font Ret', ':h14' }
-vim.opt.foldlevel = 99
+-- disable folding
+vim.opt.foldenable = false
