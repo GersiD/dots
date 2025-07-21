@@ -17,6 +17,7 @@ return {
   opts = {
     snippets = {
       preset = 'luasnip',
+      score_offset = 5, -- snippets appear before lsp, path, and rg
     },
     appearance = {
       -- sets the fallback highlight groups to nvim-cmp's highlight groups
