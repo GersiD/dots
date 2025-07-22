@@ -58,21 +58,6 @@ return {
         },
         min_chars = 0,
       },
-      mappings = {
-        ['gd'] = {
-          action = function()
-            return require('obsidian').util.gf_passthrough()
-          end,
-          opts = { noremap = false, expr = true, buffer = true },
-        },
-        -- Smart action depending on context, either follow link or toggle checkbox.
-        ['<cr>'] = {
-          action = function()
-            return require('obsidian').util.smart_action()
-          end,
-          opts = { buffer = true, expr = true },
-        },
-      },
       -- Optional, customize how note IDs are generated given an optional title.
       ---@param title string|?
       ---@return string
@@ -111,6 +96,17 @@ return {
           insert_tag = '<C-i>',
         },
       },
+      callbacks = {
+        enter_note = function(_, note)
+          vim.keymap.set(
+            'n',
+            'gd',
+            '<cmd>Obsidian follow_link<CR>',
+            { noremap = true, silent = true, buffer = note.bufnr, desc = 'Follow link' }
+          )
+        end,
+      },
+      legacy_commands = false, -- TODO: Remove this in version 4.0.0
     },
   },
 }
