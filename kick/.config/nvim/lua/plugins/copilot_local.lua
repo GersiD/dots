@@ -16,6 +16,9 @@ return {
         markdown = true,
         help = true,
       },
+      server_opts_overrides = {
+        skip_custom_attach = true, -- skip custom attach for this server
+      },
     },
   },
 }

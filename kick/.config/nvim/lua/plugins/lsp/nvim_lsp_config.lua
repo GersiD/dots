@@ -39,23 +39,6 @@ return {
       rust_analyzer = {
         mason = false,
       },
-      ---@type vim.lsp.Config
-      julials = {
-        -- cmd = { 'echo "hi"' },
-        mason = false,
-        settings = {
-          julia = {
-            NumThreads = 4,
-            execution = {
-              codeInREPL = true,
-            },
-            format = {
-              -- comments = false,
-              indents = 1,
-            },
-          },
-        },
-      },
     },
     setup = {
       rust_analyzer = function()
@@ -165,9 +148,10 @@ return {
             end
           end,
         })
-        -- Skip copilot
-        if client.name == 'copilot' then
-          vim.lsp.log.warn('Skipping setting up copilot')
+        vim.lsp.log.info('Autoformatting enabled for ' .. client.name)
+        -- Check if should skip client
+        if client.config.skip_custom_attach then
+          vim.lsp.log.warn('Skipping custom attach for ' .. client.name)
           return
         end
 
