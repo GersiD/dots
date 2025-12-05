@@ -2,12 +2,12 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
-    { 'mason-org/mason.nvim', opts = {} },
+    { 'mason-org/mason.nvim',           opts = {} },
     { 'mason-org/mason-lspconfig.nvim', opts = {} },
-    { 'folke/neoconf.nvim', cmd = 'Neoconf', config = false, dependencies = { 'nvim-lspconfig' } },
+    { 'folke/neoconf.nvim',             cmd = 'Neoconf', config = false, dependencies = { 'nvim-lspconfig' } },
 
     -- Useful status updates for LSP
-    { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+    { 'j-hui/fidget.nvim',              tag = 'legacy',  opts = {} },
   },
   event = 'BufReadPre',
   opts = {
@@ -224,15 +224,18 @@ return {
             end,
           }))
         end, 'Type Definitions')
-        nmap('gd', function()
-          require('telescope.builtin').lsp_definitions(require('telescope.themes').get_cursor({
-            reuse_win = true,
-            attach_mappings = function(_, map)
-              map('n', '<CR>', require('telescope.actions').select_vertical)
-              return true
-            end,
-          }))
-        end, 'Definitions')
+        -- Only map 'gd' if definitionProvider is supported
+        if client.server_capabilities.definitionProvider then
+          nmap('gd', function()
+            require('telescope.builtin').lsp_definitions(require('telescope.themes').get_cursor({
+              reuse_win = true,
+              attach_mappings = function(_, map)
+                map('n', '<CR>', require('telescope.actions').select_vertical)
+                return true
+              end,
+            }))
+          end, 'Definitions')
+        end
         nmap('gs', function()
           require('telescope.builtin').lsp_definitions(require('telescope.themes').get_cursor({
             jump_type = 'vsplit',
