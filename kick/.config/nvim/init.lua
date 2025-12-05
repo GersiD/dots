@@ -32,6 +32,19 @@ require('lazy').setup({
     version = false,
     lazy = true,
   },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        'gzip',
+        'netrwPlugin',
+        'rplugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
+      },
+    },
+  },
 })
 
 -- Set Colorscheme
