@@ -39,6 +39,10 @@ return {
       rust_analyzer = {
         mason = false,
       },
+      ---@type vim.lsp.Config
+      julials = {
+        mason = false,
+      }
     },
     setup = {
       rust_analyzer = function()
@@ -49,7 +53,7 @@ return {
   config = function(_, opts)
     -- Register Command LspLog to open the LSP log file
     vim.api.nvim_create_user_command('LspLog', function()
-      local log_path = vim.lsp.get_log_path()
+      local log_path = vim.lsp.log.get_filename()
       if log_path then
         vim.cmd('edit ' .. log_path)
       else
@@ -309,9 +313,10 @@ return {
     local exclude = { 'ltex_plus' } ---@type string[]
     for server, server_opts in pairs(servers) do
       if server_opts then
-        server_opts = server_opts == true and {} or server_opts
         -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
         if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
+          vim.lsp.log.info('Manually setting up ' .. server)
+          vim.lsp.log.info(vim.inspect(server_opts))
           setup(server)
           vim.lsp.enable(server, not vim.tbl_contains(exclude, server))
         else
