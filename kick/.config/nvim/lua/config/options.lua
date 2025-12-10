@@ -36,7 +36,20 @@ if jit.os == 'Windows' then
     },
   }
 else
-  if vim.fn.executable('wl-copy') == 1 then
+  vim.g.clipboard = { -- Default clipboard is x11
+    name = 'xclip',
+    copy = {
+      ['+'] = 'xclip -selection clipboard',
+      ['*'] = 'xclip -selection primary',
+    },
+    paste = {
+      ['+'] = 'xclip -selection clipboard -o',
+      ['*'] = 'xclip -selection primary -o',
+    },
+    cache_enabled = true,
+  }
+  -- Use wl-clipboard if $WAYLAND_DISPLAY is set
+  if vim.env.WAYLAND_DISPLAY ~= nil then
     vim.g.clipboard = {
       name = 'wl-copy',
       copy = {
