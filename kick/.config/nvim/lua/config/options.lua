@@ -36,32 +36,36 @@ if jit.os == 'Windows' then
     },
   }
 else
-  vim.g.clipboard = { -- Default clipboard is x11
-    name = 'xclip',
-    copy = {
-      ['+'] = 'xclip -selection clipboard',
-      ['*'] = 'xclip -selection primary',
-    },
-    paste = {
-      ['+'] = 'xclip -selection clipboard -o',
-      ['*'] = 'xclip -selection primary -o',
-    },
-    cache_enabled = true,
-  }
-  -- Use wl-clipboard if $WAYLAND_DISPLAY is set
-  if vim.env.WAYLAND_DISPLAY ~= nil then
-    vim.g.clipboard = {
-      name = 'wl-copy',
+  if vim.env.SSH_CLIENT or vim.env.SSH_CONNECTION or vim.env.SSH_TTY then -- Current session is over SSH
+    vim.g.clipboard = {                                                   -- Default clipboard is x11
+      name = 'xclip',
       copy = {
-        ['+'] = 'wl-copy',
-        ['*'] = 'wl-copy',
+        ['+'] = 'xclip -selection clipboard',
+        ['*'] = 'xclip -selection primary',
       },
       paste = {
-        ['+'] = 'wl-paste -n',
-        ['*'] = 'wl-paste -n',
+        ['+'] = 'xclip -selection clipboard -o',
+        ['*'] = 'xclip -selection primary -o',
       },
       cache_enabled = true,
     }
+    -- Use wl-clipboard if $WAYLAND_DISPLAY is set
+    if vim.env.WAYLAND_DISPLAY ~= nil then
+      vim.g.clipboard = {
+        name = 'wl-copy',
+        copy = {
+          ['+'] = 'wl-copy',
+          ['*'] = 'wl-copy',
+        },
+        paste = {
+          ['+'] = 'wl-paste -n',
+          ['*'] = 'wl-paste -n',
+        },
+        cache_enabled = true,
+      }
+    end
+  else                                -- local nvim session
+    vim.opt.clipboard = 'unnamedplus' -- Use system clipboard
   end
 end
 vim.g.ruby_host_skip_check = true
