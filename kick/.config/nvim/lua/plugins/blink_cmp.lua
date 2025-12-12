@@ -233,7 +233,22 @@ return {
     },
     keymap = {
       preset = 'enter',
-      ['<C-Space>'] = { 'show' },
+      ['<C-Space>'] = {
+        function(cmp)
+          if cmp.is_active() then
+            -- accept the first snippet available
+            for _, item in ipairs(cmp.get_items()) do
+              if item.kind == 15 then
+                return cmp.select_accept_and_enter()
+              end
+              cmp.select_next()
+            end
+            return cmp.select_next()
+          else
+            return cmp.show()
+          end
+        end
+      },
       ['<Tab>'] = {
         function(cmp)
           if cmp.snippet_active() then
