@@ -235,7 +235,7 @@ return {
       preset = 'enter',
       ['<C-Space>'] = {
         function(cmp)
-          if cmp.is_active() then
+          if cmp.is_menu_visible() then
             -- accept the first snippet available
             for _, item in ipairs(cmp.get_items()) do
               if item.kind == 15 then
