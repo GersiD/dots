@@ -3,17 +3,6 @@ return {
     'lervag/vimtex',
     lazy = false,
     config = function()
-      vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-        pattern = '*.tex',
-        desc = 'Setup Vimtex',
-        once = true,
-        callback = function()
-          vim.cmd('TSBufDisable highlight')
-          vim.cmd('KickstartFormatDisable')
-          vim.opt.conceallevel = 0
-          vim.cmd('VimtexCompile')
-        end,
-      })
       vim.g.vimtex_compiler_latexmk = {
         build_dir = 'build',
         aux_dir = 'build',
@@ -102,8 +91,7 @@ return {
             },
           },
         },
-        ltex_plus = {
-          cmd = { 'ltex-ls-plus' },
+        ltex = {
           mason = false,
           autostart = false,
           settings = {

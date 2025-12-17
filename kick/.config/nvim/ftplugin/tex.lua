@@ -1,4 +1,5 @@
 vim.keymap.set('n', '<leader>1', function()
+  vim.cmd('VimtexCompileSS')
   vim.cmd('VimtexView')
 end, { desc = 'Compile Latex File', buffer = true })
 vim.keymap.set('n', '<leader>lc', function()

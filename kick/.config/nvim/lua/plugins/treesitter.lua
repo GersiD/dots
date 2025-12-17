@@ -1,28 +1,18 @@
+---@module "lazy"
+---@type LazySpec
 return {
   'nvim-treesitter/nvim-treesitter',
-  version = false, -- last release is way too old and doesn't work on Windows
+  lazy = false,
+  branch = 'main',
   build = ':TSUpdate',
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-  },
-  event = 'VeryLazy',
-  cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
-  keys = {
-    { '<c-\\>', desc = 'Increment selection' },
-    { '<bs>', desc = 'Decrement selection', mode = 'x' },
-  },
+  config = function()
+    local ts = require('nvim-treesitter')
 
-  ---@type TSConfig
-  ---@diagnostic disable-next-line: missing-fields
-  opts = {
-    highlight = {
-      enable = true,
-      disable = { 'tex', 'csv' },
-    },
-    indent = { enable = true },
-    -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = {
+    -- Install core parsers at startup
+    ts.install({
       'markdown',
+      'regex',
+      'bash',
       'markdown-inline',
       'c',
       'cpp',
@@ -36,68 +26,45 @@ return {
       'rust',
       'tsx',
       'javascript',
+      'jsonc',
       'typescript',
       'vimdoc',
       'vim',
       'hyprlang',
-    },
-    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-    auto_install = true,
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = '<c-\\>',
-        node_incremental = '<c-\\>',
-        scope_incremental = false,
-        node_decremental = '<bs>',
-      },
-    },
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-        keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ['aa'] = '@parameter.outer',
-          ['ia'] = '@parameter.inner',
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-        },
-      },
-      move = {
-        enable = true,
-        set_jumps = true, -- whether to set jumps in the jumplist
-        goto_next_start = {
-          [']m'] = '@function.outer',
-          [']o'] = '@class.outer',
-        },
-        goto_next_end = {
-          [']M'] = '@function.outer',
-          [']O'] = '@class.outer',
-        },
-        goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[o'] = '@class.outer',
-        },
-        goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[O'] = '@class.outer',
-        },
-      },
-      swap = {
-        enable = true,
-        swap_next = {
-          ['<leader>a'] = '@parameter.inner',
-        },
-        swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
-        },
-      },
-    },
-  },
-  config = function()
-    vim.cmd('TSEnable highlight')
+    })
+
+    local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
+
+    local ignore_filetypes = {
+      'checkhealth',
+      'lazy',
+      'mason',
+      'snacks_dashboard',
+      'snacks_notif',
+      'snacks_win',
+    }
+
+    -- Auto-install parsers and enable highlighting on FileType
+    vim.api.nvim_create_autocmd('FileType', {
+      group = group,
+      desc = 'Enable treesitter highlighting and indentation',
+      callback = function(event)
+        if vim.tbl_contains(ignore_filetypes, event.match) then
+          return
+        end
+
+        local lang = vim.treesitter.language.get_lang(event.match) or event.match
+        local buf = event.buf
+
+        -- Start highlighting immediately (works if parser exists)
+        pcall(vim.treesitter.start, buf, lang)
+
+        -- Enable treesitter indentation
+        vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+        -- Install missing parsers (async, no-op if already installed)
+        ts.install({ lang })
+      end,
+    })
   end,
 }
