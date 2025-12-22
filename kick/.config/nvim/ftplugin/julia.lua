@@ -14,11 +14,11 @@ vim.keymap.set('n', '<leader>2', function()
   local num_cores = vim.fn.system('nproc')
   if num_cores >= '32' then
     -- require('config.utils.terminals').run('time julia -t 32 --project=./test ' .. './test/runtests.jl', {})
-    local cmd = 'time julia -t 32 --project=./test ./test/runtests.jl'
+    local cmd = 'time julia -t 32 --project=. -e "using Pkg; Pkg.test()"'
     vim.cmd('terminal ' .. cmd)
   else
     -- require('config.utils.terminals').run('time julia -t 4 --project=./test ' .. './test/runtests.jl', {})
-    local cmd = 'time julia --project=./test ./test/runtests.jl'
+    local cmd = 'time julia --project=. -e "using Pkg; Pkg.test()"'
     vim.cmd('terminal ' .. cmd)
   end
 end, { desc = 'Run Julia Tests', buffer = true })
