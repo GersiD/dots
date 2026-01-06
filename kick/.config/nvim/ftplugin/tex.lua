@@ -1,12 +1,14 @@
 vim.keymap.set('n', '<leader>1', function()
-  vim.cmd('VimtexCompileSS')
   vim.cmd('VimtexView')
-end, { desc = 'Compile Latex File', buffer = true })
+end, { desc = 'View Latex File', buffer = true })
 vim.keymap.set('n', '<leader>lc', function()
+  vim.cmd('VimtexCompile') -- This starts continous compilation
+end, { desc = 'Compile Latex File', buffer = true })
+vim.keymap.set('n', '<leader>lC', function()
   vim.cmd('VimtexClean')
   -- Delete the build folder if it exists
   vim.fn.delete(vim.fn.expand('%:p:h') .. '/build', 'rf')
-end, { desc = 'Compile Latex File', buffer = true })
+end, { desc = 'Clean Latex Compilation Folder', buffer = true })
 vim.keymap.set('n', '<leader>ls', function()
   vim.cmd('LspStart ltex_plus')
   ---@diagnostic disable-next-line: missing-fields
