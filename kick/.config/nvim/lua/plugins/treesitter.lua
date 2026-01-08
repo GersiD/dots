@@ -13,7 +13,6 @@ return {
       'markdown',
       'regex',
       'bash',
-      'markdown-inline',
       'c',
       'cpp',
       'go',
@@ -21,12 +20,10 @@ return {
       'python',
       'ninja',
       'toml',
-      'jsonc',
       'rst',
       'rust',
       'tsx',
       'javascript',
-      'jsonc',
       'typescript',
       'vimdoc',
       'vim',
@@ -42,6 +39,9 @@ return {
       'snacks_dashboard',
       'snacks_notif',
       'snacks_win',
+      'alpha',
+      'noice',
+      'fidget'
     }
 
     -- Auto-install parsers and enable highlighting on FileType

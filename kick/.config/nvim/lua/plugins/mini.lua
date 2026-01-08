@@ -1,7 +1,7 @@
 return {
   {
     'echasnovski/mini.ai',
-    -- event = 'VeryLazy',
+    version = false,
     dependencies = { 'folke/which-key.nvim', 'nvim-treesitter-textobjects' },
     opts = function()
       local ai = require('mini.ai')
@@ -14,6 +14,14 @@ return {
           }, {}),
           f = ai.gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }, {}),
           c = ai.gen_spec.treesitter({ a = '@class.outer', i = '@class.inner' }, {}),
+          g = function()
+            local from = { line = 1, col = 1 }
+            local to = {
+              line = vim.fn.line('$'),
+              col = math.max(vim.fn.getline('$'):len(), 1)
+            }
+            return { from = from, to = to }
+          end
         },
       }
     end,
@@ -89,7 +97,11 @@ return {
       { ']' },
     },
   },
-  { 'nvim-treesitter/nvim-treesitter-textobjects', dependencies = 'nvim-treesitter/nvim-treesitter' },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = 'main',
+    dependencies = 'nvim-treesitter/nvim-treesitter'
+  },
   {
     'echasnovski/mini.bufremove',
     keys = {
