@@ -113,10 +113,6 @@ suppress_preload = false
 
 [plugin]
 
-fetchers = [
-    # Mimetype
-    { id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
-]
 spotters = [
     { name = "*/", run = "folder" },
     # Code
