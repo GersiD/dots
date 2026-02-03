@@ -16,6 +16,7 @@ return {
         lua = { 'stylua' },
         fish = { 'fish_indent' },
         sh = { 'shfmt' },
+        tex = { 'tex-fmt' },
         -- markdown = { 'prettier' },
       },
     }

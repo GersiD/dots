@@ -21,6 +21,7 @@ return {
       vim.g.vimtex_complete_enabled = 0 -- Disable completion from vimmtex (slow)
       vim.g.vimtex_toc_enabled = 0
       vim.g.vimtex_syntax_conceal_disable = 1
+      vim.g.vimtex_view_automatic = 0 -- disable automatic view opening, use keymap <leader>lc to begin compilation
       -- only if matchparen is enabled
       -- vim.g.vimtex_delim_timeout = 100
       -- vim.g.vimtex_delim_insert_timeout = 40

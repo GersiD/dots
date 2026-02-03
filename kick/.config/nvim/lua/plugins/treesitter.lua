@@ -37,13 +37,14 @@ return {
       'fidget',
       'noice',
       'alpha',
-      'blink-cmp-menu',
+      'blink',
       'bigfile',
       'flash',
       'oil',
       'TelescopePrompt',
       'TelescopeResults',
-      'toggleterm'
+      'toggleterm',
+      'qf'
     }
 
     -- Auto-install parsers and enable highlighting on FileType
@@ -52,20 +53,24 @@ return {
       desc = 'Enable treesitter highlighting and indentation',
       callback = function(event)
         local lang = vim.treesitter.language.get_lang(event.match)
-        if not lang or vim.tbl_contains(ignore_filetypes, event.match:match("[^_]+")) then
+        if not lang
+            or vim.tbl_contains(ignore_filetypes, event.match:match("[^_]+"))
+            or vim.tbl_contains(ignore_filetypes, event.match:match("[^-]+")) then
           return
         end
 
         local buf = event.buf
 
         -- Start highlighting immediately (only works if parser exists)
-        pcall(vim.treesitter.start, buf, lang)
+        local has_parser = pcall(vim.treesitter.start, buf, lang)
+        if not has_parser then
+          ts.install(lang)
+        end
 
         -- Enable treesitter indentation
-        vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-
-        -- Install parser if not already installed
-        ts.install(lang)
+        if lang ~= "latex" then
+          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
       end,
     })
   end,
