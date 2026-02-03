@@ -1,0 +1,16 @@
+# Default .rgignore file for ignoring common files and directories
+# Ignore filetypes
+*.png
+*.jpeg
+*.jpg
+*.gif
+*.svg
+*.webp
+*.ico
+*.log
+*.lock
+*.tmp
+# Ignore directories
+node_modules/*
+dist/*
+
