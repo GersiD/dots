@@ -116,3 +116,8 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- better indenting
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
+-- Map Alt+Backspace to delete the previous word
+-- Insert Mode: behaves like Ctrl+W (native vim delete word)
+vim.keymap.set('i', '<M-BS>', '<C-w>', { noremap = true })
+vim.keymap.set('c', '<M-BS>', '<C-w>', { noremap = true })
+vim.keymap.set('n', '<M-BS>', 'db', { noremap = true })
