@@ -126,6 +126,5 @@ vim.opt.colorcolumn = '100'            -- highlight column 100
 vim.opt.splitkeep = 'screen'
 vim.opt.shortmess:append({ C = true })
 
-vim.opt.guifont = { 'FiraCode Nerd Font Ret', ':h14' }
 -- disable folding
 vim.opt.foldenable = false
