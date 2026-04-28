@@ -1,19 +1,12 @@
 return {
   {
     'kylechui/nvim-surround',
-    keys = { 's', 'd', 'c' },
+    -- keys = { 's', 'd', 'c' },
+    event = 'VeryLazy', -- NOTE: needs to be lazy loaded otherwise keymaps don't work
     ---@type user_options The user options.
     ---@diagnostic disable-next-line: missing-fields
     opts = {
       move_cursor = false,
-      keymaps = {
-        delete = 'ds',
-        change = 'cs',
-        change_line = 'cS',
-        normal = 's',
-        normal_cur_line = 'SS', -- Add surround to the whole line
-        visual = 's',
-      },
       surrounds = {
         ['q'] = {
           add = { '"', '"' },

@@ -130,3 +130,4 @@ vim.opt.guifont = { 'FiraCode Nerd Font Ret', ':h18' }
 vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
 -- disable folding
 vim.opt.foldenable = false
+vim.g.nvim_surround_no_mappings = true
