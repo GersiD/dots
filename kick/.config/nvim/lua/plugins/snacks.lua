@@ -40,13 +40,17 @@ return {
     input = { enabled = true },
     notifier = { enabled = true },
     scope = { enabled = true },
-    picker = { enabled = true },
+    picker = { enabled = false },
   },
   -- stylua: ignore
   keys = {
-    { "<leader>nn", function()
+    {
+      "<leader>nn",
+      function()
         Snacks.notifier.show_history()
-    end, desc = "Notification History" },
+      end,
+      desc = "Notification History"
+    },
     { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
   },
 }

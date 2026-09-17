@@ -1,6 +1,7 @@
 return {
   'nvim-telescope/telescope.nvim',
   version = false,
+  enabled = false,
   keys = {
     {
       '<leader>fm',
@@ -48,13 +49,13 @@ return {
           treesitter = false,
           enable_preview = true, -- true to see the colorscheme changes in real time
           ignore_builtins = true,
-          previewer = false, -- disable the previewer
+          previewer = false,     -- disable the previewer
           winblend = 10,
         }))
       end,
       desc = 'Find themes',
     },
-    { '<leader>fk', '<cmd>Telescope keymaps<cr>', desc = 'Find Keymaps' },
+    { '<leader>fk', '<cmd>Telescope keymaps<cr>',                              desc = 'Find Keymaps' },
     {
       '<leader>r',
       '<cmd>lua require("telescope.builtin").commands(require("telescope.themes").get_ivy()) <cr>',
@@ -83,7 +84,10 @@ return {
               return math.min(max_lines, 20)
             end,
           },
+          highlighter = function() return {} end,
+          treesitter = false,
           winblend = 10,
+          results_ts_highlight = false,
           previewer = false,
           skip_empty_lines = true,
         }))
@@ -150,7 +154,6 @@ return {
     'nvim-lua/plenary.nvim',
     {
       'nvim-telescope/telescope-fzf-native.nvim',
-      enabled = true,
       build = 'make',
       config = function()
         require('telescope').load_extension('fzf')
@@ -162,6 +165,7 @@ return {
   opts = function()
     return {
       defaults = {
+        results_ts_highlight = false,
         sorting_strategy = 'ascending',
         results_title = false,
         dynamic_preview_title = true,

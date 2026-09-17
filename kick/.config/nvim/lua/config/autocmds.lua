@@ -57,7 +57,7 @@ vim.api.nvim_create_autocmd('InsertCharPre', {
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.hl_op({})
   end,
   group = highlight_group,
   pattern = '*',
@@ -84,24 +84,25 @@ vim.api.nvim_create_autocmd('BufRead', {
   pattern = '*.png',
   callback = function()
     vim.keymap.set('n', '<leader>1', function()
-      vim.cmd('!eog ' .. vim.fn.expand('%') .. ' &')
+      vim.cmd('!open ' .. vim.fn.expand('%') .. ' &')
     end, { buffer = 0 })
   end,
 })
 -- Set keymap for terminal buffers and other terminal config
 vim.api.nvim_create_autocmd('TermOpen', {
-  callback = function()
+  callback = function(ev)
+    -- skip fzf-lua and other float-based terminal UIs
+    if vim.bo[ev.buf].filetype == 'fzf' then
+      return
+    end
+    if vim.api.nvim_win_get_config(0).relative ~= '' then
+      return
+    end
+
     vim.keymap.set('n', 'q', function()
-      vim.api.nvim_buf_delete(0, {})
-    end, { desc = 'Close Terminal', buffer = true })
-    vim.keymap.set('n', '<Esc>', function()
-      vim.api.nvim_buf_delete(0, {})
-    end, { desc = 'Close Terminal', buffer = true })
-    vim.api.nvim_feedkeys('G', 'n', true) -- Go to the end of the terminal buffer so it auto-scrolls
-    -- vim.keymap.set('t', '<TAB>', function() -- Cant use <TAB> in terminal mode since we need it for lazygit for example
-    --   vim.api.nvim_feedkeys('<C-s>', 't', false) -- terminal mode to normal mode
-    --   vim.cmd('BufferLineCycleNext')
-    -- end, { desc = 'Stop Insert Mode', buffer = true })
+      vim.api.nvim_buf_delete(ev.buf, {})
+    end, { desc = 'Close Terminal', buffer = ev.buf })
+    vim.api.nvim_feedkeys('G', 'n', true)
   end,
 })
 vim.api.nvim_create_autocmd('TermClose', {

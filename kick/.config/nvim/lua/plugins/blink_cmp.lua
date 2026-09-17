@@ -1,6 +1,6 @@
 return {
   'saghen/blink.cmp',
-  build = 'cargo build --release',
+  build = function() require("blink.cmp").build():pwait() end,
   dependencies = {
     -- add blink.compat to dependencies
     -- allows you to use nvim-cmp sources with blink.cmp
@@ -10,6 +10,7 @@ return {
     -- },
     'L3MON4D3/LuaSnip',
     'mikavilpas/blink-ripgrep.nvim',
+    'saghen/blink.lib'
   },
   event = 'InsertEnter',
   ---@module 'blink.cmp'

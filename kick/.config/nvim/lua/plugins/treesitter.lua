@@ -7,70 +7,56 @@ return {
   build = ':TSUpdate',
   config = function()
     local ts = require('nvim-treesitter')
+    -- registry of every parser nvim-treesitter knows how to build
+    local parsers = require('nvim-treesitter.parsers')
 
-    -- Install core parsers at startup
     ts.install({
-      'markdown',
-      'regex',
-      'bash',
-      'c',
-      'cpp',
-      'go',
-      'lua',
-      'python',
-      'ninja',
-      'toml',
-      'rst',
-      'rust',
-      'tsx',
-      'javascript',
-      'typescript',
-      'vimdoc',
-      'vim',
-      'hyprlang',
+      'markdown', 'regex', 'bash', 'c', 'cpp', 'go', 'lua',
+      'python', 'ninja', 'toml', 'rst', 'rust', 'tsx',
+      'javascript', 'typescript', 'vimdoc', 'vim', 'hyprlang',
     })
 
-    local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
-
-    local ignore_filetypes = {
-      'snacks',
-      'fidget',
-      'noice',
-      'alpha',
-      'blink',
-      'bigfile',
-      'flash',
-      'oil',
-      'TelescopePrompt',
-      'TelescopeResults',
-      'toggleterm',
-      'qf'
+    -- filetypes that never get treesitter (UI buffers, pickers)
+    local ignore_ft = {
+      snacks = true,
+      fidget = true,
+      noice = true,
+      alpha = true,
+      blink = true,
+      bigfile = true,
+      flash = true,
+      oil = true,
+      TelescopePrompt = true,
+      TelescopeResults = true,
+      toggleterm = true,
+      qf = true,
+      fzf = true,
+      fzflua = true,
     }
 
-    -- Auto-install parsers and enable highlighting on FileType
+    -- languages handled by another highlighter (vimtex owns latex)
+    local ignore_lang = {}
+
     vim.api.nvim_create_autocmd('FileType', {
-      group = group,
+      group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true }),
       desc = 'Enable treesitter highlighting and indentation',
-      callback = function(event)
-        local lang = vim.treesitter.language.get_lang(event.match)
-        if not lang
-            or vim.tbl_contains(ignore_filetypes, event.match:match("[^_]+"))
-            or vim.tbl_contains(ignore_filetypes, event.match:match("[^-]+")) then
+      callback = function(ev)
+        -- terminal/prompt scratch buffers (fzf-lua, toggleterm, ...) have no source to parse
+        local buftype = vim.bo[ev.buf].buftype
+        if buftype == 'terminal' or buftype == 'prompt' then return end
+        if ignore_ft[ev.match:match('^[^_-]+')] then return end
+
+        local lang = vim.treesitter.language.get_lang(ev.match)
+        if not lang or ignore_lang[lang] then return end
+        -- no parser exists upstream (e.g. `fzflua_backdrop`): installing it only warns
+        if not parsers[lang] then return end
+
+        if not pcall(vim.treesitter.start, ev.buf, lang) then
+          ts.install(lang)
           return
         end
 
-        local buf = event.buf
-
-        -- Start highlighting immediately (only works if parser exists)
-        local has_parser = pcall(vim.treesitter.start, buf, lang)
-        if not has_parser then
-          ts.install(lang)
-        end
-
-        -- Enable treesitter indentation
-        if lang ~= "latex" then
-          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-        end
+        vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
       end,
     })
   end,

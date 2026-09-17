@@ -2,9 +2,6 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   pattern = '*.py',
   desc = 'Setup Python DAP',
   callback = function()
-    -- set TSHighlight true
-    vim.cmd('TSEnable highlight')
-
     -- Python Specific Keymaps
     -- run current file in terminal
     vim.keymap.set('n', '<leader>1', function()
@@ -12,7 +9,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
       vim.cmd('w')
       local cmd = 'python ' .. vim.fn.expand('%')
       if jit.os ~= 'Windows' then
-        cmd = 'time python3 ' .. vim.fn.expand('%')
+        cmd = 'time uv run ' .. vim.fn.expand('%')
       end
       vim.cmd('terminal ' .. cmd)
     end, { desc = 'Run Python File', buffer = true })
