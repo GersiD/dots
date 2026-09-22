@@ -132,9 +132,6 @@ return {
       style = 'vulgaris',
       -- Custom Highlights --
       -- colors = {}, -- Override default colors
-      highlights = {
-        MiniIndentscopeSymbol = { fg = '$light_grey' },
-      }, -- Override highlight groups
 
       -- Plugins Config --
       diagnostics = {

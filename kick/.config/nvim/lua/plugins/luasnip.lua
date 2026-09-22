@@ -33,7 +33,8 @@ return {
       },
     }
   end,
-  config = function()
+  config = function(_, opts)
+    require('luasnip').setup(opts)
     require('luasnip.loaders.from_vscode').lazy_load({ paths = { vim.fn.stdpath('config') .. '/snippets' } })
   end,
 }

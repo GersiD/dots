@@ -72,29 +72,19 @@ return {
             require('config.utils.terminals').run('gradle test')
           end, { desc = 'Gradle Test' })
           local wk = require('which-key')
-          wk.register({
-            ['<leader>lx'] = { name = '+extract' },
-            ['<leader>lxv'] = { require('jdtls').extract_variable_all, 'Extract Variable' },
-            ['<leader>lxc'] = { require('jdtls').extract_constant, 'Extract Constant' },
-            -- ['gs'] = { require('jdtls').extract_constant, 'Goto Super' },
-            ['gS'] = { require('jdtls.tests').goto_subjects, 'Goto Subjects' },
-            ['<leader>lo'] = { require('jdtls').organize_imports, 'Organize Imports' },
+          wk.add({
+            { '<leader>lx',  group = 'extract' },
+            { '<leader>lxv', require('jdtls').extract_variable_all, desc = 'Extract Variable' },
+            { '<leader>lxc', require('jdtls').extract_constant,     desc = 'Extract Constant' },
+            { 'gS',          require('jdtls.tests').goto_subjects,  desc = 'Goto Subjects' },
+            { '<leader>lo',  require('jdtls').organize_imports,     desc = 'Organize Imports' },
           }, { mode = 'n', buffer = args.buf })
-          wk.register({
-            ['<leader>l'] = { name = '+LSP' },
-            ['<leader>lx'] = { name = '+extract' },
-            ['<leader>lxm'] = {
-              [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
-              'Extract Method',
-            },
-            ['<leader>lxv'] = {
-              [[<ESC><CMD>lua require('jdtls').extract_variable_all(true)<CR>]],
-              'Extract Variable',
-            },
-            ['<leader>lxc'] = {
-              [[<ESC><CMD>lua require('jdtls').extract_constant(true)<CR>]],
-              'Extract Constant',
-            },
+          wk.add({
+            { '<leader>l',   group = 'LSP' },
+            { '<leader>lx',  group = 'extract' },
+            { '<leader>lxm', [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],       desc = 'Extract Method' },
+            { '<leader>lxv', [[<ESC><CMD>lua require('jdtls').extract_variable_all(true)<CR>]], desc = 'Extract Variable' },
+            { '<leader>lxc', [[<ESC><CMD>lua require('jdtls').extract_constant(true)<CR>]],     desc = 'Extract Constant' },
           }, { mode = 'v', buffer = args.buf })
 
           if mason_registry.is_installed('java-debug-adapter') then
@@ -105,11 +95,11 @@ return {
             -- Java Test require Java debugger to work
             if mason_registry.is_installed('java-test') then
               -- custom keymaps for Java test runner (not yet compatible with neotest)
-              wk.register({
-                ['<leader>t'] = { name = '+test' },
-                ['<leader>tt'] = { require('jdtls.dap').test_class, 'Run All Test' },
-                ['<leader>tr'] = { require('jdtls.dap').test_nearest_method, 'Run Nearest Test' },
-                ['<leader>tT'] = { require('jdtls.dap').pick_test, 'Run Test' },
+              wk.add({
+                { '<leader>t',  group = 'test' },
+                { '<leader>tt', require('jdtls.dap').test_class,          desc = 'Run All Test' },
+                { '<leader>tr', require('jdtls.dap').test_nearest_method, desc = 'Run Nearest Test' },
+                { '<leader>tT', require('jdtls.dap').pick_test,           desc = 'Run Test' },
               }, { mode = 'n', buffer = args.buf })
             end
           end

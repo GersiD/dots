@@ -92,7 +92,7 @@ return {
             },
           },
         },
-        ltex = {
+        ltex_plus = {
           mason = false,
           autostart = false,
           settings = {

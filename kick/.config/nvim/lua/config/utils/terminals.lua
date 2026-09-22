@@ -44,7 +44,9 @@ function M.close_all()
   for _, term in pairs(M.terminals) do
     term:close()
   end
-  M.last_run_terminal:close()
+  if M.last_run_terminal then
+    M.last_run_terminal:close()
+  end
 end
 
 ---@param command string | nil

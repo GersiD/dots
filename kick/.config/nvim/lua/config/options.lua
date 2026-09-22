@@ -1,27 +1,11 @@
 -- Add any additional options here
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
-vim.o.termguicolors = true
 vim.opt.winbar = '%=%m %f %r %h%w'
 -- Set highlight on search
 vim.o.hlsearch = true
--- Make line numbers default
-vim.wo.number = true
 -- Enable break indent
 vim.o.breakindent = true
--- Save undo history
-vim.o.undofile = true
--- Case-insensitive searching UNLESS \C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
--- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
--- Set completeopt to have a better completion experience
--- vim.o.completeopt = 'menuone,noselect'
-vim.o.termguicolors = true
-vim.g.nofsync = true
-vim.g.python_host_skip_check = true
-vim.g.python3_host_skip_check = true
 if jit.os == 'Windows' then
   vim.g.python3_host_prog = '~/scoop/apps/python/current/python.exe'
   vim.g.clipboard = {
@@ -68,10 +52,10 @@ else
     vim.opt.clipboard = 'unnamedplus' -- Use system clipboard
   end
 end
-vim.g.ruby_host_skip_check = true
-vim.g.perl_host_skip_check = true
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_python3_provider = 0
 
 vim.opt.conceallevel = 1
 vim.opt.autowrite = true           -- Enable auto write
@@ -85,7 +69,7 @@ vim.opt.grepformat = '%f:%l:%c:%m'
 vim.opt.grepprg = 'rg --vimgrep'
 vim.opt.ignorecase = true      -- Ignore case
 vim.opt.inccommand = 'nosplit' -- preview incremental substitute
-vim.opt.laststatus = 0
+vim.opt.laststatus = 3
 vim.opt.list = true            -- Show some invisible characters (tabs...
 vim.opt.mouse = 'a'            -- Enable mouse mode
 vim.opt.number = true          -- Print line number
@@ -96,7 +80,7 @@ vim.opt.scrolloff = 4          -- Lines of context
 vim.opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize' }
 vim.opt.shiftround = true      -- Round indent
 vim.opt.shiftwidth = 2         -- Size of an indent
-vim.opt.shortmess:append({ W = true, I = true, c = true })
+vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
 vim.opt.showmode = false       -- Dont show mode since we have a statusline
 vim.opt.sidescrolloff = 8      -- Columns of context
 vim.opt.signcolumn = 'yes'     -- Always show the signcolumn, otherwise it would shift the text each time
@@ -117,17 +101,12 @@ vim.opt.textwidth = 120                -- Maximum width of text
 vim.opt.wrap = true                    -- enable line wrap
 vim.g.tex_fold_enabled = 0             -- disable folding in LaTeX
 vim.g.tex_nospell = 1                  -- disable spell checking in LaTeX
-vim.g.tex_noerror = 1                  -- disable error highlighting in LaTeX
-vim.g.texconceal = ''                  -- disable conceal in LaTeX
-vim.opt.wrapmargin = 2                 -- wrap lines at 80 characters
 vim.opt.linebreak = true               -- wrap lines at convenient points
-vim.opt.columns = 120
 vim.opt.colorcolumn = '100'            -- highlight column 100
 vim.opt.splitkeep = 'screen'
-vim.opt.shortmess:append({ C = true })
+vim.o.winborder = 'single'
 
 vim.opt.guifont = { 'FiraCode Nerd Font Ret', ':h18' }
 vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
 -- disable folding
 vim.opt.foldenable = false
-vim.g.nvim_surround_no_mappings = true

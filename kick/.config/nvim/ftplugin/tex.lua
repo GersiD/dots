@@ -24,22 +24,14 @@ vim.keymap.set('n', '<leader>ls', function()
       end, items)
     end,
   })
-end, { desc = 'Ltex Spelling QFix' })
+end, { desc = 'Ltex Spelling QFix', buffer = true })
 
 -- Map 'tse' to the Toggle Star function
 vim.keymap.set('n', 'tse', '<Plug>(vimtex-env-toggle-star)', { buffer = true, desc = "VimTeX: Toggle Star (Revert)" })
 
 -- In LaTeX, we want section jumps, not matchit jumps
-
--- Jump to the bottom of the scope (Next)
-vim.keymap.set("n", "]]", function()
-  require("snacks").scope.jump({ bottom = true })
-end, { buffer = true, desc = "Next Scope (Snacks)" })
-
--- Jump to the top of the scope (Previous)
-vim.keymap.set("n", "[[", function()
-  require("snacks").scope.jump({ bottom = false })
-end, { buffer = true, desc = "Prev Scope (Snacks)" })
+vim.keymap.set({ 'n', 'x', 'o' }, ']]', '<plug>(vimtex-]M)', { buffer = true, remap = true })
+vim.keymap.set({ 'n', 'x', 'o' }, '[[', '<plug>(vimtex-[m)', { buffer = true, remap = true })
 
 -- Enable soft wrapping and wrap at words instead of hard characters
 vim.opt_local.wrap = true

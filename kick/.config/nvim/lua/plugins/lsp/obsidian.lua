@@ -7,8 +7,8 @@ return {
       -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
       -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
       'BufReadPre '
-        .. vim.fn.expand('~')
-        .. '/vaults/gersi_notes/**.md',
+      .. vim.fn.expand('~')
+      .. '/vaults/gersi_notes/**.md',
       'BufNewFile ' .. vim.fn.expand('~') .. '/valuts/gersi_notes/**.md',
     },
     dependencies = {
@@ -86,7 +86,7 @@ return {
         vim.fn.jobstart({ 'google-chrome-stable', url })
       end,
       picker = {
-        name = 'telescope.nvim',
+        name = 'fzf-lua',
         note_mappings = {
           new = '<C-n>',
           insert_link = '<C-l>',

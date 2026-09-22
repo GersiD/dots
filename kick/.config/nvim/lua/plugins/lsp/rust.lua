@@ -1,12 +1,11 @@
 return {
   'mrcjkb/rustaceanvim',
-  version = '^4', -- Recommended
+  version = '^9', -- Recommended
   ft = { 'rust' },
   opts = {
     -- plugin config
     tools = {
       runnables = {
-        use_telescope = true,
       },
     },
     -- LSP config

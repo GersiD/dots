@@ -1,7 +1,7 @@
 return {
   {
     'folke/todo-comments.nvim',
-    cmd = { 'TodoTrouble', 'TodoTelescope' },
+    cmd = { 'TodoTrouble' },
     event = 'VeryLazy',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {},
@@ -20,10 +20,8 @@ return {
         end,
         desc = 'Previous todo comment',
       },
-      { '<leader>xt', '<cmd>TodoQuickFix<cr>', desc = 'Todo (Trouble)' },
+      { '<leader>xt', '<cmd>TodoQuickFix<cr>',                         desc = 'Todo (Trouble)' },
       { '<leader>xT', '<cmd>TodoQuickFix keywords=TODO,FIX,FIXME<cr>', desc = 'Todo/Fix/Fixme (Trouble)' },
-      { '<leader>st', '<cmd>TodoTelescope<cr>', desc = 'Todo' },
-      { '<leader>sT', '<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>', desc = 'Todo/Fix/Fixme' },
     },
   },
   {

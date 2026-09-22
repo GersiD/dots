@@ -7,11 +7,17 @@ return {
     ---@type conform.setupOpts
     local opts = {
       default_format_opts = {
-        timout_ms = 500,
+        timeout_ms = 500,
         async = false,
         quiet = false,
         lsp_format = 'fallback',
       },
+      format_on_save = function()
+        if vim.g.format_is_enabled == false then
+          return nil
+        end
+        return { timeout_ms = 500, lsp_format = 'fallback' }
+      end,
       formatters_by_ft = {
         lua = { 'stylua' },
         fish = { 'fish_indent' },

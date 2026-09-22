@@ -46,14 +46,10 @@ return {
     local config = require('fzf-lua.config')
     local actions = require('fzf-lua.actions')
 
-    config.defaults.keymap.fzf['ctrl-q'] = 'select-all+accept'
-    config.defaults.keymap.fzf['ctrl-u'] = 'half-page-up'
-    config.defaults.keymap.fzf['ctrl-d'] = 'half-page-down'
-    config.defaults.keymap.fzf['ctrl-x'] = 'jump'
-    config.defaults.keymap.fzf['ctrl-f'] = 'preview-page-down'
-    config.defaults.keymap.fzf['ctrl-b'] = 'preview-page-up'
-    config.defaults.keymap.builtin['<c-f>'] = 'preview-page-down'
-    config.defaults.keymap.builtin['<c-b>'] = 'preview-page-up'
+    config.defaults.keymap.fzf['ctrl-d'] = 'preview-page-down'
+    config.defaults.keymap.fzf['ctrl-u'] = 'preview-page-up'
+    config.defaults.keymap.builtin['<c-d>'] = 'preview-page-down'
+    config.defaults.keymap.builtin['<c-u>'] = 'preview-page-up'
 
     -- was unconditional; errors at startup if trouble isn't loaded
     local ok_trouble, trouble_fzf = pcall(require, 'trouble.sources.fzf')
@@ -101,6 +97,10 @@ return {
 
       defaults = {
         formatter = 'path.dirname_first',
+        fzf_opts = {
+          ['--scheme'] = 'default',
+          ['--tiebreak'] = 'begin',
+        },
       },
 
       winopts = {
@@ -139,13 +139,24 @@ return {
         },
       },
 
-      -- --tiebreak=index keeps equal-scoring lines in buffer order
       blines = {
-        fzf_opts = { ['--tiebreak'] = 'index' },
+        fzf_opts = {
+          ['--scheme'] = 'history',
+        },
+        winopts = {
+          width = 0.7,
+          height = 0.4,
+          preview = { hidden = true },
+          backdrop = 80,
+          treesitter = {
+            enabled = false,
+          }
+        },
       },
 
       grep = {
         actions = {
+          ['ctrl-g'] = { actions.grep_lgrep },
           ['alt-i'] = { actions.toggle_ignore },
           ['alt-h'] = { actions.toggle_hidden },
         },
@@ -196,6 +207,10 @@ return {
       '<C-f>',
       function()
         require('fzf-lua').blines({
+          -- NOTE: 9/21/2026 duplicated opts here because it didnt work to set them at the top level
+          fzf_opts = {
+            ['--scheme'] = 'history',
+          },
           winopts = {
             width = 0.7,
             height = 0.4,
@@ -208,6 +223,14 @@ return {
         })
       end,
       desc = 'Find in buffer',
+    },
+    {
+      '<C-f>',
+      function()
+        require('fzf-lua').complete_path()
+      end,
+      mode = 'i',
+      desc = 'Complete path',
     },
     {
       '<leader>ff',
@@ -255,8 +278,9 @@ return {
       '<leader>fh',
       function()
         -- telescope version mapped <CR> to select_vertical
+        local fzf_actions = require('fzf-lua.actions')
         require('fzf-lua').help_tags({
-          actions = { ['enter'] = actions.help_vert },
+          actions = { ['enter'] = fzf_actions.help_vert },
         })
       end,
       desc = 'Find Help',
@@ -293,7 +317,6 @@ return {
     { '<leader>:',  '<cmd>FzfLua command_history<cr>',                          desc = 'Command History' },
     { '<leader>fF', '<cmd>FzfLua files<cr>',                                    desc = 'Find Files (cwd)' },
     { '<leader>fg', '<cmd>FzfLua git_files<cr>',                                desc = 'Find Files (git-files)' },
-    { '<leader>fr', '<cmd>FzfLua oldfiles<cr>',                                 desc = 'Recent' },
     {
       '<leader>fR',
       function()

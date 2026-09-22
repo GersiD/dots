@@ -5,9 +5,6 @@ return {
     { 'mason-org/mason.nvim',           opts = {} },
     { 'mason-org/mason-lspconfig.nvim', opts = {} },
     { 'folke/neoconf.nvim',             cmd = 'Neoconf', config = false, dependencies = { 'nvim-lspconfig' } },
-
-    -- Useful status updates for LSP
-    { 'j-hui/fidget.nvim',              tag = 'legacy',  opts = {} },
   },
   event = 'BufReadPre',
   opts = {
@@ -94,14 +91,14 @@ return {
 
     -- Switch for controlling whether you want autoformatting.
     --  Use :KickstartFormatToggle to toggle autoformatting on or off
-    local format_is_enabled = true
+    vim.g.format_is_enabled = true
     vim.api.nvim_create_user_command('KickstartFormatToggle', function()
-      format_is_enabled = not format_is_enabled
-      print('AutoFormat = ' .. tostring(format_is_enabled))
+      vim.g.format_is_enabled = not vim.g.format_is_enabled
+      print('AutoFormat = ' .. tostring(vim.g.format_is_enabled))
     end, {})
     vim.api.nvim_create_user_command('KickstartFormatDisable', function()
-      format_is_enabled = false
-      print('AutoFormat = ' .. tostring(format_is_enabled))
+      vim.g.format_is_enabled = false
+      print('AutoFormat = ' .. tostring(vim.g.format_is_enabled))
     end, {})
 
     -- Switch for controlling wheter you want diagnostics.
@@ -117,20 +114,6 @@ return {
       print('Diagnostics = ' .. tostring(diagnostics_are_enabled))
     end, {})
 
-    -- Create an augroup that is used for managing our formatting autocmds.
-    --      We need one augroup per client to make sure that multiple clients
-    --      can attach to the same buffer without interfering with each other.
-    local _augroups = {}
-    local get_augroup = function(client)
-      if not _augroups[client.id] then
-        local group_name = 'kickstart-lsp-format-' .. client.name
-        local id = vim.api.nvim_create_augroup(group_name, { clear = true })
-        _augroups[client.id] = id
-      end
-
-      return _augroups[client.id]
-    end
-
     -- Whenever an LSP attaches to a buffer, we will run this function.
     --
     -- See `:help LspAttach` for more information about this autocmd event.
@@ -138,40 +121,19 @@ return {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach-format', { clear = true }),
       -- This is where we attach the autoformatting for reasonable clients
       callback = function(args)
-        local client_id = args.data.client_id
-        local client = vim.lsp.get_client_by_id(client_id) or {}
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if not client then
+          return
+        end
         local bufnr = args.buf
-        -- Create an autocmd that will run *before* we save the buffer.
-        --  Run the formatting command for the LSP that has just attached.
-        vim.api.nvim_create_autocmd('BufWritePre', {
-          group = get_augroup(client),
-          buffer = bufnr,
-          callback = function()
-            if format_is_enabled then
-              require('conform').format({ bufnr = bufnr, lsp_format = 'fallback' })
-            end
-          end,
-        })
-        vim.lsp.log.info('Autoformatting enabled for ' .. client.name)
         -- Check if should skip client
         if client.config.skip_custom_attach then
-          vim.lsp.log.warn('Skipping custom attach for ' .. client.name)
           return
         end
 
         -- Enable inlay hints
-        local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
-        if client:supports_method('textDocument/inlayHint') then
-          if client.config.skip_inlay then
-            vim.lsp.log.warn('Skipping inlay hints for ' .. client.name)
-          else
-            inlay_hint.enable(true)
-          end
-        end
-
-        -- attach to clients that support document formatting but log if they don't
-        if not client.server_capabilities.documentFormattingProvider then
-          vim.lsp.log.warn('Client does not support document formatting: ' .. client.name)
+        if client:supports_method('textDocument/inlayHint') and not client.config.skip_inlay then
+          vim.lsp.inlay_hint.enable(true)
         end
         local function nmap(keys, func, desc)
           if desc then
@@ -197,9 +159,7 @@ return {
           end
         end, 'Goto Declaration')
         nmap('gr', function()
-          require('telescope.builtin').lsp_references(
-            require('telescope.themes').get_cursor({ jump_type = 'vsplit', reuse_win = true })
-          )
+          require('fzf-lua').lsp_references()
         end, 'Goto References')
         nmap('<leader>la', function()
           local curr_row = vim.api.nvim_win_get_cursor(0)[1]
@@ -218,46 +178,38 @@ return {
         nmap('<leader>lr', vim.lsp.buf.rename, 'Rename')
         nmap('gt', function()
           -- I want <CR> to open the selection in a vertical split
-          require('telescope.builtin').lsp_type_definitions(require('telescope.themes').get_cursor({
+          require('fzf-lua').lsp_typedefs({
             jump_type = 'vsplit',
             reuse_win = true,
             initial_mode = 'normal',
             attach_mappings = function(_, map)
               map('n', '<CR>', require('telescope.actions').select_vertical)
               return true
-            end,
-          }))
+            end
+          })
         end, 'Type Definitions')
         -- Only map 'gd' if definitionProvider is supported
-        if client.server_capabilities.definitionProvider then
+        if client:supports_method('textDocument/definition') then
           nmap('gd', function()
-            require('telescope.builtin').lsp_definitions(require('telescope.themes').get_cursor({
+            require('fzf-lua').lsp_definitions({
+              jump_type = 'vsplit',
               reuse_win = true,
-              attach_mappings = function(_, map)
-                map('n', '<CR>', require('telescope.actions').select_vertical)
-                return true
-              end,
-            }))
+              initial_mode = 'normal',
+            })
           end, 'Definitions')
         end
         nmap('gs', function()
-          require('telescope.builtin').lsp_definitions(require('telescope.themes').get_cursor({
+          require('fzf-lua').lsp_definitions({
             jump_type = 'vsplit',
             reuse_win = false,
             initial_mode = 'normal',
-            attach_mappings = function(_, map)
-              map('n', '<CR>', require('telescope.actions').select_vertical)
-              return true
-            end,
-          }))
+          })
         end, 'Definitions Split')
         nmap('<leader>fs', function()
-          require('telescope.builtin').treesitter()
+          require('fzf-lua').treesitter()
         end, 'Find Symbols')
         nmap('gi', function()
-          require('telescope.builtin').lsp_implementations(
-            require('telescope.themes').get_cursor({ jump_type = 'vsplit', reuse_win = true })
-          )
+          require('fzf-lua').lsp_implementations()
         end, 'Implementations')
       end,
     })
@@ -287,6 +239,9 @@ return {
       },
     }
 
+    -- rustaceanvim v6+ no longer auto-registers capabilities
+    vim.lsp.config('*', { capabilities = vim.deepcopy(capabilities) })
+
     -- CONFIGS
     local servers = opts.servers or {}
     local function setup(server)
@@ -296,11 +251,11 @@ return {
 
       if opts.setup[server] then
         if opts.setup[server](server, server_opts) then
-          return
+          return true -- handled by another plugin; don't configure or enable it
         end
       elseif opts.setup['*'] then
         if opts.setup['*'](server, server_opts) then
-          return
+          return true
         end
       end
       vim.lsp.config(server, server_opts)
@@ -310,15 +265,14 @@ return {
     -- TODO: https://github.com/LazyVim/LazyVim/issues/6039
     local all_mslp_servers = vim.tbl_keys(require('mason-lspconfig').get_mappings().lspconfig_to_package)
     local ensure_installed = {} ---@type string[]
-    local exclude = { 'ltex' } ---@type string[]
+    local exclude = { 'ltex_plus' } ---@type string[]
     for server, server_opts in pairs(servers) do
       if server_opts then
         -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
         if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
-          vim.lsp.log.info('Manually setting up ' .. server)
-          vim.lsp.log.info(vim.inspect(server_opts))
-          setup(server)
-          vim.lsp.enable(server, not vim.tbl_contains(exclude, server))
+          if not setup(server) then
+            vim.lsp.enable(server, not vim.tbl_contains(exclude, server))
+          end
         else
           ensure_installed[#ensure_installed + 1] = server
         end

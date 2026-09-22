@@ -9,9 +9,9 @@ return {
       enabled = false,
       preset = {
         keys = {
-          { icon = ' ', key = 'f', desc = 'Find File', action = ':Telescope find_files' },
+          { icon = ' ', key = 'f', desc = 'Find File', action = ':FzfLua files' },
           { icon = ' ', key = 'n', desc = 'New File', action = ':ene | startinsert' },
-          { icon = ' ', key = 'r', desc = 'Recent Files', action = ':Telescope oldfiles' },
+          { icon = ' ', key = 'r', desc = 'Recent Files', action = ':FzfLua oldfiles' },
           {
             icon = ' ',
             key = 'g',

@@ -31,6 +31,7 @@ return {
       ---@type table<string, string|table>
       vim.api.nvim_create_autocmd('User', {
         pattern = 'LazyLoad',
+        once = true,
         callback = function()
           local objects = {
             { ' ', desc = 'whitespace' },
