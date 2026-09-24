@@ -19,38 +19,19 @@ if jit.os == 'Windows' then
       ['*'] = 'win32yank.exe -o --lf', -- paste from clipboard
     },
   }
-else
-  if vim.env.SSH_CLIENT or vim.env.SSH_CONNECTION or vim.env.SSH_TTY then -- Current session is over SSH
-    vim.g.clipboard = {                                                   -- Default clipboard is x11
-      name = 'xclip',
-      copy = {
-        ['+'] = 'xclip -selection clipboard',
-        ['*'] = 'xclip -selection primary',
-      },
-      paste = {
-        ['+'] = 'xclip -selection clipboard -o',
-        ['*'] = 'xclip -selection primary -o',
-      },
-      cache_enabled = true,
-    }
-    -- Use wl-clipboard if $WAYLAND_DISPLAY is set
-    if vim.env.WAYLAND_DISPLAY ~= nil then
-      vim.g.clipboard = {
-        name = 'wl-copy',
-        copy = {
-          ['+'] = 'wl-copy',
-          ['*'] = 'wl-copy',
-        },
-        paste = {
-          ['+'] = 'wl-paste -n',
-          ['*'] = 'wl-paste -n',
-        },
-        cache_enabled = true,
-      }
-    end
-  else                                -- local nvim session
-    vim.opt.clipboard = 'unnamedplus' -- Use system clipboard
+elseif (vim.env.SSH_CLIENT or vim.env.SSH_CONNECTION or vim.env.SSH_TTY) and vim.fn.has('nvim-0.10') == 1 then
+  -- OSC 52 hands yanks to the local terminal, so they land on the local clipboard with no
+  -- clipboard tools or X forwarding on the remote. Paste reads nvim's own register because
+  -- terminals prompt (kitty) or refuse when a program asks to read the clipboard.
+  local osc52 = require('vim.ui.clipboard.osc52')
+  local function paste()
+    return { vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('') }
   end
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = { ['+'] = osc52.copy('+'), ['*'] = osc52.copy('*') },
+    paste = { ['+'] = paste, ['*'] = paste },
+  }
 end
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
