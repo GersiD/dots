@@ -20,6 +20,10 @@ M.last_command = nil
 ---@type Terminal | nil
 M.last_run_terminal = nil
 
+---Long lived REPLs, keyed by name so they survive buffer switches.
+---@type table<string, Terminal>
+M.repls = {}
+
 function M.lazygit()
   M.terminals.lazygit:toggle()
 end
@@ -44,8 +48,59 @@ function M.close_all()
   for _, term in pairs(M.terminals) do
     term:close()
   end
+  for _, term in pairs(M.repls) do
+    term:close()
+  end
   if M.last_run_terminal then
     M.last_run_terminal:close()
+  end
+end
+
+---Get a long lived REPL, starting it only if it is not already running.
+---@param name string key the REPL is remembered under
+---@param command string command used to start the REPL
+---@param opts table | nil { direction }
+---@return Terminal
+function M.repl(name, command, opts)
+  local term = M.repls[name]
+  if term == nil then
+    term = Terminal:new({
+      cmd = command,
+      hidden = true,
+      direction = opts and opts.direction or 'vertical',
+      close_on_exit = false,
+      on_exit = function()
+        M.repls[name] = nil -- forget it so the next call starts a fresh one
+        vim.cmd('stopinsert')
+      end,
+      float_opts = {
+        border = 'curved',
+      },
+    })
+    M.repls[name] = term
+  end
+  if not term:is_open() then
+    term:open()
+  end
+  return term
+end
+
+---Send a line to a long lived REPL, starting it if needed, and stay in the current window.
+---@param name string key the REPL is remembered under
+---@param command string command used to start the REPL
+---@param text string | string[] line, or lines, to send
+---@param opts table | nil { direction }
+function M.repl_send(name, command, text, opts)
+  M.repl(name, command, opts):send(text, true)
+end
+
+---Kill a long lived REPL so the next call starts it from scratch.
+---@param name string key the REPL is remembered under
+function M.repl_restart(name)
+  local term = M.repls[name]
+  if term then
+    term:shutdown()
+    M.repls[name] = nil
   end
 end
 
