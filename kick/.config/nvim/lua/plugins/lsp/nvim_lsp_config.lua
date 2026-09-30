@@ -1,53 +1,18 @@
 return {
   'neovim/nvim-lspconfig',
+  -- Per-server settings live in after/lsp/<server>.lua; after/ is needed so they override
+  -- the defaults nvim-lspconfig ships in its own lsp/ directory.
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
     { 'mason-org/mason.nvim',           opts = {} },
-    { 'mason-org/mason-lspconfig.nvim', opts = {} },
+    -- set up once in config below; lazy's automatic setup({}) would enable servers before `exclude` applies
+    'mason-org/mason-lspconfig.nvim',
+    -- loading blink registers its completion capabilities for every server before any starts
+    'saghen/blink.cmp',
     { 'folke/neoconf.nvim',             cmd = 'Neoconf', config = false, dependencies = { 'nvim-lspconfig' } },
   },
   event = 'BufReadPre',
-  opts = {
-    -- LSP Server Settings
-    servers = {
-      ---@type vim.lsp.Config
-      lua_ls = {
-        -- mason = false, -- set to false if you don't want this server to be installed with mason
-        -- Use this to add any additional keymaps
-        -- for specific lsp servers
-        ---@type LazyKeys[]
-        -- keys = {},
-        settings = {
-          Lua = {
-            workspace = {
-              checkThirdParty = false,
-            },
-            -- → Lua.format.enable                   default: true
-            format = {
-              enable = false,
-            },
-            completion = {
-              callSnippet = 'Replace',
-            },
-          },
-        },
-      },
-      ---@type vim.lsp.Config
-      rust_analyzer = {
-        mason = false,
-      },
-      ---@type vim.lsp.Config
-      julials = {
-        mason = false,
-      }
-    },
-    setup = {
-      rust_analyzer = function()
-        return true -- return true to skip the default setup
-      end,
-    },
-  },
-  config = function(_, opts)
+  config = function()
     -- Register Command LspLog to open the LSP log file
     vim.api.nvim_create_user_command('LspLog', function()
       local log_path = vim.lsp.log.get_filename()
@@ -213,77 +178,12 @@ return {
         end, 'Implementations')
       end,
     })
-    -- local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    local has_blink, blink = pcall(require, 'blink.cmp')
-    local capabilities = vim.tbl_deep_extend(
-      'force',
-      {},
-      vim.lsp.protocol.make_client_capabilities(),
-      -- has_cmp and cmp_nvim_lsp.default_capabilities() or {},
-      has_blink and blink.get_lsp_capabilities() or {},
-      opts.capabilities or {}
-    )
-    capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-    capabilities.textDocument.completion.completionItem.preselectSupport = true
-    capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown' }
-    capabilities.textDocument.codeAction = {
-      dynamicRegistration = true,
-      codeActionLiteralSupport = {
-        codeActionKind = {
-          valueSet = (function()
-            local res = vim.tbl_values(vim.lsp.protocol.CodeActionKind)
-            table.sort(res)
-            return res
-          end)(),
-        },
-      },
-    }
-
-    -- rustaceanvim v6+ no longer auto-registers capabilities
-    vim.lsp.config('*', { capabilities = vim.deepcopy(capabilities) })
-
-    -- CONFIGS
-    local servers = opts.servers or {}
-    local function setup(server)
-      local server_opts = vim.tbl_deep_extend('force', {
-        capabilities = vim.deepcopy(capabilities or {}),
-      }, servers[server] or {})
-
-      if opts.setup[server] then
-        if opts.setup[server](server, server_opts) then
-          return true -- handled by another plugin; don't configure or enable it
-        end
-      elseif opts.setup['*'] then
-        if opts.setup['*'](server, server_opts) then
-          return true
-        end
-      end
-      vim.lsp.config(server, server_opts)
-    end
-
-    -- get all the servers that are available through mason-lspconfig
-    -- TODO: https://github.com/LazyVim/LazyVim/issues/6039
-    local all_mslp_servers = vim.tbl_keys(require('mason-lspconfig').get_mappings().lspconfig_to_package)
-    local ensure_installed = {} ---@type string[]
-    local exclude = { 'ltex_plus' } ---@type string[]
-    for server, server_opts in pairs(servers) do
-      if server_opts then
-        -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-        if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
-          if not setup(server) then
-            vim.lsp.enable(server, not vim.tbl_contains(exclude, server))
-          end
-        else
-          ensure_installed[#ensure_installed + 1] = server
-        end
-      end
-    end
     require('mason-lspconfig').setup({
-      ensure_installed = ensure_installed,
-      automatic_enable = {
-        exclude = exclude,
-      },
-      handlers = { setup },
+      ensure_installed = { 'clangd', 'lua_ls' },
+      -- rustaceanvim owns rust_analyzer; ltex_plus is started by hand from the tex/markdown ftplugins
+      automatic_enable = { exclude = { 'rust_analyzer', 'ltex_plus' } },
     })
+    -- not installed through mason
+    vim.lsp.enable({ 'julials', 'texlab' })
   end,
 }
