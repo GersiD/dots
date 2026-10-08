@@ -14,6 +14,8 @@ return {
   opts = function()
     local types = require('luasnip.util.types')
     return {
+      -- only `//` in tex math; everything else expands from the completion menu
+      enable_autosnippets = true,
       ext_opts = {
         [types.insertNode] = {
           unvisited = {
@@ -34,7 +36,22 @@ return {
     }
   end,
   config = function(_, opts)
-    require('luasnip').setup(opts)
-    require('luasnip.loaders.from_vscode').lazy_load({ paths = { vim.fn.stdpath('config') .. '/snippets' } })
+    local ls = require('luasnip')
+    ls.setup(opts)
+    -- Lua rather than VS Code JSON so snippets can carry conditions (e.g. tex math-only)
+    require('luasnip.loaders.from_lua').lazy_load({ paths = { vim.fn.stdpath('config') .. '/luasnippets' } })
+
+    -- leaving insert/select for normal mode ends the snippet, so re-entering insert later doesn't
+    -- resume old jump points; jump_active skips the mode changes LuaSnip makes while jumping
+    vim.api.nvim_create_autocmd('ModeChanged', {
+      group = vim.api.nvim_create_augroup('luasnip-unlink-on-normal', { clear = true }),
+      pattern = '[is]:n',
+      callback = function()
+        -- unlink_current() only drops the innermost snippet, so repeat for nested ones
+        while ls.session.current_nodes[vim.api.nvim_get_current_buf()] and not ls.session.jump_active do
+          ls.unlink_current()
+        end
+      end,
+    })
   end,
 }

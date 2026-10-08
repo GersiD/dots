@@ -47,6 +47,10 @@ vim.keymap.set('n', '<leader>ss', function()
     patterns = { '.git', 'Project.toml' },
   })
 end, { desc = 'Session' })
+-- global rather than on LspAttach so ftplugins (tex) can override it per buffer
+vim.keymap.set('n', '<leader>fs', function()
+  require('fzf-lua').treesitter()
+end, { desc = 'Find Symbols' })
 vim.keymap.set('n', ')', '$', { desc = 'End of line', remap = true })
 vim.api.nvim_set_keymap('v', '<leader>/', 'gc', { desc = 'Comment Selection' })
 vim.api.nvim_set_keymap('n', '<leader>/', 'Vgc', { desc = 'Comment Line' })

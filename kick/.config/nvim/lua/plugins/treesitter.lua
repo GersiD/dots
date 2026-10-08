@@ -26,8 +26,6 @@ return {
       bigfile = true,
       flash = true,
       oil = true,
-      TelescopePrompt = true,
-      TelescopeResults = true,
       toggleterm = true,
       qf = true,
       fzf = true,

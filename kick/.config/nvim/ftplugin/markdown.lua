@@ -23,5 +23,5 @@ vim.keymap.set('n', '<leader>mb', function()
 end, { desc = 'MD Backlinks', noremap = true, silent = true, buffer = true })
 
 vim.keymap.set('n', '<leader>ls', function()
-  vim.cmd('LspStart ltex_plus')
+  vim.cmd('lsp enable ltex_plus')
 end, { desc = 'Start Ltex (spell check)', buffer = true })

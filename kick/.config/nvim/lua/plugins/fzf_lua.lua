@@ -139,9 +139,11 @@ return {
         },
       },
 
+      -- in-file pickers break score ties by file order; the global `begin` tiebreak suits paths
       blines = {
         fzf_opts = {
           ['--scheme'] = 'history',
+          ['--tiebreak'] = 'index',
         },
         winopts = {
           width = 0.7,
@@ -174,9 +176,20 @@ return {
           end,
           child_prefix = false,
         },
+        document_symbols = {
+          fzf_opts = { ['--tiebreak'] = 'index' },
+        },
         code_actions = {
           previewer = vim.fn.executable('delta') == 1 and 'codeaction_native' or nil,
         },
+      },
+
+      grep_curbuf = {
+        fzf_opts = { ['--tiebreak'] = 'index' },
+      },
+
+      treesitter = {
+        fzf_opts = { ['--tiebreak'] = 'index' },
       },
     }
   end,

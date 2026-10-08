@@ -16,6 +16,6 @@ return {
     end,
     shading_factor = -10,
     -- start_in_insert = true,
-    shell = 'pwsh',
+    shell = jit.os == 'Windows' and 'pwsh' or 'fish',
   },
 }

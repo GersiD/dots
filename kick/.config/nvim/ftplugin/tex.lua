@@ -13,7 +13,7 @@ vim.keymap.set('n', '<leader>lC', function()
 end, { desc = 'Clean Latex Compilation Folder', buffer = true })
 
 vim.keymap.set('n', '<leader>ls', function()
-  vim.cmd('LspStart ltex_plus')
+  vim.cmd('lsp enable ltex_plus')
   ---@diagnostic disable-next-line: missing-fields
   require('trouble').toggle({
     mode = 'diagnostics',
@@ -39,8 +39,11 @@ vim.opt_local.linebreak = true
 -- Disable automatic line breaking
 vim.opt_local.formatoptions:remove('t') -- Don't auto-wrap text when typing
 
--- Move by visual line instead of logical line (buffer-local maps)
-vim.keymap.set('n', 'j', 'gj', { buffer = true, silent = true })
-vim.keymap.set('n', 'k', 'gk', { buffer = true, silent = true })
-vim.keymap.set('v', 'j', 'gj', { buffer = true, silent = true })
-vim.keymap.set('v', 'k', 'gk', { buffer = true, silent = true })
+-- Move by visual line, but by real line with a count so `5j` matches the relative numbers
+vim.keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { buffer = true, silent = true, expr = true })
+vim.keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { buffer = true, silent = true, expr = true })
+
+-- texlab's symbols are the document outline: sections, labels, environments
+vim.keymap.set('n', '<leader>fs', function()
+  require('fzf-lua').lsp_document_symbols()
+end, { desc = 'Find Sections/Labels', buffer = true })

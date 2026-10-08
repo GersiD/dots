@@ -89,9 +89,26 @@ end
 ---@param name string key the REPL is remembered under
 ---@param command string command used to start the REPL
 ---@param text string | string[] line, or lines, to send
----@param opts table | nil { direction }
+---@param opts table | nil { direction, bracketed_paste }
 function M.repl_send(name, command, text, opts)
+  if opts and opts.bracketed_paste then
+    -- one paste instead of line by line, so a multi-line block is a single REPL history entry
+    text = '\27[200~' .. (type(text) == 'table' and table.concat(text, '\n') or text) .. '\27[201~'
+  end
   M.repl(name, command, opts):send(text, true)
+end
+
+---Show or hide a long lived REPL window, starting the REPL if it is not running.
+---@param name string key the REPL is remembered under
+---@param command string command used to start the REPL
+---@param opts table | nil { direction }
+function M.repl_toggle(name, command, opts)
+  local term = M.repls[name]
+  if term and term:is_open() then
+    term:close()
+  else
+    M.repl(name, command, opts)
+  end
 end
 
 ---Kill a long lived REPL so the next call starts it from scratch.

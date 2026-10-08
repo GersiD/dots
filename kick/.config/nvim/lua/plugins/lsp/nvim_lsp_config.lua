@@ -137,42 +137,24 @@ return {
         end, 'Code Action on Line')
         nmap('<leader>ll', vim.lsp.codelens.run, 'CodeLens')
         nmap('<leader>lL', vim.lsp.codelens.refresh, 'Refresh CodeLens')
-        nmap('<leader>li', '<cmd>LspInfo<cr>', 'Info')
-        nmap('<leader>lS', '<cmd>LspStart<cr>', 'Start')
+        nmap('<leader>li', '<cmd>checkhealth vim.lsp<cr>', 'Info')
+        nmap('<leader>lS', '<cmd>lsp enable<cr>', 'Start')
         nmap('<leader>ld', vim.diagnostic.open_float, 'Diag')
         nmap('<leader>lr', vim.lsp.buf.rename, 'Rename')
         nmap('gt', function()
-          -- I want <CR> to open the selection in a vertical split
-          require('fzf-lua').lsp_typedefs({
-            jump_type = 'vsplit',
-            reuse_win = true,
-            initial_mode = 'normal',
-            attach_mappings = function(_, map)
-              map('n', '<CR>', require('telescope.actions').select_vertical)
-              return true
-            end
-          })
+          require('fzf-lua').lsp_typedefs({ reuse_win = true })
         end, 'Type Definitions')
         -- Only map 'gd' if definitionProvider is supported
         if client:supports_method('textDocument/definition') then
           nmap('gd', function()
-            require('fzf-lua').lsp_definitions({
-              jump_type = 'vsplit',
-              reuse_win = true,
-              initial_mode = 'normal',
-            })
+            require('fzf-lua').lsp_definitions({ reuse_win = true })
           end, 'Definitions')
         end
         nmap('gs', function()
-          require('fzf-lua').lsp_definitions({
-            jump_type = 'vsplit',
-            reuse_win = false,
-            initial_mode = 'normal',
-          })
+          local vsplit = require('fzf-lua.actions').file_vsplit
+          -- jump1_action covers a single definition; enter covers picking from several
+          require('fzf-lua').lsp_definitions({ jump1_action = vsplit, actions = { ['enter'] = vsplit } })
         end, 'Definitions Split')
-        nmap('<leader>fs', function()
-          require('fzf-lua').treesitter()
-        end, 'Find Symbols')
         nmap('gi', function()
           require('fzf-lua').lsp_implementations()
         end, 'Implementations')
