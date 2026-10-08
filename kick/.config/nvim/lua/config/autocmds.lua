@@ -102,7 +102,9 @@ vim.api.nvim_create_autocmd('TermOpen', {
     vim.keymap.set('n', 'q', function()
       vim.api.nvim_buf_delete(ev.buf, {})
     end, { desc = 'Close Terminal', buffer = ev.buf })
-    vim.api.nvim_feedkeys('G', 'n', true)
+    -- run now rather than via feedkeys: a terminal opened in the background (julia REPL) hands
+    -- focus back before typeahead is read, so a fed G would land in the code buffer
+    vim.cmd('normal! G')
   end,
 })
 vim.api.nvim_create_autocmd('TermClose', {
