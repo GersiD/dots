@@ -86,6 +86,9 @@ vim.opt.linebreak = true               -- wrap lines at convenient points
 vim.opt.colorcolumn = '100'            -- highlight column 100
 vim.opt.splitkeep = 'screen'
 vim.o.winborder = 'single'
+vim.opt.scrollback = 100000            -- max terminal scrollback
+-- fullscreen claude leaves no scrollback for normal-mode motions
+vim.env.CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN = '1'
 
 vim.opt.guifont = { 'FiraCode Nerd Font Ret', ':h18' }
 vim.g.neovide_input_macos_option_key_is_meta = 'only_left'

@@ -95,6 +95,8 @@ vim.api.nvim_create_autocmd('TermOpen', {
     if vim.bo[ev.buf].filetype == 'fzf' then
       return
     end
+    -- nvim defaults terminals to nowrap, so lines wider than the window scroll sideways
+    vim.opt_local.wrap = true
     if vim.api.nvim_win_get_config(0).relative ~= '' then
       return
     end

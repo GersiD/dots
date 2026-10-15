@@ -39,7 +39,7 @@ vim.keymap.set('n', '<leader>tt', function()
   require('config.utils.terminals').run('cd ~ && nvim ~/vaults/gersi_notes/todo.md && cd -', {})
 end, { desc = 'Terminal TODO' })
 vim.keymap.set('n', '<leader>tc', function()
-  vim.cmd('terminal askdeep')
+  vim.cmd('terminal fish')
 end, { desc = 'Terminal ChatGPT' })
 
 vim.keymap.set('n', '<leader>ss', function()
