@@ -20,6 +20,8 @@ return {
       vim.g.gruvbox_material_better_performance = 1
       ---@usage 'grey', 'red', 'orange', 'yellow', 'green', 'aqua', 'blue', 'purple'
       vim.g.gruvbox_material_menu_selection_background = 'grey'
+      ---@usage 'low', 'high'
+      vim.g.gruvbox_material_ui_contrast = 'high'
     end,
   },
   {
@@ -30,10 +32,10 @@ return {
     opts = {
       -- your configuration comes here
       -- or leave it empty to use the default settings
-      style = 'moon', -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+      style = 'moon',         -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
       terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
       -- no_italic = true, -- Disable italic comments, keywords, etc.
-      transparent = false, -- Enable transparent background
+      transparent = false,    -- Enable transparent background
       styles = {
         -- Style to be applied to different syntax groups
         -- Value is any valid attr-list value for `:help nvim_set_hl`
@@ -43,7 +45,7 @@ return {
         variables = { italic = false },
         -- Background styles. Can be "dark", "transparent" or "normal"
         sidebars = 'normal', -- style for sidebars, see below
-        floats = 'normal', -- style for floating windows
+        floats = 'normal',   -- style for floating windows
       },
       cache = true,
       sidebars = { 'qf', 'help' }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
@@ -67,11 +69,11 @@ return {
     opts = {
       -- custom options here
       styles = {
-        comments = { italic = false }, -- style for comments
-        keywords = { italic = false }, -- style for keywords
+        comments = { italic = false },    -- style for comments
+        keywords = { italic = false },    -- style for keywords
         identifiers = { italic = false }, -- style for identifiers
-        functions = {}, -- style for functions
-        variables = {}, -- style for variables
+        functions = {},                   -- style for functions
+        variables = {},                   -- style for variables
       },
     },
   },
@@ -135,8 +137,8 @@ return {
 
       -- Plugins Config --
       diagnostics = {
-        darker = true, -- darker colors for diagnostic
-        undercurl = true, -- use undercurl instead of underline for diagnostics
+        darker = true,     -- darker colors for diagnostic
+        undercurl = true,  -- use undercurl instead of underline for diagnostics
         background = true, -- use background color for virtual text
       },
       -- transparent = false, -- Show/hide background

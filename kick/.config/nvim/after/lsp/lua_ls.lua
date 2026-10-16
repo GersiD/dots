@@ -5,9 +5,8 @@ return {
       workspace = {
         checkThirdParty = false,
       },
-      -- stylua formats Lua through conform
       format = {
-        enable = false,
+        enable = true,
       },
       completion = {
         callSnippet = 'Replace',
